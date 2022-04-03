@@ -33,7 +33,6 @@ sudo apt-get install --yes --no-install-recommends apache2 libapache2-mod-fcgid 
 sudo a2enmod actions expires headers rewrite
 sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
-sudo mkdir -p "${web_root}"
 print-finish
 
 print-header "Install PHP..."
