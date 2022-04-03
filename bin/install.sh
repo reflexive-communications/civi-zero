@@ -30,8 +30,8 @@ routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
 
 print-header "Purge instance..."
-sudo mysql -u"${db_user_name}" -p"${db_user_pass}" -e "DROP DATABASE IF EXISTS ${db_name};"
-sudo rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
+mysql -u"${db_user_name}" -p"${db_user_pass}" -e "DROP DATABASE IF EXISTS ${db_name};"
+rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
 print-finish
 
 print-header "Add Civi vhost..."
@@ -40,7 +40,7 @@ if ! grep -qs "${routing}" /etc/hosts; then
     echo "${routing}" | sudo tee -a /etc/hosts >/dev/null
 fi
 # Document root
-sudo mkdir -p "${doc_root}"
+mkdir -p "${doc_root}"
 sudo chgrp -R www-data "${install_dir}"
 # Vhost
 sudo cp "${install_dir}/vhost.conf" "/etc/apache2/sites-available/${civi_domain}.conf"
@@ -53,7 +53,7 @@ sudo systemctl reload apache2.service
 print-finish
 
 print-header "Add Civi DB..."
-sudo mysql -u"${db_user_name}" -p"${db_user_pass}" -e "CREATE DATABASE IF NOT EXISTS ${db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+mysql -u"${db_user_name}" -p"${db_user_pass}" -e "CREATE DATABASE IF NOT EXISTS ${db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
 print-finish
 
 print-header "Composer install..."
@@ -72,8 +72,8 @@ sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
 
 # Testing
-echo puruttya | sudo tee -a "${doc_root}/majom" >/dev/null
-sudo chgrp -R www-data "${doc_root}/majom"
+echo puruttya > "${doc_root}/majom"
+chgrp -R www-data "${doc_root}/majom"
 ls -lah "${install_dir}"
 ls -lah "${install_dir}/web"
 curl "http://${civi_domain}/majom"

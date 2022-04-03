@@ -33,6 +33,7 @@ jobs:
         run: |
           sudo mkdir -p "${{ env.WEBROOT }}"
           sudo mv "${{ env.CIVI_DIR }}" "${{ env.WEBROOT }}/"
+          sudo chown -R "${USER}" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}"
 
       - name: Setup environment
         run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/prepare.sh"
