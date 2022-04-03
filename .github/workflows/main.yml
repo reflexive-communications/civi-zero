@@ -5,41 +5,32 @@ on:
     branches: [ main ]
 
 env:
-#  MYSQL_ROOT_PASSWORD: password
-#  MYSQL_DATABASE: drupal
-#  APACHE_DIR: "/etc/apache2"
-#  SITE_NAME: "composer-site.com"
-#  LOCAL_DEPLOY_TARGET: "/var/www/html"
-#  EXTENSION_NAME: "rc-base"
+  DB_USER: root
+  DB_PASSWORD: root
+  DB_NAME: civi_zero
+  #  APACHE_DIR: "/etc/apache2"
+  #  SITE_NAME: "composer-site.com"
+  #  LOCAL_DEPLOY_TARGET: "/var/www/html"
+  #  EXTENSION_NAME: "rc-base"
   CIVI_DIR: "civi-zero"
 
 jobs:
   unit-tests:
     name: Unit tests
-#    needs: code-style
     runs-on: ubuntu-18.04
-#    services:
-#      mysql:
-#        image: mysql:5.7
-#        env:
-#          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
-#          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-#          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
-#        ports:
-#          - 3306
-#        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Check out the code
+      - name: Start MySQL
+        run: |
+          sudo systemctl start mysql
+
+      - name: Check out Civi-zero
         uses: actions/checkout@v2
         with:
           path: ${{ env.CIVI_DIR }}
+
       - name: Setup environment
         run:
           "${{ env.CIVI_DIR }}/bin/ci-prepare.sh"
-#
-#      - name: Start mysql daemon.
-#        run: |
-#          sudo systemctl start mysql
 
 #      - name: Get DSG application.
 #        uses: actions/checkout@v2

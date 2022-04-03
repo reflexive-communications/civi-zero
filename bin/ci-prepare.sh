@@ -64,13 +64,12 @@ sudo systemctl reload apache2.service
 print-finish
 
 print-header "Install PHP tools..."
-sudo curl --location -o "${local_bin}/composer2" --url "${url_composer2}"
-sudo curl --location -o "${local_bin}/phpunit8" --url "${url_phpunit8}"
-sudo curl --location -o "${local_bin}/cv" --url "${url_cv}"
+sudo curl -LsS -o "${local_bin}/composer2" "${url_composer2}"
+sudo curl -LsS -o "${local_bin}/phpunit8" "${url_phpunit8}"
+sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer2"
 sudo chmod +x "${local_bin}/phpunit8"
 sudo chmod +x "${local_bin}/cv"
-composer2 --version
-phpunit8 --version
-cv --version
 print-finish
+
+exit 0
