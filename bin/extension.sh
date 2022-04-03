@@ -31,6 +31,12 @@ mv "${extension_dir}" "${extension_target}/"
 sudo chgrp -R www-data "${extension_target}/${extension_dir}"
 print-finish
 
-ls -lah "${extension_target}/"
+print-header "Enable extension (${extension_key})"
+sudo -u www-data cv ext:enable \
+    --no-interaction \
+    --cwd="${install_dir}" \
+    --user="${civi_user}" \
+    -- "${extension_key}"
+print-finish
 
 exit 0

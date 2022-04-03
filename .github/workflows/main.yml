@@ -48,10 +48,6 @@ jobs:
         run: |
           "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" rc-base
 
-#      - name: Enable extension
-#        run: |
-#          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}
-#          cv --no-interaction --cwd=${{ env.LOCAL_DEPLOY_TARGET }}/${{ env.SITE_NAME }} ext:enable ${{ env.EXTENSION_NAME }}
 #      - name: Run unit tests
 #        run: |
 #          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext/"${{ env.EXTENSION_NAME }}

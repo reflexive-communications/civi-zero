@@ -106,6 +106,7 @@ print-finish
 
 print-header "Set permissions..."
 sudo chmod g+w "${install_dir}/web/extensions"
+sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
 sudo chmod -R g+w "${install_dir}/web/sites/default/files"
 print-finish
 
