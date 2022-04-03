@@ -3,3 +3,6 @@
 
 # Installed files
 /web/
+
+# Local configs
+/install.local

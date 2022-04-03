@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-##########################
-## civi-zero            ##
-##                      ##
-## Setup CI environment ##
-##########################
+#########################
+## civi-zero           ##
+##                     ##
+## Setup environment   ##
+## Apache, PHP & tools ##
+#########################
 
 #################
 ## SCRIPT START #
