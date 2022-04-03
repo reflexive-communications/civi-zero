@@ -32,11 +32,9 @@ jobs:
         run:
           "${{ env.CIVI_DIR }}/bin/prepare.sh"
 
-#      - name: Get DSG application.
-#        uses: actions/checkout@v2
-#        with:
-#          repository: akosgarai/dsg
-#          path: dsg
+      - name: Install CiviCRM
+        run:
+          "${{ env.CIVI_DIR }}/bin/install.sh"
 
 #      - name: Build drupal site with civicrm.
 #        env:
