@@ -27,3 +27,9 @@ Currently only Ubuntu is supported.
    1. DB user name
    1. DB user pass
    1. DB name
+1. (Optional) Install extensions
+   1. Download extension
+   1. Run `bin/extension.sh`, parameters:
+      1. Install dir (the same dir as in the 1. step)
+      1. Extension dir
+      1. Extension key (if key is the same as the dir name, this can be omitted)
