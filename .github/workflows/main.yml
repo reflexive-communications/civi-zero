@@ -1,20 +1,13 @@
 name: CI
-
 on:
   pull_request:
     branches: [ main ]
-
 env:
   DB_USER: root
   DB_PASSWORD: root
   DB_NAME: civi_zero
-  #  APACHE_DIR: "/etc/apache2"
-  #  SITE_NAME: "composer-site.com"
-  #  LOCAL_DEPLOY_TARGET: "/var/www/html"
-  #  EXTENSION_NAME: "rc-base"
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
-
 jobs:
   unit-tests:
     name: Unit tests
@@ -46,24 +39,6 @@ jobs:
             "${{ env.DB_PASSWORD }}" \
             "${{ env.DB_NAME }}"
 
-#      - name: Build drupal site with civicrm.
-#        env:
-#          PROJECT_BASE_PATH: "."
-#          SITE_NAME: ${{ env.SITE_NAME }}
-#          DB_NAME: ${{ env.MYSQL_DATABASE }}
-#          DB_HOST: "127.0.0.1"
-#          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-#          DB_USER: "root@localhost"
-#          MYSQL_DB_PASS: ${{ env.MYSQL_ROOT_PASSWORD }}
-#          SITE_ADMIN_NAME: "admin"
-#          SITE_ADMIN_PW: "jPoLvGGGV5"
-#          APACHE_CONF_DIR: ${{ env.APACHE_DIR }}
-#          LOCAL_DEPLOY_TARGET: ${{ env.LOCAL_DEPLOY_TARGET }}
-#          COMPOSER_APP: composer
-#        run: |
-#          sudo mv dsg/apache2.conf ${{ env.APACHE_DIR }}/apache2.conf
-#          ./dsg/scripts.sh ci-build --project-base-path "${PROJECT_BASE_PATH}" --project-name "${SITE_NAME}" --db-name "${DB_NAME}" --db-user-name "${DB_USER}" --site-admin-user-name "${SITE_ADMIN_NAME}" --site-admin-password "${SITE_ADMIN_PW}" --apache-conf-dir "${APACHE_CONF_DIR}" --db-host "${DB_HOST}" --db-port "${DB_PORT}" --root-db-user-pw "${MYSQL_DB_PASS}" --local-deploy-target "${LOCAL_DEPLOY_TARGET}" -s --composer-app "${COMPOSER_APP}"
-#
 #      - name: Check out the code
 #        uses: actions/checkout@v2
 #        with:

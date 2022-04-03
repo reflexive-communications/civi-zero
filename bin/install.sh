@@ -5,10 +5,6 @@
 ## Install CiviCRM ##
 #####################
 
-#################
-## SCRIPT START #
-#################
-
 # Strict mode
 set -euo pipefail
 IFS=$'\n\t'
