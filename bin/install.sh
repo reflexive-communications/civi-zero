@@ -71,9 +71,30 @@ sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
 
+print-header "Enable Drupal modules..."
+"${install_dir}/vendor/bin/drush" pm:enable --yes  admin_toolbar,admin_toolbar_links_access_filter,big_pipe,breakpoint,ckeditor,config,editor,path,toolbar
+print-finish
+
+print-header "Enable Drupal theme..."
+"${install_dir}/vendor/bin/drush" theme:enable --yes seven
+print-finish
+
+print-finish "Drupal installed!"
+
+print-header "Install CiviCRM..."
+cv core:install \
+    --no-interaction \
+    --cwd="${install_dir}" \
+    --lang=en_GB \
+    --cms-base-url="http://${civi_domain}" \
+    --model paths.cms.root.path="${install_dir}/web"
+sudo chown -R "${USER}:www-data" "${install_dir}"
+sudo chmod -R u+w,g+r "${install_dir}"
+print-finish
+
 # Testing
 echo puruttya > "${doc_root}/majom"
-chgrp -R www-data "${doc_root}/majom"
+sudo chgrp -R www-data "${doc_root}/majom"
 ls -lah "${install_dir}"
 ls -lah "${install_dir}/web"
 curl "http://${civi_domain}/majom"
