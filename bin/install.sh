@@ -60,6 +60,7 @@ print-header "Install Drupal..."
 "${install_dir}/vendor/bin/drush" site:install \
     minimal \
     --db-url="mysql://${db_user_name}:${db_user_pass}@localhost:3306/${db_name}" \
+    --account-name="${civi_user}" \
     --account-pass="${civi_pass}" \
     --site-name="${civi_site}" \
     --yes
@@ -105,7 +106,13 @@ print-finish
 
 print-header "Set permissions..."
 sudo chmod g+w "${install_dir}/web/extensions"
+sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
 sudo chmod -R g+w "${install_dir}/web/sites/default/files"
+print-finish
+
+print-header "Login to site..."
+OTP=$("${install_dir}/vendor/bin/drush" uli --no-browser --uri="${civi_domain}")
+curl -LsS -o /dev/null --cookie-jar "$(mktemp)" "${OTP}"
 print-finish
 
 print-finish "CiviCRM installed!"
