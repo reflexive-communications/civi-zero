@@ -5,12 +5,6 @@
 ## Setup CI environment ##
 ##########################
 
-############
-## CONFIG ##
-############
-web_root=/srv/www/
-php_version="7.4"
-
 #################
 ## SCRIPT START #
 #################
@@ -21,12 +15,16 @@ IFS=$'\n\t'
 
 # Include library
 base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
-source "${base_dir}/library.sh"
+. "${base_dir}/library.sh"
+
+# Include configs
+. "${base_dir}/../install.conf"
+[[ -r "${base_dir}/../install.local" ]] && . "${base_dir}/../install.local"
 
 print-header "Add apt repository"
 sudo add-apt-repository --yes --no-update ppa:ondrej/apache2
 sudo add-apt-repository --yes --no-update ppa:ondrej/php
-sudo apt update
+sudo apt-get update
 print-finish
 
 print-header "Install Apache..."
@@ -59,4 +57,8 @@ sudo apt-get install --yes --no-install-recommends \
     "php${php_version}-zip" \
     "php${php_version}-xdebug" \
     "php${php_version}-xml"
+sudo systemctl enable "php${php_version}-fpm.service"
+sudo systemctl restart "php${php_version}-fpm.service"
+sudo a2enconf "php${php_version}-fpm"
+sudo systemctl reload apache2.service
 print-finish
