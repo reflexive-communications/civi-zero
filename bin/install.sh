@@ -52,6 +52,25 @@ sudo a2ensite "${civi_domain}.conf"
 sudo systemctl reload apache2.service
 print-finish
 
+print-header "Add Civi DB..."
+sudo mysql -u"${db_user_name}" -p"${db_user_pass}" -e "CREATE DATABASE IF NOT EXISTS ${db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+print-finish
+
+print-header "Composer install..."
+composer install --working-dir="${install_dir}"
+print-finish
+
+print-header "Install Drupal..."
+"${install_dir}/vendor/bin/drush" site:install \
+    minimal \
+    --db-url="mysql://${db_user_name}:${db_user_pass}@localhost:3306/${db_name}" \
+    --account-pass="${civi_pass}" \
+    --site-name="${civi_site}" \
+    --yes
+sudo chown -R "${USER}:www-data" "${install_dir}"
+sudo chmod -R u+w,g+r "${install_dir}"
+print-finish
+
 # Testing
 echo puruttya | sudo tee -a "${doc_root}/majom" >/dev/null
 sudo chgrp -R www-data "${doc_root}/majom"
