@@ -30,7 +30,7 @@ jobs:
 
       - name: Setup environment
         run:
-          "${{ env.CIVI_DIR }}/bin/ci-prepare.sh"
+          "${{ env.CIVI_DIR }}/bin/prepare.sh"
 
 #      - name: Get DSG application.
 #        uses: actions/checkout@v2
