@@ -12,12 +12,12 @@ env:
 #  LOCAL_DEPLOY_TARGET: "/var/www/html"
 #  EXTENSION_NAME: "rc-base"
 #  PHP_VERSION: 7.4
-  CIVI_DIR: "/srv/civi"
+  CIVI_DIR: "civi-zero"
 
 jobs:
   unit-tests:
     name: Unit tests
-    needs: code-style
+#    needs: code-style
     runs-on: ubuntu-18.04
 #    services:
 #      mysql:
@@ -36,7 +36,11 @@ jobs:
           path: ${{ env.CIVI_DIR }}
       - name: debug
         run: |
+          pwd
           ls -lah "${{ env.CIVI_DIR }}"
+      - name: Setup environment
+        run:
+          "${{ env.CIVI_DIR }}/bin/ci-prepare.sh"
 
 #      - name: Setup PHP and the extensions also the tools
 #        uses: shivammathur/setup-php@v2
