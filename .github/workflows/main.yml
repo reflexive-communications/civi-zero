@@ -16,7 +16,7 @@ jobs:
       - name: Start MySQL
         run: sudo systemctl start mysql
 
-      - name: Check out civi-zero
+      - name: Get civi-zero
         uses: actions/checkout@v3
         with:
           path: "${{ env.CIVI_DIR }}"
@@ -38,15 +38,16 @@ jobs:
             "${{ env.DB_PASSWORD }}" \
             "${{ env.DB_NAME }}"
 
-#      - name: Check out the code
-#        uses: actions/checkout@v2
-#        with:
-#          path: ${{ env.EXTENSION_NAME }}
-#
-#      - name: Move code under extensions directory
-#        run: |
-#          sudo mv ${{ env.EXTENSION_NAME }} ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
-#
+      - name: Get required extension (rc-base)
+        uses: actions/checkout@v3
+        with:
+          repository: reflexive-communications/rc-base
+          path: rc-base
+
+      - name: Install extensions
+        run: |
+          "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" rc-base
+
 #      - name: Enable extension
 #        run: |
 #          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}
