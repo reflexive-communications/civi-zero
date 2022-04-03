@@ -1,7 +1,7 @@
 name: CI
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 env:
   DB_USER: root
   DB_PASSWORD: root
@@ -48,7 +48,6 @@ jobs:
         run: |
           "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" rc-base
 
-#      - name: Run unit tests
-#        run: |
-#          cd ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext/"${{ env.EXTENSION_NAME }}
-#          XDEBUG_MODE=coverage XDEBUG_MODE_COVERAGE=coverage phpunit --verbose --coverage-text
+      - name: Run unit tests
+        run: |
+          "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/tests.sh" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" rc-base
