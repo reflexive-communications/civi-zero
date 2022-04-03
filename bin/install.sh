@@ -30,7 +30,7 @@ routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
 
 print-header "Purge instance..."
-mysql -u"${db_user_name}" -p"${db_user_pass}" -e "DROP DATABASE IF EXISTS ${db_name};"
+mysql -u"${db_user_name}" -p"${db_user_pass}" --silent -e "DROP DATABASE IF EXISTS ${db_name};"
 rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
 print-finish
 
@@ -53,7 +53,7 @@ sudo systemctl reload apache2.service
 print-finish
 
 print-header "Add Civi DB..."
-mysql -u"${db_user_name}" -p"${db_user_pass}" -e "CREATE DATABASE IF NOT EXISTS ${db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+mysql -u"${db_user_name}" -p"${db_user_pass}" --silent -e "CREATE DATABASE IF NOT EXISTS ${db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
 print-finish
 
 print-header "Composer install..."
@@ -72,11 +72,11 @@ sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
 
 print-header "Enable Drupal modules..."
-"${install_dir}/vendor/bin/drush" pm:enable --yes  admin_toolbar,admin_toolbar_links_access_filter,big_pipe,breakpoint,ckeditor,config,editor,path,toolbar
+"${install_dir}/vendor/bin/drush" pm:enable --yes "${drupal_modules}"
 print-finish
 
 print-header "Enable Drupal theme..."
-"${install_dir}/vendor/bin/drush" theme:enable --yes seven
+"${install_dir}/vendor/bin/drush" theme:enable --yes "${drupal_theme}"
 print-finish
 
 print-finish "Drupal installed!"
@@ -87,16 +87,31 @@ cv core:install \
     --cwd="${install_dir}" \
     --lang=en_GB \
     --cms-base-url="http://${civi_domain}" \
-    --model paths.cms.root.path="${install_dir}/web"
+    --model paths.cms.root.path="${doc_root}"
 sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
 
-# Testing
-echo puruttya > "${doc_root}/majom"
-sudo chgrp -R www-data "${doc_root}/majom"
-ls -lah "${install_dir}"
-ls -lah "${install_dir}/web"
-curl "http://${civi_domain}/majom"
+print-header "Update civicrm.settings.php..."
+mkdir -p "${install_dir}/web/extensions"
+sudo chgrp www-data "${install_dir}/web/extensions"
+sed -i \
+    -e "/\$civicrm_setting\['domain'\]\['extensionsDir'\]/ c \$civicrm_setting['domain']['extensionsDir'] = '[cms.root]/extensions';" \
+    -e "/\$civicrm_setting\['domain'\]\['extensionsURL'\]/ c \$civicrm_setting['domain']['extensionsURL'] = '[cms.root]/extensions';" \
+    -e "s@\['cms'\]\['root'\]@\['cms.root'\]@" \
+    "${install_dir}/web/sites/default/civicrm.settings.php"
+print-finish
+
+print-header "Clear cache..."
+sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild
+sudo -u www-data cv flush --cwd="${install_dir}"
+print-finish
+
+print-header "Set permissions..."
+sudo chmod g+w "${install_dir}/web/extensions"
+sudo chmod -R g+w "${install_dir}/web/sites/default/files"
+print-finish
+
+print-finish "CiviCRM installed!"
 
 exit 0
