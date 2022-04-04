@@ -25,6 +25,15 @@ sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
 print-finish
 
+print-header "Install MariaDB..."
+curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
+sudo apt-get install --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
+sudo mysql_install_db --user=mysql
+sudo systemctl enable mariadb.service
+sudo systemctl restart mariadb.service
+print-finish
+
 print-header "Install PHP..."
 sudo apt-get install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
 sudo systemctl enable "php${php_version}-fpm.service"

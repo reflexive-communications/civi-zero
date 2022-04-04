@@ -19,14 +19,11 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 
 # Parse options
 install_dir="${1?:'Install dir missing'}"
-db_user_name="${2?:'DB user name missing'}"
-db_user_pass="${3?:'DB user pass missing'}"
-db_name="${4?:'DB name missing'}"
 routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
 
 print-header "Purge instance..."
-mysql -u"${db_user_name}" -p"${db_user_pass}" --silent -e "DROP DATABASE IF EXISTS ${db_name};"
+sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name};"
 rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
 print-finish
 
@@ -49,7 +46,14 @@ sudo systemctl reload apache2.service
 print-finish
 
 print-header "Add Civi DB..."
-mysql -u"${db_user_name}" -p"${db_user_pass}" --silent -e "CREATE DATABASE IF NOT EXISTS ${db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${civi_db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+print-finish
+
+print-header "Add Civi DB user..."
+sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost IDENTIFIED BY '${civi_db_user_pass}';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}.* TO '${civi_db_user_name}'@'localhost';"
+sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost';"
+sudo mysql -e "FLUSH PRIVILEGES;"
 print-finish
 
 print-header "Composer install..."
@@ -59,7 +63,7 @@ print-finish
 print-header "Install Drupal..."
 "${install_dir}/vendor/bin/drush" site:install \
     minimal \
-    --db-url="mysql://${db_user_name}:${db_user_pass}@localhost:3306/${db_name}" \
+    --db-url="mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_name}" \
     --account-name="${civi_user}" \
     --account-pass="${civi_pass}" \
     --site-name="${civi_site}" \
