@@ -54,10 +54,10 @@ jobs:
           sudo chown -R "${USER}" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}"
 
       - name: Setup environment
-        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/prepare.sh
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/prepare.sh"
 
       - name: Install CiviCRM
-        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/install.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/install.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}"
 
       - name: Get required extension (rc-base)
         uses: actions/checkout@v3
@@ -66,7 +66,7 @@ jobs:
           path: rc-base
 
       - name: Install extensions
-        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} rc-base
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} rc-base"
 
       - name: Run unit tests
-        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/tests.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} rc-base
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/tests.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} rc-base"

@@ -50,8 +50,9 @@ sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${civi_db_name} DEFAULT CHARACTER S
 print-finish
 
 print-header "Add Civi DB user..."
-sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost identified by '${civi_db_user_pass}';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}. * TO '${civi_db_user_name}'@'localhost';"
+sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost IDENTIFIED BY '${civi_db_user_pass}';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}.* TO '${civi_db_user_name}'@'localhost';"
+sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 print-finish
 
