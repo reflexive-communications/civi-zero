@@ -6,9 +6,6 @@ on:
     paths:
       - 'bin/**'
 env:
-  DB_USER: civiadmin
-  DB_PASSWORD: adminpass
-  DB_NAME: civi_zero
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
 jobs:
