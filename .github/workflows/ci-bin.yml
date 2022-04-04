@@ -1,7 +1,10 @@
-name: CI
+name: CI bin
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - 'bin/**'
 env:
   DB_USER: root
   DB_PASSWORD: root
