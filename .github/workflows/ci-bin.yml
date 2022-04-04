@@ -12,9 +12,20 @@ env:
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
 jobs:
-  unit-tests:
+  code-style:
+    name: beautysh
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run beautysh
+        uses: illvart/beautysh-action@latest
+        with:
+          args: 'bin/*.sh --check'
+
+  build:
     name: Unit tests
     runs-on: ubuntu-18.04
+    needs: code-style
     steps:
       - name: Start MySQL
         run: sudo systemctl start mysql
