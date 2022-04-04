@@ -1,5 +1,8 @@
 # civicrm-zero
 
+[![build](https://github.com/reflexive-communications/civicrm-zero/actions/workflows/ci-composer.yml/badge.svg)](https://github.com/reflexive-communications/civicrm-zero/actions/workflows/ci-composer.yml)
+[![CI](https://github.com/reflexive-communications/civicrm-zero/actions/workflows/ci-bin.yml/badge.svg)](https://github.com/reflexive-communications/civicrm-zero/actions/workflows/ci-bin.yml)
+
 ## Overview
 
 This repo contains a zero config CiviCRM instance on Drupal 9.
