@@ -6,7 +6,7 @@ This repo contains a zero config CiviCRM instance on Drupal 9.
 
 ## Pre-requirements
 
-CiviCRM-zero is installed on a LAMP stack. So basically we need Linux, a DataBase, webserver, PHP and some tools (`composer`, `phpunit`, `cv`).
+CiviCRM-zero is installed on a LAMP stack. So basically we need Linux, a DataBase, webserver, PHP and some tools (`composer`, `cv`).
 Database and the  DB user account for CiviCRM is considered part of the environment and not handled by this app.
 Installing the rest of stack is possible by running `bin/prepare.sh`.
 

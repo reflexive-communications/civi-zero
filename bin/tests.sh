@@ -25,7 +25,7 @@ extension_target="${install_dir}/web/extensions"
 print-header "Run unit tests (${extension})"
 sudo chown -R "${USER}" "${install_dir}/web/"
 cd "${extension_target}/${extension}"
-XDEBUG_MODE=coverage phpunit --verbose --coverage-text
+XDEBUG_MODE=coverage "${install_dir}/vendor/bin/phpunit" --verbose --coverage-text
 print-finish
 
 exit 0
