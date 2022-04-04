@@ -1,7 +1,10 @@
-name: CI
+name: CI bin
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - 'bin/**'
 env:
   DB_USER: root
   DB_PASSWORD: root
@@ -9,9 +12,33 @@ env:
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
 jobs:
-  unit-tests:
-    name: Unit tests
+  code-style:
+    name: Check code style (beautysh)
     runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run beautysh
+        uses: illvart/beautysh-action@latest
+        with:
+          args: 'bin/*.sh --check'
+  linter:
+    name: Linter (shellcheck)
+    runs-on: ubuntu-18.04
+    needs: code-style
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          severity: error
+        env:
+          SHELLCHECK_OPTS: -s bash
+  build:
+    name: Build CiviCRM, run a unit test (rc-base)
+    runs-on: ubuntu-18.04
+    needs:
+      - code-style
+      - linter
     steps:
       - name: Start MySQL
         run: sudo systemctl start mysql
