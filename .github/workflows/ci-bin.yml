@@ -6,8 +6,8 @@ on:
     paths:
       - 'bin/**'
 env:
-  DB_USER: root
-  DB_PASSWORD: root
+  DB_USER: civiadmin
+  DB_PASSWORD: adminpass
   DB_NAME: civi_zero
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
@@ -40,8 +40,10 @@ jobs:
       - code-style
       - linter
     steps:
-      - name: Start MySQL
-        run: sudo systemctl start mysql
+      - name: Purge MySQL databases
+        run: |
+          sudo systemctl stop mysql
+          sudo rm -rf /var/lib/mysql
 
       - name: Get civi-zero
         uses: actions/checkout@v3
@@ -55,15 +57,10 @@ jobs:
           sudo chown -R "${USER}" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}"
 
       - name: Setup environment
-        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/prepare.sh"
+        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/prepare.sh
 
       - name: Install CiviCRM
-        run: |
-          "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/install.sh" \
-            "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" \
-            "${{ env.DB_USER }}" \
-            "${{ env.DB_PASSWORD }}" \
-            "${{ env.DB_NAME }}"
+        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/install.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}
 
       - name: Get required extension (rc-base)
         uses: actions/checkout@v3
@@ -72,9 +69,7 @@ jobs:
           path: rc-base
 
       - name: Install extensions
-        run: |
-          "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" rc-base
+        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/extension.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} rc-base
 
       - name: Run unit tests
-        run: |
-          "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/tests.sh" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}" rc-base
+        run: ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/tests.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} rc-base
