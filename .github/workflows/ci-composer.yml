@@ -1,0 +1,36 @@
+name: CI build
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'composer.*'
+env:
+  WEBROOT: "/srv/www"
+  CIVI_DIR: "civi-zero"
+jobs:
+  build:
+    name: Build CiviCRM
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Purge MySQL databases
+        run: |
+          sudo systemctl stop mysql
+          sudo rm -rf /var/lib/mysql
+
+      - name: Get civi-zero
+        uses: actions/checkout@v3
+        with:
+          path: "${{ env.CIVI_DIR }}"
+
+      - name: Move civi-zero to web root
+        run: |
+          sudo mkdir -p "${{ env.WEBROOT }}"
+          sudo mv "${{ env.CIVI_DIR }}" "${{ env.WEBROOT }}/"
+          sudo chown -R "${USER}" "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}"
+
+      - name: Setup environment
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/prepare.sh"
+
+      - name: Install CiviCRM
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/install.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }}"
