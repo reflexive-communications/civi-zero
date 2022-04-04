@@ -36,10 +36,8 @@ print-finish
 
 print-header "Install PHP tools..."
 sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
-sudo curl -LsS -o "${local_bin}/phpunit" "${url_phpunit}"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer"
-sudo chmod +x "${local_bin}/phpunit"
 sudo chmod +x "${local_bin}/cv"
 print-finish
 
