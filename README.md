@@ -33,3 +33,6 @@ Currently only Ubuntu is supported.
       1. Install dir (the same dir as in the 1. step)
       1. Extension dir
       1. Extension key (if key is the same as the dir name, this can be omitted)
+1. (Optional) Run unit test on extensions: run `bin/tests.sh`, params:
+   1. Install dir (the same dir as in the 1. step)
+   1. Extension name
