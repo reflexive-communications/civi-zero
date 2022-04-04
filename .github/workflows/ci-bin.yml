@@ -13,7 +13,7 @@ env:
   CIVI_DIR: "civi-zero"
 jobs:
   code-style:
-    name: beautysh
+    name: Check code style (beautysh)
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
@@ -21,11 +21,24 @@ jobs:
         uses: illvart/beautysh-action@latest
         with:
           args: 'bin/*.sh --check'
-
-  build:
-    name: Unit tests
+  linter:
+    name: Linter (shellcheck)
     runs-on: ubuntu-18.04
     needs: code-style
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          severity: error
+        env:
+          SHELLCHECK_OPTS: -s bash
+  build:
+    name: Build CiviCRM, run a unit test (rc-base)
+    runs-on: ubuntu-18.04
+    needs:
+      - code-style
+      - linter
     steps:
       - name: Start MySQL
         run: sudo systemctl start mysql
