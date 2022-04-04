@@ -14,7 +14,7 @@ env:
 jobs:
   code-style:
     name: Check code style (beautysh)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Run beautysh
@@ -23,7 +23,7 @@ jobs:
           args: 'bin/*.sh --check'
   linter:
     name: Linter (shellcheck)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs: code-style
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
           SHELLCHECK_OPTS: -s bash
   build:
     name: Build CiviCRM, run a unit test (rc-base)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs:
       - code-style
       - linter
