@@ -22,7 +22,7 @@
         "drush/drush": "^11"
     },
     "require-dev": {
-        "phpunit/phpunit": "~8.5.0"
+        "phpunit/phpunit": "~9.5.20"
     },
     "conflict": {
         "drupal/drupal": "*"
