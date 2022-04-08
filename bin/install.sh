@@ -36,7 +36,7 @@ fi
 mkdir -p "${doc_root}"
 sudo chgrp -R www-data "${install_dir}"
 # Vhost
-sudo cp "${install_dir}/vhost.conf" "/etc/apache2/sites-available/${civi_domain}.conf"
+sudo cp "${install_dir}/cfg/vhost.conf" "/etc/apache2/sites-available/${civi_domain}.conf"
 sudo sed -i \
     -e "s@{{ site }}@${civi_domain}@g" \
     -e "s@{{ doc_root }}@${doc_root}@g" \
