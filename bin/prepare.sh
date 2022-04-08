@@ -15,8 +15,8 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 . "${base_dir}/library.sh"
 
 # Include configs
-. "${base_dir}/../install.conf"
-[[ -r "${base_dir}/../install.local" ]] && . "${base_dir}/../install.local"
+. "${base_dir}/../cfg/install.cfg"
+[[ -r "${base_dir}/../cfg/install.local" ]] && . "${base_dir}/../cfg/install.local"
 
 print-header "Install Apache..."
 sudo apt-get install --yes --no-install-recommends --no-upgrade apache2 libapache2-mod-fcgid libapache2-mod-security2
@@ -41,6 +41,15 @@ sudo systemctl restart "php${php_version}-fpm.service"
 sudo a2enconf "php${php_version}-fpm"
 sudo systemctl reload apache2.service
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
+print-finish
+
+print-header "Config PHP..."
+sudo cp "${base_dir}/../cfg/civi.php.ini" "/etc/php/${php_version}/mods-available/"
+[[ -e "/etc/php/${php_version}/fpm/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/fpm/conf.d/99-civi.ini"
+[[ -e "/etc/php/${php_version}/cli/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/cli/conf.d/99-civi.ini"
+sudo sed -i \
+    -e "s@{{ xdebug.mode }}@${php_xdebug_mode}@g" \
+    "/etc/php/${php_version}/mods-available/civi.php.ini"
 print-finish
 
 print-header "Install PHP tools..."
