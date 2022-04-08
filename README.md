@@ -19,9 +19,9 @@ Currently only Ubuntu is supported.
 
 1. Check out repo into a dir where you want to serve it
 1. Config installer
-   1. Check `install.conf` for defaults
-   1. Duplicate `install.conf` and rename to `install.local`
-   1. Change relevant configs in `install.local`
+   1. Check `cfg/install.cfg` for defaults
+   1. Duplicate `cfg/install.cfg` and rename to `cfg/install.local`
+   1. Change relevant configs in `cfg/install.local`
 1. Run `bin/prepare.sh`
 1. Run `bin/install.sh`, parameters:
    1. Install dir (the same dir as in the 1. step)

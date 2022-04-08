@@ -15,8 +15,8 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 . "${base_dir}/library.sh"
 
 # Include configs
-. "${base_dir}/../install.conf"
-[[ -r "${base_dir}/../install.local" ]] && . "${base_dir}/../install.local"
+. "${base_dir}/../cfg/install.cfg"
+[[ -r "${base_dir}/../cfg/install.local" ]] && . "${base_dir}/../cfg/install.local"
 
 print-header "Install Apache..."
 sudo apt-get install --yes --no-install-recommends --no-upgrade apache2 libapache2-mod-fcgid libapache2-mod-security2
