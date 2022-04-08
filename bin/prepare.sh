@@ -45,11 +45,12 @@ print-finish
 
 print-header "Config PHP..."
 sudo cp "${base_dir}/../cfg/civi.php.ini" "/etc/php/${php_version}/mods-available/"
-[[ -e "/etc/php/${php_version}/fpm/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/fpm/conf.d/99-civi"
-[[ -e "/etc/php/${php_version}/cli/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/cli/conf.d/99-civi"
+[[ -e "/etc/php/${php_version}/fpm/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/fpm/conf.d/99-civi.ini"
+[[ -e "/etc/php/${php_version}/cli/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/cli/conf.d/99-civi.ini"
+sudo sed -i \
+    -e "s@{{ xdebug.mode }}@${php_xdebug_mode}@g" \
+    "/etc/php/${php_version}/mods-available/civi.php.ini"
 print-finish
-
-php -i
 
 print-header "Install PHP tools..."
 sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
