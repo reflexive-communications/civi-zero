@@ -25,7 +25,7 @@ extension_target="${install_dir}/web/extensions"
 print-header "Run unit tests (${extension})"
 sudo chown -R "${USER}" "${install_dir}/web/"
 cd "${extension_target}/${extension}"
-"${install_dir}/vendor/bin/phpunit" --verbose --coverage-text
+"${install_dir}/vendor/bin/phpunit" --verbose --coverage-text --colors=always
 print-finish
 
 exit 0
