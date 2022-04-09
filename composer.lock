@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaaa4c876a71a49cf2c98d6bd8e1bf16",
+    "content-hash": "32e0f3199a1edc13a0a8ca4306eae3f6",
     "packages": [
         {
             "name": "adrienrn/php-mimetyper",
@@ -452,16 +452,16 @@
         },
         {
             "name": "civicrm/civicrm-core",
-            "version": "5.47.3",
+            "version": "5.47.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-core.git",
-                "reference": "bef53d6a3faa73c4df59d76b2949df393b6cdb50"
+                "reference": "de8d9300e782522f4ef3d19f9fa076778a9baf35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/bef53d6a3faa73c4df59d76b2949df393b6cdb50",
-                "reference": "bef53d6a3faa73c4df59d76b2949df393b6cdb50",
+                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/de8d9300e782522f4ef3d19f9fa076778a9baf35",
+                "reference": "de8d9300e782522f4ef3d19f9fa076778a9baf35",
                 "shasum": ""
             },
             "require": {
@@ -472,7 +472,7 @@
                 "civicrm/composer-compile-lib": "~0.3 || ~1.0",
                 "civicrm/composer-downloads-plugin": "^3.0",
                 "cweagans/composer-patches": "~1.0",
-                "dompdf/dompdf": "~1.0.0",
+                "dompdf/dompdf": "~1.2.1",
                 "electrolinux/phpquery": "^0.9.6",
                 "ext-intl": "*",
                 "ext-json": "*",
@@ -906,7 +906,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-core/tree/5.47.3"
+                "source": "https://github.com/civicrm/civicrm-core/tree/5.47.4"
             },
             "funding": [
                 {
@@ -914,7 +914,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-03-27T22:35:35+00:00"
+            "time": "2022-04-07T05:28:21+00:00"
         },
         {
             "name": "civicrm/civicrm-cxn-rpc",
@@ -959,7 +959,7 @@
         },
         {
             "name": "civicrm/civicrm-drupal-8",
-            "version": "5.47.3",
+            "version": "5.47.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-drupal-8.git",
@@ -1008,7 +1008,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-drupal-8/tree/5.47.3"
+                "source": "https://github.com/civicrm/civicrm-drupal-8/tree/5.47.4"
             },
             "funding": [
                 {
@@ -1020,7 +1020,7 @@
         },
         {
             "name": "civicrm/civicrm-packages",
-            "version": "5.47.3",
+            "version": "5.47.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-packages.git",
@@ -1036,7 +1036,7 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "Legacy third party dependencies for CiviCRM",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-packages/tree/5.47.3"
+                "source": "https://github.com/civicrm/civicrm-packages/tree/5.47.4"
             },
             "time": "2022-01-09T16:48:04+00:00"
         },
@@ -2408,23 +2408,23 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v1.0.2",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "8768448244967a46d6e67b891d30878e0e15d25c"
+                "reference": "c6dfd9bb8b0040609f04754f729d4cb3016e0575"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/8768448244967a46d6e67b891d30878e0e15d25c",
-                "reference": "8768448244967a46d6e67b891d30878e0e15d25c",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/c6dfd9bb8b0040609f04754f729d4cb3016e0575",
+                "reference": "c6dfd9bb8b0040609f04754f729d4cb3016e0575",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-mbstring": "*",
-                "phenx/php-font-lib": "^0.5.2",
-                "phenx/php-svg-lib": "^0.3.3",
+                "phenx/php-font-lib": "^0.5.4",
+                "phenx/php-svg-lib": "^0.3.3 || ^0.4.0",
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
@@ -2439,11 +2439,6 @@
                 "ext-zlib": "Needed for pdf stream compression"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-develop": "0.7-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Dompdf\\": "src/"
@@ -2474,9 +2469,9 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
-                "source": "https://github.com/dompdf/dompdf/tree/v1.0.2"
+                "source": "https://github.com/dompdf/dompdf/tree/v1.2.1"
             },
-            "time": "2021-01-08T14:18:52+00:00"
+            "time": "2022-03-24T12:57:42+00:00"
         },
         {
             "name": "drupal/admin_toolbar",
@@ -5574,24 +5569,25 @@
         },
         {
             "name": "phenx/php-svg-lib",
-            "version": "0.3.4",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PhenX/php-svg-lib.git",
-                "reference": "f627771eb854aa7f45f80add0f23c6c4d67ea0f2"
+                "url": "https://github.com/dompdf/php-svg-lib.git",
+                "reference": "4498b5df7b08e8469f0f8279651ea5de9626ed02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/f627771eb854aa7f45f80add0f23c6c4d67ea0f2",
-                "reference": "f627771eb854aa7f45f80add0f23c6c4d67ea0f2",
+                "url": "https://api.github.com/repos/dompdf/php-svg-lib/zipball/4498b5df7b08e8469f0f8279651ea5de9626ed02",
+                "reference": "4498b5df7b08e8469f0f8279651ea5de9626ed02",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4 || ^8.0",
-                "sabberworm/php-css-parser": "^8.3"
+                "ext-mbstring": "*",
+                "php": "^7.1 || ^7.2 || ^7.3 || ^7.4 || ^8.0",
+                "sabberworm/php-css-parser": "^8.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.5"
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5"
             },
             "type": "library",
             "autoload": {
@@ -5612,10 +5608,10 @@
             "description": "A library to read, parse and export to PDF SVG files.",
             "homepage": "https://github.com/PhenX/php-svg-lib",
             "support": {
-                "issues": "https://github.com/PhenX/php-svg-lib/issues",
-                "source": "https://github.com/PhenX/php-svg-lib/tree/0.3.4"
+                "issues": "https://github.com/dompdf/php-svg-lib/issues",
+                "source": "https://github.com/dompdf/php-svg-lib/tree/0.4.1"
             },
-            "time": "2021-10-18T02:13:32+00:00"
+            "time": "2022-03-07T12:52:04+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
