@@ -98,6 +98,15 @@ print-finish
 
 print-finish "Drupal installed!"
 
+print-header "Install CiviCRM..."
+cv core:install \
+    --no-interaction \
+    --cwd="${install_dir}" \
+    --lang=en_GB \
+    --cms-base-url="http://${civi_domain}" \
+    --model paths.cms.root.path="${doc_root}"
+print-finish
+
 print-header "Config CiviCRM bin/setup.sh..."
 cp "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
 sed -i \
@@ -119,15 +128,6 @@ if [[ -n "${load_sample}" ]]; then
     GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -e
     print-finish
 fi
-
-print-header "Install CiviCRM..."
-cv core:install \
-    --no-interaction \
-    --cwd="${install_dir}" \
-    --lang=en_GB \
-    --cms-base-url="http://${civi_domain}" \
-    --model paths.cms.root.path="${doc_root}"
-print-finish
 
 print-header "Set permissions..."
 # Base
