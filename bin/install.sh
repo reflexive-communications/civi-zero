@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
-#####################
-## civi-zero       ##
-##                 ##
-## Install CiviCRM ##
-#####################
+#################################################
+## civi-zero                                   ##
+##                                             ##
+## Install CiviCRM                             ##
+##                                             ##
+## Required options:                           ##
+##   $1   Install dir                          ##
+##                                             ##
+## After required options, you can give flags: ##
+##   --sample: load sample data to CiviCRM     ##
+#################################################
 
 # Strict mode
 set -euo pipefail
@@ -19,8 +25,18 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 
 # Parse options
 install_dir="${1?:'Install dir missing'}"
+shift
 routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
+config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
+
+# Parse flags
+load_sample=""
+for flag in "${@}"; do
+    case "${flag}" in
+        --sample) load_sample="1" ;;
+    esac
+done
 
 print-header "Purge instance..."
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name};"
@@ -89,13 +105,44 @@ cv core:install \
     --lang=en_GB \
     --cms-base-url="http://${civi_domain}" \
     --model paths.cms.root.path="${doc_root}"
+mkdir -p "${install_dir}/web/extensions"
+print-finish
+
+print-header "Config CiviCRM bin/setup.sh..."
+cp "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
+sed -i \
+    -e "/^CIVISOURCEDIR=/ c \CIVISOURCEDIR='${install_dir}'" \
+    -e "/^DBNAME=/ c \DBNAME='${civi_db_name}'" \
+    -e "/^DBUSER=/ c \DBUSER='${civi_db_user_name}'" \
+    -e "/^DBPASS=/ c \DBPASS='${civi_db_user_pass}'" \
+    -e "/^GENCODE_CMS=/ c \GENCODE_CMS='drupal8'" \
+    "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
+print-finish
+
+print-header "Generate CiviCRM SQL files..."
+GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -g
+print-finish
+
+if [[ -n "${load_sample}" ]]; then
+    print-header "Load sample data..."
+    GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -se
+    print-finish
+fi
+
+print-header "Set permissions..."
+# Base
 sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+w,g+r "${install_dir}"
+# Vendor (enable patching of core files)
+sudo chmod -R g+w "${install_dir}/vendor"
+# Extensions
+sudo chmod -R g+w "${install_dir}/web/extensions"
+# Files
+sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
+sudo chmod -R g+w "${install_dir}/web/sites/default/files"
 print-finish
 
 print-header "Update civicrm.settings.php..."
-mkdir -p "${install_dir}/web/extensions"
-sudo chgrp www-data "${install_dir}/web/extensions"
 sed -i \
     -e "/\$civicrm_setting\['domain'\]\['extensionsDir'\]/ c \$civicrm_setting['domain']['extensionsDir'] = '[cms.root]/extensions';" \
     -e "/\$civicrm_setting\['domain'\]\['extensionsURL'\]/ c \$civicrm_setting['domain']['extensionsURL'] = '[cms.root]/extensions';" \
@@ -106,12 +153,6 @@ print-finish
 print-header "Clear cache..."
 sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild
 sudo -u www-data cv flush --cwd="${install_dir}"
-print-finish
-
-print-header "Set permissions..."
-sudo chmod g+w "${install_dir}/web/extensions"
-sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
-sudo chmod -R g+w "${install_dir}/web/sites/default/files"
 print-finish
 
 print-header "Login to site..."
