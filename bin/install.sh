@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
-#####################
-## civi-zero       ##
-##                 ##
-## Install CiviCRM ##
-#####################
+#################################################
+## civi-zero                                   ##
+##                                             ##
+## Install CiviCRM                             ##
+##                                             ##
+## Required options:                           ##
+##   $1   Install dir                          ##
+##                                             ##
+## After required options, you can give flags: ##
+##   --sample: load sample data to CiviCRM     ##
+#################################################
 
 # Strict mode
 set -euo pipefail
@@ -19,9 +25,18 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 
 # Parse options
 install_dir="${1?:'Install dir missing'}"
+shift
 routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
 config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
+
+# Parse flags
+load_sample=""
+for flag in "${@}"; do
+    case "${flag}" in
+        --sample) load_sample="1" ;;
+    esac
+done
 
 print-header "Purge instance..."
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name};"
@@ -97,6 +112,13 @@ print-finish
 print-header "Generate CiviCRM SQL files..."
 GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -g
 print-finish
+
+if [[ -n "${load_sample}" ]]; then
+    print-header "Load sample data..."
+    GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -s
+    GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -e
+    print-finish
+fi
 
 print-header "Install CiviCRM..."
 cv core:install \
