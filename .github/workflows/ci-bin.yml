@@ -59,6 +59,9 @@ jobs:
       - name: Install CiviCRM
         run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/install.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} --sample"
 
+      - name: Reinstall CiviCRM
+        run: "${{ env.WEBROOT }}/${{ env.CIVI_DIR }}/bin/reinstall.sh ${{ env.WEBROOT }}/${{ env.CIVI_DIR }} --sample"
+
       - name: Get required extension (rc-base)
         uses: actions/checkout@v3
         with:
