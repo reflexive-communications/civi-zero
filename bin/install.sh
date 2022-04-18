@@ -105,6 +105,7 @@ cv core:install \
     --lang=en_GB \
     --cms-base-url="http://${civi_domain}" \
     --model paths.cms.root.path="${doc_root}"
+mkdir -p "${install_dir}/web/extensions"
 print-finish
 
 print-header "Config CiviCRM bin/setup.sh..."
@@ -135,7 +136,6 @@ sudo chmod -R u+w,g+r "${install_dir}"
 # Vendor (enable patching of core files)
 sudo chmod -R g+w "${install_dir}/vendor"
 # Extensions
-mkdir -p "${install_dir}/web/extensions"
 sudo chmod -R g+w "${install_dir}/web/extensions"
 # Files
 sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
