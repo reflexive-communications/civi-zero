@@ -21,6 +21,7 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 install_dir="${1?:'Install dir missing'}"
 routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
+config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
 
 print-header "Purge instance..."
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name};"
@@ -81,6 +82,21 @@ print-header "Enable Drupal theme..."
 print-finish
 
 print-finish "Drupal installed!"
+
+print-header "Config CiviCRM bin/setup.sh..."
+cp "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
+sed -i \
+    -e "/^CIVISOURCEDIR=/ c \CIVISOURCEDIR='${install_dir}'" \
+    -e "/^DBNAME=/ c \DBNAME='${civi_db_name}'" \
+    -e "/^DBUSER=/ c \DBUSER='${civi_db_user_name}'" \
+    -e "/^DBPASS=/ c \DBPASS='${civi_db_user_pass}'" \
+    -e "/^GENCODE_CMS=/ c \GENCODE_CMS='drupal8'" \
+    "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
+print-finish
+
+print-header "Generate CiviCRM SQL files..."
+GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -g
+print-finish
 
 print-header "Install CiviCRM..."
 cv core:install \
