@@ -54,6 +54,6 @@ Parameters are the same as `install.sh`.
     ```
     tests.sh INSTALL_DIR EXTENSION_DIR
 
-    INSTALL_DIR:      Installation dir (the same dir as in the 1. step)
+    INSTALL_DIR:         Installation dir (the same dir as in the 1. step)
     EXTENSION_DIR:       Extension base dir (same as in 'extension.sh')
     ```
