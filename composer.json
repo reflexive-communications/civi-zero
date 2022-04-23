@@ -1,6 +1,6 @@
 {
     "name": "reflexive-communications/civicrm-zero",
-    "description": "Zero config CiviCRM install on Drupal 9",
+    "description": "Zero config CiviCRM install on Drupal 9@",
     "type": "project",
     "license": "AGPL-3.0",
     "repositories": [
