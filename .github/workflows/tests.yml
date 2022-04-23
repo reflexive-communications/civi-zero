@@ -1,4 +1,4 @@
-name: CI
+name: tests
 on:
   pull_request:
     branches:
@@ -30,8 +30,8 @@ jobs:
           severity: error
         env:
           SHELLCHECK_OPTS: -s bash
-  build:
-    name: Build CiviCRM, run a unit test (rc-base)
+  tests:
+    name: Tests scripts
     runs-on: ubuntu-20.04
     needs:
       - code-style
