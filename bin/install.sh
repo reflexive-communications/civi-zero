@@ -156,8 +156,21 @@ sudo -u www-data cv flush --cwd="${install_dir}"
 print-finish
 
 print-header "Login to site..."
+cookies=$(mktemp)
 OTP=$("${install_dir}/vendor/bin/drush" uli --no-browser --uri="${civi_domain}")
-curl -LsS -o /dev/null --cookie-jar "$(mktemp)" "${OTP}"
+return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie-jar "${cookies}" "${OTP}")
+if [[ "${return_code}" != "200" ]]; then
+    print-error "Failed to login to site"
+    exit 1
+fi
+print-finish
+
+print-header "Test Civi: GET /civicrm/contact/search..."
+return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie "${cookies}" "${civi_domain}/civicrm/contact/search")
+if [[ "${return_code}" != "200" ]]; then
+    print-error "Failed to GET /civicrm/contact/search"
+    exit 1
+fi
 print-finish
 
 print-finish "CiviCRM installed!"
