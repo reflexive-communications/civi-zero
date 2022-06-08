@@ -40,7 +40,7 @@ done
 
 print-header "Purge instance..."
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name};"
-rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
+sudo rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
 print-finish
 
 print-header "Add Civi vhost..."
