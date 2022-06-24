@@ -152,6 +152,14 @@ sed -i \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 print-finish
 
+print-header "Redirect mail to database..."
+sudo -u www-data cv api4 \
+    --no-interaction \
+    --cwd="${install_dir}" \
+    Setting.set \
+    '{"values":{"mailing_backend":{"outBound_option":5}}}'
+print-finish
+
 print-header "Clear cache..."
 sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild
 sudo -u www-data cv flush --cwd="${install_dir}"
