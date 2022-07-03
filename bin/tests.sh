@@ -18,8 +18,8 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 [[ -r "${base_dir}/../cfg/install.local" ]] && . "${base_dir}/../cfg/install.local"
 
 # Parse options
-install_dir="${1?:'Install dir missing'}"
-extension="${2?:'Extension missing'}"
+install_dir="${1?:"Install dir missing"}"
+extension="${2?:"Extension missing"}"
 extension_target="${install_dir}/web/extensions"
 
 print-header "Run unit tests (${extension})"

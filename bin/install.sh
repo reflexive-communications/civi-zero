@@ -24,17 +24,17 @@ base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
 [[ -r "${base_dir}/../cfg/install.local" ]] && . "${base_dir}/../cfg/install.local"
 
 # Parse options
-install_dir="${1?:'Install dir missing'}"
+install_dir="${1?:"Install dir missing"}"
 shift
 routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
 config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
 
 # Parse flags
-load_sample=""
+load_sample=
 for flag in "${@}"; do
     case "${flag}" in
-        --sample) load_sample="1" ;;
+        --sample) load_sample=1 ;;
     esac
 done
 

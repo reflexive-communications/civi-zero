@@ -4,11 +4,11 @@ on:
     branches:
       - main
     paths:
-      - 'bin/**'
-      - 'cfg/**'
+      - "bin/**"
+      - "cfg/**"
 env:
-  WEBROOT: "/srv/www"
-  CIVI_DIR: "civi-zero"
+  WEBROOT: /srv/www
+  CIVI_DIR: civi-zero
 jobs:
   code-style:
     name: Check code style (beautysh)
@@ -18,7 +18,7 @@ jobs:
       - name: Run beautysh
         uses: illvart/beautysh-action@latest
         with:
-          args: 'bin/*.sh --check'
+          args: --force-function-style paronly --check bin/*
   linter:
     name: Linter (shellcheck)
     runs-on: ubuntu-20.04
@@ -46,22 +46,22 @@ jobs:
       - name: Get civi-zero
         uses: actions/checkout@v3
         with:
-          path: "${{ env.CIVI_DIR }}"
+          path: ${{ env.CIVI_DIR }}
 
       - name: Move civi-zero to web root
         run: |
-          sudo mkdir -p "${WEBROOT}"
-          sudo mv "${CIVI_DIR}" "${WEBROOT}/"
-          sudo chown -R "${USER}" "${WEBROOT}/${CIVI_DIR}"
+          sudo mkdir -p ${WEBROOT}
+          sudo mv ${CIVI_DIR} ${WEBROOT}/
+          sudo chown -R ${USER} ${WEBROOT}/${CIVI_DIR}
 
       - name: Setup environment
-        run: "${WEBROOT}/${CIVI_DIR}/bin/prepare.sh"
+        run: ${WEBROOT}/${CIVI_DIR}/bin/prepare.sh
 
       - name: Install CiviCRM
-        run: "${WEBROOT}/${CIVI_DIR}/bin/install.sh ${WEBROOT}/${CIVI_DIR} --sample"
+        run: ${WEBROOT}/${CIVI_DIR}/bin/install.sh ${WEBROOT}/${CIVI_DIR} --sample
 
       - name: Reinstall CiviCRM
-        run: "${WEBROOT}/${CIVI_DIR}/bin/reinstall.sh ${WEBROOT}/${CIVI_DIR} --sample"
+        run: ${WEBROOT}/${CIVI_DIR}/bin/reinstall.sh ${WEBROOT}/${CIVI_DIR} --sample
 
       - name: Get required extension (rc-base)
         uses: actions/checkout@v3
@@ -70,7 +70,7 @@ jobs:
           path: rc-base
 
       - name: Install extensions
-        run: "${WEBROOT}/${CIVI_DIR}/bin/extension.sh ${WEBROOT}/${CIVI_DIR} rc-base"
+        run: ${WEBROOT}/${CIVI_DIR}/bin/extension.sh ${WEBROOT}/${CIVI_DIR} rc-base
 
       - name: Run unit tests
-        run: "${WEBROOT}/${CIVI_DIR}/bin/tests.sh ${WEBROOT}/${CIVI_DIR} rc-base"
+        run: ${WEBROOT}/${CIVI_DIR}/bin/tests.sh ${WEBROOT}/${CIVI_DIR} rc-base

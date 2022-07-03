@@ -24,7 +24,7 @@ TXT_BLUE="\e[34m"
 ##
 ## @param    $*  Message
 ########################
-print-header(){
+print-header() {
     echo
     echo -e "${TXT_YELLOW}${*}${TXT_NORM}"
 }
@@ -34,14 +34,14 @@ print-header(){
 ## @param    $*  Message
 ## @default      Done
 ########################
-print-finish(){
-    echo -e "${TXT_GREEN}${TXT_BOLD}${*:-"Done."}${TXT_NORM}"
+print-finish() {
+    echo -e "${TXT_GREEN}${TXT_BOLD}${*:-Done.}${TXT_NORM}"
 }
 
 ## Print error message
 ##
 ## @param    $*  Message
 ########################
-print-error(){
+print-error() {
     echo -e "${TXT_RED}${TXT_BOLD}${*}${TXT_NORM}" >&2
 }
