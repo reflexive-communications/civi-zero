@@ -18,7 +18,7 @@ jobs:
       - name: Run beautysh
         uses: illvart/beautysh-action@latest
         with:
-          args: 'bin/*.sh --check'
+          args: --force-function-style paronly --check bin/*
   linter:
     name: Linter (shellcheck)
     runs-on: ubuntu-20.04
