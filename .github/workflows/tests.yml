@@ -4,8 +4,8 @@ on:
     branches:
       - main
     paths:
-      - 'bin/**'
-      - 'cfg/**'
+      - "bin/**"
+      - "cfg/**"
 env:
   WEBROOT: "/srv/www"
   CIVI_DIR: "civi-zero"
