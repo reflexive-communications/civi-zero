@@ -39,7 +39,7 @@ for flag in "${@}"; do
 done
 
 print-header "Purge instance..."
-sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name};"
+sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name}"
 sudo rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
 print-finish
 
@@ -62,14 +62,14 @@ sudo systemctl reload apache2.service
 print-finish
 
 print-header "Add Civi DB..."
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${civi_db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${civi_db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
 print-finish
 
 print-header "Add Civi DB user..."
-sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost IDENTIFIED BY '${civi_db_user_pass}';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}.* TO '${civi_db_user_name}'@'localhost';"
-sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost IDENTIFIED BY '${civi_db_user_pass}'"
+sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}.* TO '${civi_db_user_name}'@'localhost'"
+sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost'"
+sudo mysql -e "FLUSH PRIVILEGES"
 print-finish
 
 print-header "Composer install..."
