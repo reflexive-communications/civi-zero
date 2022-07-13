@@ -30,7 +30,7 @@ jobs:
         env:
           SHELLCHECK_OPTS: --external-sources --enable add-default-case,avoid-nullary-conditions,check-extra-masked-returns,check-set-e-suppressed,deprecate-which,quote-safe-variables,require-double-brackets,require-variable-braces --shell bash
         with:
-          severity: error
+          severity: warning
   tests:
     name: Tests scripts
     runs-on: ubuntu-20.04
