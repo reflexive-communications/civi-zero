@@ -58,7 +58,8 @@ print-finish
 
 print-header "Login to site..."
 OTP=$("${install_dir}/vendor/bin/drush" uli --no-browser --uri="${civi_domain}")
-curl -LsS -o /dev/null --cookie-jar "$(mktemp)" "${OTP}"
+tmp_file=$(mktemp)
+curl -LsS -o /dev/null --cookie-jar "${tmp_file}" "${OTP}"
 print-finish
 
 print-finish "CiviCRM reinstalled!"
