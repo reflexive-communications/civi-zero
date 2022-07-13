@@ -48,6 +48,7 @@ print-header() {
 ## @param    $*  Message
 ## @default      Done
 ########################
+# shellcheck disable=SC2120
 print-finish() {
     echo -e "${TXT_GREEN}${TXT_BOLD}${*:-Done.}${TXT_NORM}"
 }
