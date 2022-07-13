@@ -38,6 +38,7 @@ load_sample=
 for flag in "${@}"; do
     case "${flag}" in
         --sample) load_sample=1 ;;
+        *) ;;
     esac
 done
 
