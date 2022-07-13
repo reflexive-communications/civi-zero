@@ -20,6 +20,20 @@ TXT_BLUE="\e[34m"
 ## FUNCTIONS ##
 ###############
 
+## Print section header
+##
+## @param    $*  Message
+########################
+print-section() {
+    local msg="${*}"
+    echo
+    echo -e "${TXT_BLUE}${TXT_BOLD}${msg}${TXT_NORM}"
+    for ((i = 0 ; i < ${#msg} ; i++)); do
+        echo -ne "${TXT_BLUE}${TXT_BOLD}=${TXT_NORM}"
+    done
+    echo
+}
+
 ## Print header
 ##
 ## @param    $*  Message
@@ -34,6 +48,7 @@ print-header() {
 ## @param    $*  Message
 ## @default      Done
 ########################
+# shellcheck disable=SC2120
 print-finish() {
     echo -e "${TXT_GREEN}${TXT_BOLD}${*:-Done.}${TXT_NORM}"
 }

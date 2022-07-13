@@ -17,10 +17,13 @@ IFS=$'\n\t'
 
 # Include library
 base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
+# shellcheck source=bin/library.sh
 . "${base_dir}/library.sh"
 
 # Include configs
+# shellcheck source=cfg/install.cfg
 . "${base_dir}/../cfg/install.cfg"
+# shellcheck disable=SC1091
 [[ -r "${base_dir}/../cfg/install.local" ]] && . "${base_dir}/../cfg/install.local"
 
 # Parse options
@@ -35,6 +38,7 @@ load_sample=
 for flag in "${@}"; do
     case "${flag}" in
         --sample) load_sample=1 ;;
+        *) ;;
     esac
 done
 
