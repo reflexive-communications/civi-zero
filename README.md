@@ -19,7 +19,7 @@ Currently only Ubuntu is supported.
 
 ## Installation
 
-1. Check out repo into a dir where you want to serve it
+1. Check out repo
 1. Config installer
    1. Check `cfg/install.cfg` for defaults
    1. Duplicate `cfg/install.cfg` and rename to `cfg/install.local`
@@ -29,7 +29,7 @@ Currently only Ubuntu is supported.
     ```
     install.sh INSTALL_DIR [FLAGS]...
 
-    INSTALL_DIR:    Installation dir (the same dir as in the 1. step)
+    INSTALL_DIR:    Installation dir, where to install CiviCRM
     FLAGS:          Optional flags:
                       --sample:   load randomly generated sample data into Civi after install
     ```
@@ -39,7 +39,7 @@ Currently only Ubuntu is supported.
        ```
        extension.sh INSTALL_DIR EXTENSION_DIR EXTENSION_KEY
 
-       INSTALL_DIR:         Installation dir (the same dir as in the 1. step)
+       INSTALL_DIR:         Installation dir (the same dir where you installed in step #4)
        EXTENSION_DIR:       Dir that contains the extension
        EXTENSION_KEY:       Extension key (if key is the same as the dir name, this can be omitted)
        ```
@@ -54,6 +54,6 @@ Parameters are the same as `install.sh`.
     ```
     tests.sh INSTALL_DIR EXTENSION_DIR
 
-    INSTALL_DIR:         Installation dir (the same dir as in the 1. step)
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4)
     EXTENSION_DIR:       Extension base dir (same as in 'extension.sh')
     ```
