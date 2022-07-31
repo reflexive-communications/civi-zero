@@ -17,18 +17,19 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Include library
-base_dir="$(builtin cd "$(dirname "${0}")" >/dev/null 2>&1 && pwd)"
+base_dir="$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)"
 # shellcheck source=bin/library.sh
-. "${base_dir}/library.sh"
+. "${base_dir}/bin/library.sh"
 
 # Include configs
 # shellcheck source=cfg/install.cfg
-. "${base_dir}/../cfg/install.cfg"
+. "${base_dir}/cfg/install.cfg"
 # shellcheck disable=SC1091
-[[ -r "${base_dir}/../cfg/install.local" ]] && . "${base_dir}/../cfg/install.local"
+[[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 # Parse options
 install_dir="${1?:"Install dir missing"}"
+install_dir=$(realpath "${install_dir}")
 shift
 config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
 
@@ -52,12 +53,12 @@ else
 fi
 
 print-header "Clear cache..."
-sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild
+sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --root "${install_dir}"
 sudo -u www-data cv flush --cwd="${install_dir}"
 print-finish
 
 print-header "Login to site..."
-OTP=$("${install_dir}/vendor/bin/drush" uli --no-browser --uri="${civi_domain}")
+OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
 tmp_file=$(mktemp)
 curl -LsS -o /dev/null --cookie-jar "${tmp_file}" "${OTP}"
 print-finish

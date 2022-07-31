@@ -6,8 +6,7 @@ on:
     paths:
       - "composer.*"
 env:
-  WEBROOT: /srv/www
-  CIVI_DIR: civi-zero
+  INSTALL_DIR: /srv/www/civi-zero
 jobs:
   build:
     name: Build CiviCRM
@@ -20,17 +19,9 @@ jobs:
 
       - name: Get civi-zero
         uses: actions/checkout@v3
-        with:
-          path: ${{ env.CIVI_DIR }}
-
-      - name: Move civi-zero to web root
-        run: |
-          sudo mkdir -p ${WEBROOT}
-          sudo mv ${CIVI_DIR} ${WEBROOT}/
-          sudo chown -R ${USER} ${WEBROOT}/${CIVI_DIR}
 
       - name: Setup environment
-        run: ${WEBROOT}/${CIVI_DIR}/bin/prepare.sh
+        run: ./bin/prepare.sh
 
       - name: Install CiviCRM
-        run: ${WEBROOT}/${CIVI_DIR}/bin/install.sh ${WEBROOT}/${CIVI_DIR}
+        run: ./bin/install.sh ${INSTALL_DIR}
