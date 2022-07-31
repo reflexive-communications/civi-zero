@@ -3,9 +3,10 @@
 ## civi-zero                                   ##
 ##                                             ##
 ## Install CiviCRM                             ##
+## Previous install will be purged             ##
 ##                                             ##
 ## Required options:                           ##
-##   $1   Install dir                          ##
+##   $1 Install dir Where to install CiviCRM   ##
 ##                                             ##
 ## After required options, you can give flags: ##
 ##   --sample: load sample data to CiviCRM     ##
@@ -28,7 +29,6 @@ base_dir="$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)"
 
 # Parse options
 install_dir="${1?:"Install dir missing"}"
-install_dir=$(realpath "${install_dir}")
 shift
 routing="127.0.0.1 ${civi_domain}"
 doc_root="${install_dir}/web"
@@ -46,6 +46,18 @@ done
 print-header "Purge instance..."
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name}"
 sudo rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
+print-finish
+
+print-header "Create install dir..."
+sudo mkdir -p "${install_dir}"
+sudo chown -R "${USER}:${USER}" "${install_dir}"
+install_dir=$(realpath "${install_dir}")
+print-finish
+
+print-header "Copy essential files to install dir..."
+if [[ "${install_dir}" != "${base_dir}" ]]; then
+    cp "${base_dir}/composer.json" "${base_dir}/composer.lock" "${base_dir}/.editorconfig" "${install_dir}"
+fi
 print-finish
 
 print-header "Add Civi vhost..."
@@ -84,6 +96,7 @@ print-finish
 print-header "Install Drupal..."
 "${install_dir}/vendor/bin/drush" site:install \
     minimal \
+    --root "${install_dir}" \
     --db-url="mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_name}" \
     --account-name="${civi_user}" \
     --account-pass="${civi_pass}" \
@@ -94,11 +107,11 @@ sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
 
 print-header "Enable Drupal modules..."
-"${install_dir}/vendor/bin/drush" pm:enable --yes "${drupal_modules}"
+"${install_dir}/vendor/bin/drush" pm:enable --root "${install_dir}" --yes "${drupal_modules}"
 print-finish
 
 print-header "Enable Drupal theme..."
-"${install_dir}/vendor/bin/drush" theme:enable --yes "${drupal_theme}"
+"${install_dir}/vendor/bin/drush" theme:enable --root "${install_dir}" --yes "${drupal_theme}"
 print-finish
 
 print-finish "Drupal installed!"
@@ -166,13 +179,13 @@ sudo -u www-data cv api4 \
 print-finish
 
 print-header "Clear cache..."
-sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild
+sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --root "${install_dir}"
 sudo -u www-data cv flush --cwd="${install_dir}"
 print-finish
 
 print-header "Login to site..."
 cookies=$(mktemp)
-OTP=$("${install_dir}/vendor/bin/drush" uli --no-browser --uri="${civi_domain}")
+OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
 return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie-jar "${cookies}" "${OTP}")
 if [[ "${return_code}" != "200" ]]; then
     print-error "Failed to login to site"

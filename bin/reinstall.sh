@@ -53,12 +53,12 @@ else
 fi
 
 print-header "Clear cache..."
-sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild
+sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --root "${install_dir}"
 sudo -u www-data cv flush --cwd="${install_dir}"
 print-finish
 
 print-header "Login to site..."
-OTP=$("${install_dir}/vendor/bin/drush" uli --no-browser --uri="${civi_domain}")
+OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
 tmp_file=$(mktemp)
 curl -LsS -o /dev/null --cookie-jar "${tmp_file}" "${OTP}"
 print-finish
