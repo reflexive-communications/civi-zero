@@ -37,11 +37,6 @@ jobs:
       - code-style
       - linter
     steps:
-      - name: Purge MySQL databases
-        run: |
-          sudo systemctl stop mysql
-          sudo rm -rf /var/lib/mysql
-
       - name: Get civi-zero
         uses: actions/checkout@v3
 
