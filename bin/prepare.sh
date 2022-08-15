@@ -28,6 +28,10 @@ sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
 print-finish
 
+print-header "Purge MySQL..."
+sudo apt-get purge --yes mysql*
+print-finish
+
 print-header "Install MariaDB..."
 curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
 sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
