@@ -31,8 +31,9 @@ base_dir="$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)"
 install_dir="${1?:"Install dir missing"}"
 shift
 routing="127.0.0.1 ${civi_domain}"
-doc_root="${install_dir}/web"
-config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
+# These will get initialized later
+doc_root=
+config_template=
 
 # Parse flags
 load_sample=
@@ -51,8 +52,12 @@ print-finish
 print-header "Create install dir..."
 sudo mkdir -p "${install_dir}"
 sudo chown -R "${USER}:${USER}" "${install_dir}"
-install_dir=$(realpath "${install_dir}")
 print-finish
+
+# Use absolute paths from now on (realpath needs existing dirs)
+install_dir=$(realpath "${install_dir}")
+doc_root="${install_dir}/web"
+config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
 
 print-header "Copy essential files to install dir..."
 if [[ "${install_dir}" != "${base_dir}" ]]; then
