@@ -60,8 +60,16 @@ jobs:
           repository: reflexive-communications/rc-base
           path: rc-base
 
+      - name: Get test extension (number-grouping)
+        uses: actions/checkout@v3
+        with:
+          repository: reflexive-communications/number-grouping
+          path: number-grouping
+
       - name: Install extensions
-        run: ./bin/extension.sh ${INSTALL_DIR} rc-base
+        run: |
+          ./bin/extension.sh ${INSTALL_DIR} rc-base
+          ./bin/extension.sh ${INSTALL_DIR} number-grouping
 
       - name: Run unit tests
-        run: ./bin/tests.sh ${INSTALL_DIR} rc-base
+        run: ./bin/tests.sh ${INSTALL_DIR} number-grouping
