@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-#########################
-## civi-zero           ##
-##                     ##
-## Setup environment   ##
-## Apache, PHP & tools ##
-#########################
+#######################
+## civi-zero         ##
+##                   ##
+## Setup environment ##
+## Apache, MariaDB   ##
+## PHP & tools       ##
+#######################
 
 # Strict mode
 set -euo pipefail

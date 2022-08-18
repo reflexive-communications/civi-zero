@@ -6,7 +6,7 @@
 ## Quickly reinitialize Civi DB, keep files    ##
 ##                                             ##
 ## Required options:                           ##
-##   $1   Install dir                          ##
+##   $1 Install dir where CiviCRM is installed ##
 ##                                             ##
 ## After required options, you can give flags: ##
 ##   --sample: load sample data to CiviCRM     ##
