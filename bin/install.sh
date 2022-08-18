@@ -6,7 +6,7 @@
 ## Previous install will be purged             ##
 ##                                             ##
 ## Required options:                           ##
-##   $1 Install dir Where to install CiviCRM   ##
+##   $1 Install dir, where to install CiviCRM  ##
 ##                                             ##
 ## After required options, you can give flags: ##
 ##   --sample: load sample data to CiviCRM     ##

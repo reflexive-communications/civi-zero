@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-####################
-## civi-zero      ##
-##                ##
-## Run unit tests ##
-####################
+##################################################
+## civi-zero                                    ##
+##                                              ##
+## Run unit tests                               ##
+##                                              ##
+## Required options:                            ##
+##   $1 Install dir, where CiviCRM is installed ##
+##   $2 Extension dir name                      ##
+##################################################
 
 # Strict mode
 set -euo pipefail

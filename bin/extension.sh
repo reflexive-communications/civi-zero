@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
-#######################
-## civi-zero         ##
-##                   ##
-## Install extension ##
-#######################
+####################################################
+## civi-zero                                      ##
+##                                                ##
+## Install extension                              ##
+##                                                ##
+## Required options:                              ##
+##   $1 Install dir, where CiviCRM is installed   ##
+##   $2 Extension path                            ##
+##   $3 Extension key                             ##
+##      If key same as dir name then not required ##
+####################################################
 
 # Strict mode
 set -euo pipefail
