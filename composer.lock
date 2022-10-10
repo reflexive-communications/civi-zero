@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32e0f3199a1edc13a0a8ca4306eae3f6",
+    "content-hash": "12480d8eb637fb0d1eeff6a2e014b0f3",
     "packages": [
         {
             "name": "adrienrn/php-mimetyper",
@@ -104,26 +104,26 @@
         },
         {
             "name": "brick/math",
-            "version": "0.9.3",
+            "version": "0.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae"
+                "reference": "459f2781e1a08d52ee56b0b1444086e038561e3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/ca57d18f028f84f777b2168cd1911b0dee2343ae",
-                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae",
+                "url": "https://api.github.com/repos/brick/math/zipball/459f2781e1a08d52ee56b0b1444086e038561e3f",
+                "reference": "459f2781e1a08d52ee56b0b1444086e038561e3f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": "^7.1 || ^8.0"
+                "php": "^7.4 || ^8.0"
             },
             "require-dev": {
                 "php-coveralls/php-coveralls": "^2.2",
-                "phpunit/phpunit": "^7.5.15 || ^8.5 || ^9.0",
-                "vimeo/psalm": "4.9.2"
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "4.25.0"
             },
             "type": "library",
             "autoload": {
@@ -148,45 +148,42 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/math/issues",
-                "source": "https://github.com/brick/math/tree/0.9.3"
+                "source": "https://github.com/brick/math/tree/0.10.2"
             },
             "funding": [
                 {
                     "url": "https://github.com/BenMorel",
                     "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/brick/math",
-                    "type": "tidelift"
                 }
             ],
-            "time": "2021-08-15T20:50:18+00:00"
+            "time": "2022-08-10T22:54:19+00:00"
         },
         {
             "name": "brick/money",
-            "version": "0.5.3",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/money.git",
-                "reference": "49e6597470da74f6a9f1dd7d5286ea3b4756b7e0"
+                "reference": "3cac1b014e91718f02724c54c08a2bdcd7cd2340"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/money/zipball/49e6597470da74f6a9f1dd7d5286ea3b4756b7e0",
-                "reference": "49e6597470da74f6a9f1dd7d5286ea3b4756b7e0",
+                "url": "https://api.github.com/repos/brick/money/zipball/3cac1b014e91718f02724c54c08a2bdcd7cd2340",
+                "reference": "3cac1b014e91718f02724c54c08a2bdcd7cd2340",
                 "shasum": ""
             },
             "require": {
-                "brick/math": "~0.7.3 || ~0.8.0 || ~0.9.0",
-                "php": "^7.1 || ^8.0"
+                "brick/math": "~0.10.1",
+                "ext-json": "*",
+                "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "brick/varexporter": "~0.2.1",
+                "brick/varexporter": "~0.3.0",
                 "ext-dom": "*",
                 "ext-pdo": "*",
                 "php-coveralls/php-coveralls": "^2.2",
-                "phpunit/phpunit": "^7.5.15 || ^8.0 || ^9.0",
-                "vimeo/psalm": "4.9.2"
+                "phpunit/phpunit": "^9.4.3",
+                "vimeo/psalm": "4.23.0"
             },
             "suggest": {
                 "ext-intl": "Required to format Money objects"
@@ -209,19 +206,15 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/money/issues",
-                "source": "https://github.com/brick/money/tree/0.5.3"
+                "source": "https://github.com/brick/money/tree/0.7.0"
             },
             "funding": [
                 {
                     "url": "https://github.com/BenMorel",
                     "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/brick/money",
-                    "type": "tidelift"
                 }
             ],
-            "time": "2021-10-10T11:59:43+00:00"
+            "time": "2022-10-05T22:11:12+00:00"
         },
         {
             "name": "cache/integration-tests",
@@ -411,16 +404,16 @@
         },
         {
             "name": "civicrm/civicrm-asset-plugin",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-asset-plugin.git",
-                "reference": "50f967f2bbafe828e1734e860f06b59729f47da6"
+                "reference": "780882d9026a3fc7c9e915e6bff9a49911cbcc39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-asset-plugin/zipball/50f967f2bbafe828e1734e860f06b59729f47da6",
-                "reference": "50f967f2bbafe828e1734e860f06b59729f47da6",
+                "url": "https://api.github.com/repos/civicrm/civicrm-asset-plugin/zipball/780882d9026a3fc7c9e915e6bff9a49911cbcc39",
+                "reference": "780882d9026a3fc7c9e915e6bff9a49911cbcc39",
                 "shasum": ""
             },
             "require": {
@@ -445,22 +438,22 @@
             ],
             "description": "Publish assets from private CiviCRM folders to a public folder",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-asset-plugin/tree/v1.1.1"
+                "source": "https://github.com/civicrm/civicrm-asset-plugin/tree/v1.1.2"
             },
-            "time": "2020-10-08T01:31:53+00:00"
+            "time": "2022-06-10T20:26:58+00:00"
         },
         {
             "name": "civicrm/civicrm-core",
-            "version": "5.47.4",
+            "version": "5.48.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-core.git",
-                "reference": "de8d9300e782522f4ef3d19f9fa076778a9baf35"
+                "reference": "315a23d7be3f19752c27cfaa5ec15a995b3249b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/de8d9300e782522f4ef3d19f9fa076778a9baf35",
-                "reference": "de8d9300e782522f4ef3d19f9fa076778a9baf35",
+                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/315a23d7be3f19752c27cfaa5ec15a995b3249b3",
+                "reference": "315a23d7be3f19752c27cfaa5ec15a995b3249b3",
                 "shasum": ""
             },
             "require": {
@@ -905,7 +898,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-core/tree/5.47.4"
+                "source": "https://github.com/civicrm/civicrm-core/tree/5.48.2"
             },
             "funding": [
                 {
@@ -913,25 +906,25 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-04-07T05:28:21+00:00"
+            "time": "2022-04-20T06:57:57+00:00"
         },
         {
             "name": "civicrm/civicrm-cxn-rpc",
-            "version": "v0.20.12.01",
+            "version": "v0.20.12.02",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-cxn-rpc.git",
-                "reference": "b097258a642dc3e0dd9c264cb75b72d5274cac2f"
+                "reference": "72ae98b79f04048ed03c4325b5fa4ad501bcec59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-cxn-rpc/zipball/b097258a642dc3e0dd9c264cb75b72d5274cac2f",
-                "reference": "b097258a642dc3e0dd9c264cb75b72d5274cac2f",
+                "url": "https://api.github.com/repos/civicrm/civicrm-cxn-rpc/zipball/72ae98b79f04048ed03c4325b5fa4ad501bcec59",
+                "reference": "72ae98b79f04048ed03c4325b5fa4ad501bcec59",
                 "shasum": ""
             },
             "require": {
                 "phpseclib/phpseclib": "~2.0",
-                "psr/log": "~1.1"
+                "psr/log": "~1.1 || ~2.0 || ~3.0"
             },
             "type": "library",
             "autoload": {
@@ -952,22 +945,22 @@
             "description": "RPC library for CiviConnect",
             "support": {
                 "issues": "https://github.com/civicrm/civicrm-cxn-rpc/issues",
-                "source": "https://github.com/civicrm/civicrm-cxn-rpc/tree/v0.20.12.01"
+                "source": "https://github.com/civicrm/civicrm-cxn-rpc/tree/v0.20.12.02"
             },
-            "time": "2020-12-16T02:35:45+00:00"
+            "time": "2022-05-10T22:59:48+00:00"
         },
         {
             "name": "civicrm/civicrm-drupal-8",
-            "version": "5.47.4",
+            "version": "5.48.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-drupal-8.git",
-                "reference": "c6d0aed1b3162234f5646a9f3175ea6210fef9cb"
+                "reference": "b55fb5027c453ce86f76f357a3087e19a3bb4d41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-drupal-8/zipball/c6d0aed1b3162234f5646a9f3175ea6210fef9cb",
-                "reference": "c6d0aed1b3162234f5646a9f3175ea6210fef9cb",
+                "url": "https://api.github.com/repos/civicrm/civicrm-drupal-8/zipball/b55fb5027c453ce86f76f357a3087e19a3bb4d41",
+                "reference": "b55fb5027c453ce86f76f357a3087e19a3bb4d41",
                 "shasum": ""
             },
             "require": {
@@ -1007,7 +1000,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-drupal-8/tree/5.47.4"
+                "source": "https://github.com/civicrm/civicrm-drupal-8/tree/5.48.2"
             },
             "funding": [
                 {
@@ -1015,11 +1008,11 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-12-21T01:30:17+00:00"
+            "time": "2022-02-07T02:40:53+00:00"
         },
         {
             "name": "civicrm/civicrm-packages",
-            "version": "5.47.4",
+            "version": "5.48.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-packages.git",
@@ -1035,28 +1028,28 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "Legacy third party dependencies for CiviCRM",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-packages/tree/5.47.4"
+                "source": "https://github.com/civicrm/civicrm-packages/tree/5.48.2"
             },
             "time": "2022-01-09T16:48:04+00:00"
         },
         {
             "name": "civicrm/composer-compile-lib",
-            "version": "v0.5",
+            "version": "v0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/composer-compile-lib.git",
-                "reference": "a03d219bc4bad5aa878e198719b83178a910984b"
+                "reference": "8bd52f0d2ba97eaa83853c3cfc37841376f5b903"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/composer-compile-lib/zipball/a03d219bc4bad5aa878e198719b83178a910984b",
-                "reference": "a03d219bc4bad5aa878e198719b83178a910984b",
+                "url": "https://api.github.com/repos/civicrm/composer-compile-lib/zipball/8bd52f0d2ba97eaa83853c3cfc37841376f5b903",
+                "reference": "8bd52f0d2ba97eaa83853c3cfc37841376f5b903",
                 "shasum": ""
             },
             "require": {
-                "civicrm/composer-compile-plugin": "~0.9 || ~1.0",
+                "civicrm/composer-compile-plugin": "~0.19 || ~1.0",
                 "padaliyajay/php-autoprefixer": "~1.2",
-                "scssphp/scssphp": "~1.5",
+                "scssphp/scssphp": "^1.8.1",
                 "symfony/filesystem": "~2.8 || ~3.4 || ~4.0 || ~5.0",
                 "tubalmartin/cssmin": "^4.1"
             },
@@ -1102,22 +1095,22 @@
             "description": "Small library of compilation helpers",
             "support": {
                 "issues": "https://github.com/civicrm/composer-compile-lib/issues",
-                "source": "https://github.com/civicrm/composer-compile-lib/tree/v0.5"
+                "source": "https://github.com/civicrm/composer-compile-lib/tree/v0.6"
             },
-            "time": "2021-05-17T22:50:05+00:00"
+            "time": "2022-07-22T09:41:59+00:00"
         },
         {
             "name": "civicrm/composer-compile-plugin",
-            "version": "v0.18",
+            "version": "v0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/composer-compile-plugin.git",
-                "reference": "158be6061320c2f481e1aa8f821be5c7e0eea220"
+                "reference": "496d266d42fddb3d7cdec2d7c46bad3e9495801c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/composer-compile-plugin/zipball/158be6061320c2f481e1aa8f821be5c7e0eea220",
-                "reference": "158be6061320c2f481e1aa8f821be5c7e0eea220",
+                "url": "https://api.github.com/repos/civicrm/composer-compile-plugin/zipball/496d266d42fddb3d7cdec2d7c46bad3e9495801c",
+                "reference": "496d266d42fddb3d7cdec2d7c46bad3e9495801c",
                 "shasum": ""
             },
             "require": {
@@ -1151,9 +1144,9 @@
             "description": "Define a 'compile' event for all packages in the dependency-graph",
             "support": {
                 "issues": "https://github.com/civicrm/composer-compile-plugin/issues",
-                "source": "https://github.com/civicrm/composer-compile-plugin/tree/v0.18"
+                "source": "https://github.com/civicrm/composer-compile-plugin/tree/v0.19"
             },
-            "time": "2022-04-01T08:01:29+00:00"
+            "time": "2022-07-22T09:22:20+00:00"
         },
         {
             "name": "civicrm/composer-downloads-plugin",
@@ -2399,16 +2392,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "c6dfd9bb8b0040609f04754f729d4cb3016e0575"
+                "reference": "5031045d9640b38cfc14aac9667470df09c9e090"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/c6dfd9bb8b0040609f04754f729d4cb3016e0575",
-                "reference": "c6dfd9bb8b0040609f04754f729d4cb3016e0575",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/5031045d9640b38cfc14aac9667470df09c9e090",
+                "reference": "5031045d9640b38cfc14aac9667470df09c9e090",
                 "shasum": ""
             },
             "require": {
@@ -2419,6 +2412,8 @@
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
+                "ext-json": "*",
+                "ext-zip": "*",
                 "mockery/mockery": "^1.3",
                 "phpunit/phpunit": "^7.5 || ^8 || ^9",
                 "squizlabs/php_codesniffer": "^3.5"
@@ -2460,9 +2455,9 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
-                "source": "https://github.com/dompdf/dompdf/tree/v1.2.1"
+                "source": "https://github.com/dompdf/dompdf/tree/v1.2.2"
             },
-            "time": "2022-03-24T12:57:42+00:00"
+            "time": "2022-04-27T13:50:54+00:00"
         },
         {
             "name": "drupal/admin_toolbar",
@@ -3214,20 +3209,30 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.14.0",
+            "version": "v4.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "12ab42bd6e742c70c0a52f7b82477fcd44e64b75"
+                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/12ab42bd6e742c70c0a52f7b82477fcd44e64b75",
-                "reference": "12ab42bd6e742c70c0a52f7b82477fcd44e64b75",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/523407fb06eb9e5f3d59889b3978d5bfe94299c8",
+                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0"
+            },
+            "require-dev": {
+                "cerdic/css-tidy": "^1.7 || ^2.0",
+                "simpletest/simpletest": "dev-master"
+            },
+            "suggest": {
+                "cerdic/css-tidy": "If you want to use the filter 'Filter.ExtractStyleBlocks'.",
+                "ext-bcmath": "Used for unit conversion and imagecrash protection",
+                "ext-iconv": "Converts text to and from non-UTF-8 encodings",
+                "ext-tidy": "Used for pretty-printing HTML"
             },
             "type": "library",
             "autoload": {
@@ -3259,9 +3264,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ezyang/htmlpurifier/issues",
-                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.14.0"
+                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.16.0"
             },
-            "time": "2021-12-25T01:21:49+00:00"
+            "time": "2022-09-18T07:06:19+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -4270,29 +4275,31 @@
         },
         {
             "name": "maennchen/zipstream-php",
-            "version": "2.1.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maennchen/ZipStream-PHP.git",
-                "reference": "c4c5803cc1f93df3d2448478ef79394a5981cc58"
+                "reference": "211e9ba1530ea5260b45d90c9ea252f56ec52729"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/c4c5803cc1f93df3d2448478ef79394a5981cc58",
-                "reference": "c4c5803cc1f93df3d2448478ef79394a5981cc58",
+                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/211e9ba1530ea5260b45d90c9ea252f56ec52729",
+                "reference": "211e9ba1530ea5260b45d90c9ea252f56ec52729",
                 "shasum": ""
             },
             "require": {
                 "myclabs/php-enum": "^1.5",
-                "php": ">= 7.1",
+                "php": "^7.4 || ^8.0",
                 "psr/http-message": "^1.0",
                 "symfony/polyfill-mbstring": "^1.0"
             },
             "require-dev": {
                 "ext-zip": "*",
-                "guzzlehttp/guzzle": ">= 6.3",
+                "guzzlehttp/guzzle": "^6.5.3 || ^7.2.0",
                 "mikey179/vfsstream": "^1.6",
-                "phpunit/phpunit": ">= 7.5"
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpunit": "^8.5.8 || ^9.4.2",
+                "vimeo/psalm": "^4.1"
             },
             "type": "library",
             "autoload": {
@@ -4329,7 +4336,7 @@
             ],
             "support": {
                 "issues": "https://github.com/maennchen/ZipStream-PHP/issues",
-                "source": "https://github.com/maennchen/ZipStream-PHP/tree/master"
+                "source": "https://github.com/maennchen/ZipStream-PHP/tree/2.2.1"
             },
             "funding": [
                 {
@@ -4337,7 +4344,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-05-30T13:11:16+00:00"
+            "time": "2022-05-18T15:52:06+00:00"
         },
         {
             "name": "marcj/topsort",
@@ -4568,16 +4575,16 @@
         },
         {
             "name": "myclabs/php-enum",
-            "version": "1.8.3",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/php-enum.git",
-                "reference": "b942d263c641ddb5190929ff840c68f78713e937"
+                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/b942d263c641ddb5190929ff840c68f78713e937",
-                "reference": "b942d263c641ddb5190929ff840c68f78713e937",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/a867478eae49c9f59ece437ae7f9506bfaa27483",
+                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483",
                 "shasum": ""
             },
             "require": {
@@ -4593,7 +4600,10 @@
             "autoload": {
                 "psr-4": {
                     "MyCLabs\\Enum\\": "src/"
-                }
+                },
+                "classmap": [
+                    "stubs/Stringable.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4612,7 +4622,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/php-enum/issues",
-                "source": "https://github.com/myclabs/php-enum/tree/1.8.3"
+                "source": "https://github.com/myclabs/php-enum/tree/1.8.4"
             },
             "funding": [
                 {
@@ -4624,7 +4634,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-05T08:18:36+00:00"
+            "time": "2022-08-04T09:53:51+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -4684,16 +4694,16 @@
         },
         {
             "name": "padaliyajay/php-autoprefixer",
-            "version": "1.3",
+            "version": "1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padaliyajay/php-autoprefixer.git",
-                "reference": "f05f374f0c1e463db62209613f52b38bf4b52430"
+                "reference": "17ac9d20c0e4521163a061d4f99f3d31f88e797e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padaliyajay/php-autoprefixer/zipball/f05f374f0c1e463db62209613f52b38bf4b52430",
-                "reference": "f05f374f0c1e463db62209613f52b38bf4b52430",
+                "url": "https://api.github.com/repos/padaliyajay/php-autoprefixer/zipball/17ac9d20c0e4521163a061d4f99f3d31f88e797e",
+                "reference": "17ac9d20c0e4521163a061d4f99f3d31f88e797e",
                 "shasum": ""
             },
             "require": {
@@ -4717,9 +4727,9 @@
             "description": "CSS Autoprefixer written in pure PHP.",
             "support": {
                 "issues": "https://github.com/padaliyajay/php-autoprefixer/issues",
-                "source": "https://github.com/padaliyajay/php-autoprefixer/tree/1.3"
+                "source": "https://github.com/padaliyajay/php-autoprefixer/tree/1.4"
             },
-            "time": "2019-11-26T09:55:37+00:00"
+            "time": "2022-08-02T02:37:28+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5559,16 +5569,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.22.0",
+            "version": "1.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "3a9e29b4f386a08a151a33578e80ef1747037a48"
+                "reference": "a317a09e7def49852400a4b3eca4a4b0790ceeb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/3a9e29b4f386a08a151a33578e80ef1747037a48",
-                "reference": "3a9e29b4f386a08a151a33578e80ef1747037a48",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/a317a09e7def49852400a4b3eca4a4b0790ceeb5",
+                "reference": "a317a09e7def49852400a4b3eca4a4b0790ceeb5",
                 "shasum": ""
             },
             "require": {
@@ -5585,33 +5595,34 @@
                 "ext-xmlwriter": "*",
                 "ext-zip": "*",
                 "ext-zlib": "*",
-                "ezyang/htmlpurifier": "^4.13",
+                "ezyang/htmlpurifier": "^4.15",
                 "maennchen/zipstream-php": "^2.1",
                 "markbaker/complex": "^3.0",
                 "markbaker/matrix": "^3.0",
                 "php": "^7.3 || ^8.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0",
-                "psr/simple-cache": "^1.0"
+                "psr/simple-cache": "^1.0 || ^2.0 || ^3.0"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
-                "dompdf/dompdf": "^1.0",
+                "dompdf/dompdf": "^1.0 || ^2.0",
                 "friendsofphp/php-cs-fixer": "^3.2",
-                "jpgraph/jpgraph": "^4.0",
-                "mpdf/mpdf": "8.0.17",
+                "mitoteam/jpgraph": "10.2.4",
+                "mpdf/mpdf": "8.1.1",
                 "phpcompatibility/php-compatibility": "^9.3",
                 "phpstan/phpstan": "^1.1",
                 "phpstan/phpstan-phpunit": "^1.0",
                 "phpunit/phpunit": "^8.5 || ^9.0",
-                "squizlabs/php_codesniffer": "^3.6",
-                "tecnickcom/tcpdf": "^6.4"
+                "squizlabs/php_codesniffer": "^3.7",
+                "tecnickcom/tcpdf": "6.5"
             },
             "suggest": {
-                "dompdf/dompdf": "Option for rendering PDF with PDF Writer (doesn't yet support PHP8)",
-                "jpgraph/jpgraph": "Option for rendering charts, or including charts with PDF or HTML Writers",
+                "dompdf/dompdf": "Option for rendering PDF with PDF Writer",
+                "ext-intl": "PHP Internationalization Functions",
+                "mitoteam/jpgraph": "Option for rendering charts, or including charts with PDF or HTML Writers",
                 "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
-                "tecnickcom/tcpdf": "Option for rendering PDF with PDF Writer (doesn't yet support PHP8)"
+                "tecnickcom/tcpdf": "Option for rendering PDF with PDF Writer"
             },
             "type": "library",
             "autoload": {
@@ -5657,9 +5668,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.22.0"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.25.2"
             },
-            "time": "2022-02-18T12:57:07+00:00"
+            "time": "2022-09-25T17:21:01+00:00"
         },
         {
             "name": "phpoffice/phpword",
@@ -5775,16 +5786,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.37",
+            "version": "2.0.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "c812fbb4d6b4d7f30235ab7298a12f09ba13b37c"
+                "reference": "b03536539f43a4f9aa33c4f0b2f3a1c752088fcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c812fbb4d6b4d7f30235ab7298a12f09ba13b37c",
-                "reference": "c812fbb4d6b4d7f30235ab7298a12f09ba13b37c",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/b03536539f43a4f9aa33c4f0b2f3a1c752088fcd",
+                "reference": "b03536539f43a4f9aa33c4f0b2f3a1c752088fcd",
                 "shasum": ""
             },
             "require": {
@@ -5799,7 +5810,8 @@
                 "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
                 "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
                 "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
-                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations.",
+                "ext-xml": "Install the XML extension to load XML formatted public keys."
             },
             "type": "library",
             "autoload": {
@@ -5864,7 +5876,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.37"
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.38"
             },
             "funding": [
                 {
@@ -5880,7 +5892,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-04T04:57:45+00:00"
+            "time": "2022-09-02T17:04:26+00:00"
         },
         {
             "name": "psr/cache",
@@ -6415,16 +6427,16 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "v1.10.2",
+            "version": "v1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "387f4f4abf5d99f16be16314c5ab856f81c82f46"
+                "reference": "33749d12c2569bb24071f94e9af828662dabb068"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/387f4f4abf5d99f16be16314c5ab856f81c82f46",
-                "reference": "387f4f4abf5d99f16be16314c5ab856f81c82f46",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/33749d12c2569bb24071f94e9af828662dabb068",
+                "reference": "33749d12c2569bb24071f94e9af828662dabb068",
                 "shasum": ""
             },
             "require": {
@@ -6451,6 +6463,12 @@
                 "bin/pscss"
             ],
             "type": "library",
+            "extra": {
+                "bamarni-bin": {
+                    "forward-command": false,
+                    "bin-links": false
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "ScssPhp\\ScssPhp\\": "src/"
@@ -6483,9 +6501,9 @@
             ],
             "support": {
                 "issues": "https://github.com/scssphp/scssphp/issues",
-                "source": "https://github.com/scssphp/scssphp/tree/v1.10.2"
+                "source": "https://github.com/scssphp/scssphp/tree/v1.11.0"
             },
-            "time": "2022-03-02T21:15:09+00:00"
+            "time": "2022-09-02T21:24:55+00:00"
         },
         {
             "name": "stack/builder",
@@ -6606,16 +6624,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.4.37",
+            "version": "v4.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "e8c2d2c951ddedecb6d28954d336cb7d2e852d0e"
+                "reference": "ed42f8f9da528d2c6cae36fe1f380b0c1d8f0658"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/e8c2d2c951ddedecb6d28954d336cb7d2e852d0e",
-                "reference": "e8c2d2c951ddedecb6d28954d336cb7d2e852d0e",
+                "url": "https://api.github.com/repos/symfony/config/zipball/ed42f8f9da528d2c6cae36fe1f380b0c1d8f0658",
+                "reference": "ed42f8f9da528d2c6cae36fe1f380b0c1d8f0658",
                 "shasum": ""
             },
             "require": {
@@ -6664,7 +6682,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v4.4.37"
+                "source": "https://github.com/symfony/config/tree/v4.4.44"
             },
             "funding": [
                 {
@@ -6680,7 +6698,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-03T09:46:22+00:00"
+            "time": "2022-07-20T09:59:04+00:00"
         },
         {
             "name": "symfony/console",
@@ -10169,23 +10187,23 @@
         },
         {
             "name": "zetacomponents/mail",
-            "version": "1.9.2",
+            "version": "1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zetacomponents/Mail.git",
-                "reference": "c55267564d78724d4c25188fc653fef0da4c920a"
+                "reference": "83ba646f36f753c0bbc8b2189c88d41ece326ea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zetacomponents/Mail/zipball/c55267564d78724d4c25188fc653fef0da4c920a",
-                "reference": "c55267564d78724d4c25188fc653fef0da4c920a",
+                "url": "https://api.github.com/repos/zetacomponents/Mail/zipball/83ba646f36f753c0bbc8b2189c88d41ece326ea0",
+                "reference": "83ba646f36f753c0bbc8b2189c88d41ece326ea0",
                 "shasum": ""
             },
             "require": {
                 "zetacomponents/base": "~1.8"
             },
             "require-dev": {
-                "phpunit/phpunit": "~7.5",
+                "phpunit/phpunit": "~9.0",
                 "zetacomponents/unit-test": "*"
             },
             "type": "library",
@@ -10243,9 +10261,9 @@
             "homepage": "https://github.com/zetacomponents",
             "support": {
                 "issues": "https://github.com/zetacomponents/Mail/issues",
-                "source": "https://github.com/zetacomponents/Mail/tree/1.9.2"
+                "source": "https://github.com/zetacomponents/Mail/tree/1.9.4"
             },
-            "time": "2020-06-13T12:38:26+00:00"
+            "time": "2022-09-14T10:13:21+00:00"
         }
     ],
     "packages-dev": [
