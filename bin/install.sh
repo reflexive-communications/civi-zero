@@ -183,10 +183,7 @@ sudo -u www-data cv api4 \
     '{"values":{"mailing_backend":{"outBound_option":5}}}'
 print-finish
 
-print-header "Clear cache..."
-sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --root "${install_dir}"
-sudo -u www-data cv flush --cwd="${install_dir}"
-print-finish
+"${base_dir}/bin/clear-cache.sh" "${install_dir}"
 
 print-header "Login to site..."
 cookies=$(mktemp)
