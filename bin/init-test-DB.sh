@@ -45,6 +45,7 @@ sudo -u www-data cv core:install \
     --cwd="${install_dir}" \
     --cms-base-url="https://${civi_domain}" \
     --db="mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true" \
+    --comp="${civi_components}" \
     --keep --test
 sed -i \
     -e "/CIVICRM_UF === 'UnitTests'/ s/ && isset(\$GLOBALS\['_CV'\]\['TEST_DB_DSN'\])//" \
