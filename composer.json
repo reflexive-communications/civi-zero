@@ -22,6 +22,7 @@
         "drush/drush": "^11"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3",
         "phpunit/phpunit": "~9.5.20"
     },
     "conflict": {
