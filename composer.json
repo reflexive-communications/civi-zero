@@ -11,9 +11,9 @@
     ],
     "require": {
         "civicrm/civicrm-asset-plugin": "~1.1",
-        "civicrm/civicrm-core": "~5.48.2",
-        "civicrm/civicrm-drupal-8": "~5.48.2",
-        "civicrm/civicrm-packages": "~5.48.2",
+        "civicrm/civicrm-core": "~5.54.1",
+        "civicrm/civicrm-drupal-8": "~5.54.1",
+        "civicrm/civicrm-packages": "~5.54.1",
         "composer/installers": "^1.2",
         "drupal/admin_toolbar": "^3.0",
         "drupal/core-composer-scaffold": "^9",
