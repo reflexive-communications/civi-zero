@@ -10,6 +10,15 @@
         }
     ],
     "require": {
+        "ext-bcmath": "*",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-fileinfo": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
+        "ext-simplexml": "*",
         "civicrm/civicrm-asset-plugin": "~1.1",
         "civicrm/civicrm-core": "~5.54.1",
         "civicrm/civicrm-drupal-8": "~5.54.1",
