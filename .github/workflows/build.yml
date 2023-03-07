@@ -3,8 +3,8 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "composer.*"
+#    paths:
+#      - "composer.*"
 env:
   INSTALL_DIR: /srv/www/civi-zero
 jobs:
