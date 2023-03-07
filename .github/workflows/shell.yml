@@ -27,7 +27,7 @@ jobs:
       - format
       - linter
     steps:
-      - name: Get civi-zero
+      - name: Self checkout
         uses: actions/checkout@v3
 
       - name: Setup environment
@@ -45,14 +45,14 @@ jobs:
       - name: Reinstall CiviCRM
         run: ./bin/reinstall.sh ${INSTALL_DIR} --sample
 
-      - name: Get test extension (rc-base)
+      - name: Get model extension (rc-base)
         uses: actions/checkout@v3
         with:
           repository: reflexive-communications/rc-base
           path: rc-base
 
-      - name: Install extensions
+      - name: Install extension
         run: ./bin/extension.sh ${INSTALL_DIR} rc-base
 
-      - name: Run unit tests
+      - name: Run extension unit tests
         run: ./bin/tests.sh ${INSTALL_DIR} rc-base
