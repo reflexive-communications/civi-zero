@@ -36,6 +36,9 @@ jobs:
       - name: Install CiviCRM
         run: ./bin/install.sh ${INSTALL_DIR} --sample
 
+      - name: Clear cache
+        run: ./bin/clear-cache.sh ${INSTALL_DIR}
+
       - name: Init test DB
         run: ./bin/init-test-DB.sh ${INSTALL_DIR}
 
