@@ -1,0 +1,58 @@
+name: Shell
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "bin/**"
+      - "cfg/**"
+env:
+  INSTALL_DIR: /srv/www/civi-zero
+jobs:
+  format:
+    name: Check format
+    uses: es-progress/shell/.github/workflows/reuse-beautysh.yml@main
+    with:
+      dir: bin/
+  linter:
+    name: Linting
+    needs: format
+    uses: es-progress/shell/.github/workflows/reuse-shellcheck.yml@main
+    with:
+      dir: bin/
+  tests:
+    name: Test scripts
+    runs-on: ubuntu-20.04
+    needs:
+      - format
+      - linter
+    steps:
+      - name: Self checkout
+        uses: actions/checkout@v3
+
+      - name: Setup environment
+        run: ./bin/prepare.sh
+
+      - name: Install CiviCRM
+        run: ./bin/install.sh ${INSTALL_DIR} --sample
+
+      - name: Clear cache
+        run: ./bin/clear-cache.sh ${INSTALL_DIR}
+
+      - name: Init test DB
+        run: ./bin/init-test-DB.sh ${INSTALL_DIR}
+
+      - name: Reinstall CiviCRM
+        run: ./bin/reinstall.sh ${INSTALL_DIR} --sample
+
+      - name: Get model extension (rc-base)
+        uses: actions/checkout@v3
+        with:
+          repository: reflexive-communications/rc-base
+          path: rc-base
+
+      - name: Install extension
+        run: ./bin/extension.sh ${INSTALL_DIR} rc-base
+
+      - name: Run extension unit tests
+        run: ./bin/tests.sh ${INSTALL_DIR} rc-base

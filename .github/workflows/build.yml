@@ -1,4 +1,4 @@
-name: build
+name: Build
 on:
   pull_request:
     branches:
@@ -12,7 +12,7 @@ jobs:
     name: Build CiviCRM
     runs-on: ubuntu-20.04
     steps:
-      - name: Get civi-zero
+      - name: Self checkout
         uses: actions/checkout@v3
 
       - name: Setup environment
