@@ -1,7 +1,7 @@
 # civi-zero
 
-[![build](https://github.com/reflexive-communications/civi-zero/actions/workflows/build.yml/badge.svg)](https://github.com/reflexive-communications/civi-zero/actions/workflows/build.yml)
-[![tests](https://github.com/reflexive-communications/civi-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/reflexive-communications/civi-zero/actions/workflows/tests.yml)
+[![Build](https://github.com/reflexive-communications/civi-zero/actions/workflows/build.yml/badge.svg)](https://github.com/reflexive-communications/civi-zero/actions/workflows/build.yml)
+[![Shell](https://github.com/reflexive-communications/civi-zero/actions/workflows/shell.yml/badge.svg)](https://github.com/reflexive-communications/civi-zero/actions/workflows/shell.yml)
 
 ## Overview
 
