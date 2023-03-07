@@ -11,15 +11,9 @@ env:
 jobs:
   format:
     name: Check format
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Self checkout
-        uses: actions/checkout@v3
-
-      - name: Run beautysh
-        uses: illvart/beautysh-action@latest
-        with:
-          args: --force-function-style paronly --check bin/*
+    uses: es-progress/shell/.github/workflows/reuse-beautysh.yml@main
+    with:
+      dir: bin/
   linter:
     name: Linter (shellcheck)
     runs-on: ubuntu-20.04
