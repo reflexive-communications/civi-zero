@@ -42,23 +42,14 @@ jobs:
       - name: Reinstall CiviCRM
         run: ./bin/reinstall.sh ${INSTALL_DIR} --sample
 
-      - name: Get required extension (uk.co.vedaconsulting.mosaico)
+      - name: Get test extension (rc-base)
         uses: actions/checkout@v3
         with:
-          repository: reflexive-communications/uk.co.vedaconsulting.mosaico
-          path: uk.co.vedaconsulting.mosaico
-          ref: build
-
-      - name: Get test extension (rc-mosaico-template)
-        uses: actions/checkout@v3
-        with:
-          repository: reflexive-communications/rc-mosaico-template
-          path: rc-mosaico-template
+          repository: reflexive-communications/rc-base
+          path: rc-base
 
       - name: Install extensions
-        run: |
-          ./bin/extension.sh ${INSTALL_DIR} uk.co.vedaconsulting.mosaico
-          ./bin/extension.sh ${INSTALL_DIR} rc-mosaico-template
+        run: ./bin/extension.sh ${INSTALL_DIR} rc-base
 
       - name: Run unit tests
-        run: ./bin/tests.sh ${INSTALL_DIR} rc-mosaico-template
+        run: ./bin/tests.sh ${INSTALL_DIR} rc-base
