@@ -9,12 +9,14 @@
 ## FORMAT CODES ##
 ##################
 
-TXT_NORM="\e[0m"
-TXT_BOLD="\e[1m"
-TXT_RED="\e[31m"
-TXT_YELLOW="\e[33m"
-TXT_GREEN="\e[32m"
-TXT_BLUE="\e[34m"
+export TXT_NORM="\e[0m"
+export TXT_BOLD="\e[1m"
+export TXT_RED="\e[31m"
+export TXT_GREEN="\e[32m"
+export TXT_YELLOW="\e[33m"
+export TXT_BLUE="\e[34m"
+export TXT_PURPLE="\e[35m"
+export BACK_BLUE="\e[44m"
 
 ###############
 ## FUNCTIONS ##
@@ -27,11 +29,11 @@ TXT_BLUE="\e[34m"
 print-section() {
     local msg="${*}"
     echo
-    echo -e "${TXT_BLUE}${TXT_BOLD}${msg}${TXT_NORM}"
+    echo -e "${BACK_BLUE}${msg}"
     for ((i = 0 ; i < ${#msg} ; i++)); do
-        echo -ne "${TXT_BLUE}${TXT_BOLD}=${TXT_NORM}"
+        echo -n =
     done
-    echo
+    echo -e "${TXT_NORM}"
 }
 
 ## Print header
@@ -48,7 +50,6 @@ print-header() {
 ## @param    $*  Message
 ## @default      Done
 ########################
-# shellcheck disable=SC2120
 print-finish() {
     echo -e "${TXT_GREEN}${TXT_BOLD}${*:-Done.}${TXT_NORM}"
 }
