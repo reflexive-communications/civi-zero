@@ -44,12 +44,12 @@ for flag in "${@}"; do
     esac
 done
 
-print-header "Purge instance..."
+print-status "Purge instance..."
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_name}"
 sudo rm -rf "${install_dir}/web/sites/default/civicrm.settings.php" "${install_dir}/web/sites/default/settings.php" "${install_dir}/web/sites/default/files/"
 print-finish
 
-print-header "Create install dir..."
+print-status "Create install dir..."
 sudo mkdir -p "${install_dir}"
 sudo chown -R "${USER}:${USER}" "${install_dir}"
 print-finish
@@ -59,7 +59,7 @@ install_dir=$(realpath "${install_dir}")
 doc_root="${install_dir}/web"
 config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.drupal"
 
-print-header "Copy essential files to install dir..."
+print-status "Copy essential files to install dir..."
 if [[ "${install_dir}" != "${base_dir}" ]]; then
     cp "${base_dir}/composer.json" "${base_dir}/composer.lock" "${base_dir}/.editorconfig" "${install_dir}"
 fi
@@ -83,11 +83,11 @@ sudo a2ensite "${civi_domain}.conf"
 sudo systemctl reload apache2.service
 print-finish
 
-print-header "Add Civi DB..."
+print-status "Add Civi DB..."
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${civi_db_name} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
 print-finish
 
-print-header "Add Civi DB user..."
+print-status "Add Civi DB user..."
 sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost IDENTIFIED BY '${civi_db_user_pass}'"
 sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}.* TO '${civi_db_user_name}'@'localhost'"
 sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost'"
@@ -132,7 +132,7 @@ cv core:install \
 mkdir -p "${install_dir}/web/extensions"
 print-finish
 
-print-header "Config CiviCRM bin/setup.sh..."
+print-status "Config CiviCRM bin/setup.sh..."
 cp "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
 sed -i \
     -e "/^CIVISOURCEDIR=/ c \CIVISOURCEDIR='${install_dir}'" \
@@ -153,7 +153,7 @@ if [[ -n "${load_sample}" ]]; then
     print-finish
 fi
 
-print-header "Set permissions..."
+print-status "Set permissions..."
 # Base
 sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+w,g+r "${install_dir}"
@@ -166,7 +166,7 @@ sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
 sudo chmod -R g+w "${install_dir}/web/sites/default/files"
 print-finish
 
-print-header "Update civicrm.settings.php..."
+print-status "Update civicrm.settings.php..."
 sed -i \
     -e "/\$civicrm_setting\['domain'\]\['extensionsDir'\]/ c \$civicrm_setting['domain']['extensionsDir'] = '[cms.root]/extensions';" \
     -e "/\$civicrm_setting\['domain'\]\['extensionsURL'\]/ c \$civicrm_setting['domain']['extensionsURL'] = '[cms.root]/extensions';" \
@@ -186,7 +186,7 @@ print-finish
 
 "${base_dir}/bin/clear-cache.sh" "${install_dir}"
 
-print-header "Login to site..."
+print-status "Login to site..."
 cookies=$(mktemp)
 OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
 return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie-jar "${cookies}" "${OTP}")
@@ -196,7 +196,7 @@ if [[ "${return_code}" != "200" ]]; then
 fi
 print-finish
 
-print-header "Test Civi: GET /civicrm/contact/search..."
+print-status "Test Civi: GET /civicrm/contact/search..."
 return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie "${cookies}" "${civi_domain}/civicrm/contact/search")
 if [[ "${return_code}" != "200" ]]; then
     print-error "Failed to GET /civicrm/contact/search"

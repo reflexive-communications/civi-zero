@@ -36,7 +36,7 @@ extension_target="${install_dir}/web/extensions"
 # Extension key not supplied --> it is the same as the dir
 [[ -z "${extension_key}" ]] && extension_key=$(basename "${extension_dir}")
 
-print-header "Copy extension to CiviCRM (${extension_key})"
+print-status "Copy extension to CiviCRM (${extension_key})"
 cp -a "${extension_dir}" "${extension_target}/"
 sudo chgrp -R www-data "${extension_target}/${extension_dir}"
 print-finish
