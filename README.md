@@ -50,8 +50,9 @@ Currently only Ubuntu is supported.
 
 **Notes**
 
+-   You can install Civi in civi-zero project dir also, installed CiviCRM directories (`vendor/`, `web/`) are ignored by git, it won't interfere with civi-zero.
 -   You can run `install.sh` multiple times, it will always create a fresh install.
-    Only config & local files (`web/sites/default/files`) are deleted and the DB get purged, `vendor/` dir and extensions are kept intact.
+    Only config & local files (`web/sites/default/files`) are deleted and the DataBase is purged, `vendor/` dir and extension files are kept intact.
 -   To quickly reinstall CiviCRM, you can use `bin/reinstall.sh`.
     This keeps _all_ files (`vendor/`, config files, logs, etc.) and Drupal tables in the DB, only Civi tables are purged and reinitialized.
     Parameters are the same as `install.sh`.
