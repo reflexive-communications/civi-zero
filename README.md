@@ -86,3 +86,11 @@ However if you plan to use it for development, there are several utility scripts
 
     INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
     ```
+
+-   `bin/dev-config.sh`: Configure CiviCRM for development.
+
+    ```
+    dev-config.sh [INSTALL_DIR]
+
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
+    ```
