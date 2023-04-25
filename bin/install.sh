@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-#################################################
-## civi-zero                                   ##
-##                                             ##
-## Install CiviCRM                             ##
-## Previous install will be purged             ##
-##                                             ##
-## Required options:                           ##
-##   $1 Install dir, where to install CiviCRM  ##
-##                                             ##
-## After required options, you can give flags: ##
-##   --sample: load sample data to CiviCRM     ##
-#################################################
+##################################################
+## civi-zero                                    ##
+##                                              ##
+## Install CiviCRM                              ##
+## Previous install will be purged              ##
+##                                              ##
+## Options:                                     ##
+##   $1 Install dir, where to install CiviCRM   ##
+##   $* Flags (optional)                        ##
+##        --sample: load sample data to CiviCRM ##
+##################################################
 
 # Strict mode
 set -eufo pipefail

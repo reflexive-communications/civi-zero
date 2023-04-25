@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-#################################################
-## civi-zero                                   ##
-##                                             ##
-## Config CiviCRM                              ##
-##                                             ##
-## Required options:                           ##
-##   $1 Install dir, where to install CiviCRM  ##
-#################################################
+################################################
+## civi-zero                                  ##
+##                                            ##
+## Config CiviCRM                             ##
+##                                            ##
+## Options:                                   ##
+##   $1 Install dir, where to install CiviCRM ##
+################################################
 
 # Strict mode
 set -eufo pipefail

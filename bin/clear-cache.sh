@@ -4,7 +4,7 @@
 ##                                              ##
 ## Clear cache (Drupal + Civi)                  ##
 ##                                              ##
-## Required options:                            ##
+## Options:                                     ##
 ##   $1 Install dir, where CiviCRM is installed ##
 ##################################################
 

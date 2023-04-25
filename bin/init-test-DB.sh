@@ -4,7 +4,7 @@
 ##                                              ##
 ## Init test DB                                 ##
 ##                                              ##
-## Required options:                            ##
+## Options:                                     ##
 ##   $1 Install dir, where CiviCRM is installed ##
 ##################################################
 

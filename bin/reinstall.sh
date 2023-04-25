@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-#################################################
-## civi-zero                                   ##
-##                                             ##
-## Reinstall CiviCRM                           ##
-## Quickly reinitialize Civi DB, keep files    ##
-##                                             ##
-## Required options:                           ##
-##   $1 Install dir where CiviCRM is installed ##
-##                                             ##
-## After required options, you can give flags: ##
-##   --sample: load sample data to CiviCRM     ##
-#################################################
+##################################################
+## civi-zero                                    ##
+##                                              ##
+## Reinstall CiviCRM                            ##
+## Quickly reinitialize Civi DB, keep files     ##
+##                                              ##
+## Options:                                     ##
+##   $1 Install dir, where to install CiviCRM   ##
+##   $* Flags (optional)                        ##
+##        --sample: load sample data to CiviCRM ##
+##################################################
 
 # Strict mode
 set -eufo pipefail
