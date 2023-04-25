@@ -62,6 +62,14 @@ Currently only Ubuntu is supported.
 After installation, CiviCRM is ready to use (mostly in a CI environment).
 However if you plan to use it for development, there are several utility scripts to help work:
 
+-   `bin/dev-config.sh`: Configure CiviCRM for development.
+
+    ```
+    dev-config.sh [INSTALL_DIR]
+
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
+    ```
+
 -   `bin/init-test-DB.sh`: Initialize test DB. It's possible to use a separate DB for testing so unit tests won't mess up your database.
 
     ```
@@ -83,14 +91,6 @@ However if you plan to use it for development, there are several utility scripts
 
     ```
     clear-cache.sh [INSTALL_DIR]
-
-    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
-    ```
-
--   `bin/dev-config.sh`: Configure CiviCRM for development.
-
-    ```
-    dev-config.sh [INSTALL_DIR]
 
     INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
     ```
