@@ -9,7 +9,7 @@
 ##################################################
 
 # Strict mode
-set -euo pipefail
+set -eufo pipefail
 IFS=$'\n\t'
 
 # Include library
@@ -24,7 +24,7 @@ base_dir="$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)"
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 # Parse options
-install_dir="${1?:"Install dir missing"}"
+install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 
 print-header "Clear Drupal cache..."

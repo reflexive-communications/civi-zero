@@ -29,11 +29,11 @@ export BACK_BLUE="\e[44m"
 print-section() {
     local msg="${*}"
     echo
-    echo -e "${BACK_BLUE}${msg}"
+    echo -e "${BACK_BLUE}${msg}${TXT_NORM}"
     for ((i = 0 ; i < ${#msg} ; i++)); do
-        echo -n =
+        echo -ne "${BACK_BLUE}=${TXT_NORM}"
     done
-    echo -e "${TXT_NORM}"
+    echo
 }
 
 ## Print header
@@ -43,6 +43,14 @@ print-section() {
 print-header() {
     echo
     echo -e "${TXT_YELLOW}${*}${TXT_NORM}"
+}
+
+## Print status message
+##
+## @param    $*  Message
+########################
+print-status() {
+    echo -ne "${TXT_YELLOW}${*}${TXT_NORM}"
 }
 
 ## Print OK message
@@ -61,4 +69,15 @@ print-finish() {
 ########################
 print-error() {
     echo -e "${TXT_RED}${TXT_BOLD}${*}${TXT_NORM}" >&2
+}
+
+## Join arguments by char
+##
+## @param    $1  Joining character
+## @param    $*  Items to join
+##################################
+implode() {
+    local IFS="${1:?"Field separator missing"}"
+    shift
+    echo "${*}"
 }

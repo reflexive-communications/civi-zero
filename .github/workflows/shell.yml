@@ -6,8 +6,6 @@ on:
     paths:
       - "bin/**"
       - "cfg/**"
-env:
-  INSTALL_DIR: /srv/www/civi-zero
 jobs:
   format:
     name: Check format
@@ -34,16 +32,19 @@ jobs:
         run: ./bin/prepare.sh
 
       - name: Install CiviCRM
-        run: ./bin/install.sh ${INSTALL_DIR} --sample
+        run: ./bin/install.sh . --sample
 
       - name: Clear cache
-        run: ./bin/clear-cache.sh ${INSTALL_DIR}
+        run: ./bin/clear-cache.sh
 
       - name: Init test DB
-        run: ./bin/init-test-DB.sh ${INSTALL_DIR}
+        run: ./bin/init-test-DB.sh
+
+      - name: Config CiviCRM
+        run: ./bin/dev-config.sh
 
       - name: Reinstall CiviCRM
-        run: ./bin/reinstall.sh ${INSTALL_DIR} --sample
+        run: ./bin/reinstall.sh . --sample
 
       - name: Get model extension (rc-base)
         uses: actions/checkout@v3
@@ -52,7 +53,7 @@ jobs:
           path: rc-base
 
       - name: Install extension
-        run: ./bin/extension.sh ${INSTALL_DIR} rc-base
+        run: ./bin/extension.sh . rc-base
 
       - name: Run extension unit tests
-        run: ./bin/tests.sh ${INSTALL_DIR} rc-base
+        run: ./bin/tests.sh . rc-base

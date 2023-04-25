@@ -28,9 +28,9 @@ Currently only Ubuntu is supported.
 1. Run `bin/install.sh`, usage:
 
     ```
-    install.sh INSTALL_DIR [FLAGS]...
+    install.sh [INSTALL_DIR] [FLAGS]...
 
-    INSTALL_DIR:    Installation dir, where to install CiviCRM
+    INSTALL_DIR:    Installation dir, where to install CiviCRM. Defaults to civi-zero project dir.
     FLAGS:          Optional flags:
                       --sample:   load randomly generated sample data into Civi after install
     ```
@@ -50,8 +50,9 @@ Currently only Ubuntu is supported.
 
 **Notes**
 
+-   You can install Civi in civi-zero project dir also, installed CiviCRM directories (`vendor/`, `web/`) are ignored by git, it won't interfere with civi-zero.
 -   You can run `install.sh` multiple times, it will always create a fresh install.
-    Only config & local files (`web/sites/default/files`) are deleted and the DB get purged, `vendor/` dir and extensions are kept intact.
+    Only config & local files (`web/sites/default/files`) are deleted and the DataBase is purged, `vendor/` dir and extension files are kept intact.
 -   To quickly reinstall CiviCRM, you can use `bin/reinstall.sh`.
     This keeps _all_ files (`vendor/`, config files, logs, etc.) and Drupal tables in the DB, only Civi tables are purged and reinitialized.
     Parameters are the same as `install.sh`.
@@ -64,9 +65,9 @@ However if you plan to use it for development, there are several utility scripts
 -   `bin/init-test-DB.sh`: Initialize test DB. It's possible to use a separate DB for testing so unit tests won't mess up your database.
 
     ```
-    init-test-DB.sh INSTALL_DIR
+    init-test-DB.sh [INSTALL_DIR]
 
-    INSTALL_DIR:    Installation dir (the same dir where you installed in step #4)
+    INSTALL_DIR:    Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
     ```
 
 -   `bin/tests.sh`: To run said unit tests on extensions.
@@ -81,7 +82,15 @@ However if you plan to use it for development, there are several utility scripts
 -   `bin/clear-cache.sh`: Clears Drupal & CiviCRM caches.
 
     ```
-    clear-cache.sh INSTALL_DIR
+    clear-cache.sh [INSTALL_DIR]
 
-    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4)
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
+    ```
+
+-   `bin/dev-config.sh`: Configure CiviCRM for development.
+
+    ```
+    dev-config.sh [INSTALL_DIR]
+
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
     ```

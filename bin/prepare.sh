@@ -8,7 +8,7 @@
 #######################
 
 # Strict mode
-set -euo pipefail
+set -eufo pipefail
 IFS=$'\n\t'
 
 # Include library
@@ -51,7 +51,7 @@ sudo systemctl reload apache2.service
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish
 
-print-header "Config PHP..."
+print-status "Config PHP..."
 sudo cp "${base_dir}/cfg/civi.php.ini" "/etc/php/${php_version}/mods-available/"
 [[ -e "/etc/php/${php_version}/fpm/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/fpm/conf.d/99-civi.ini"
 [[ -e "/etc/php/${php_version}/cli/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/cli/conf.d/99-civi.ini"
@@ -60,7 +60,7 @@ sudo sed -i \
     "/etc/php/${php_version}/mods-available/civi.php.ini"
 print-finish
 
-print-header "Install PHP tools..."
+print-status "Install PHP tools..."
 sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer"
