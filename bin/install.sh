@@ -171,8 +171,6 @@ sed -i \
     -e "/\$civicrm_setting\['domain'\]\['extensionsDir'\]/ c \$civicrm_setting['domain']['extensionsDir'] = '[cms.root]/extensions';" \
     -e "/\$civicrm_setting\['domain'\]\['extensionsURL'\]/ c \$civicrm_setting['domain']['extensionsURL'] = '[cms.root]/extensions';" \
     -e "s@\['cms'\]\['root'\]@\['cms.root'\]@" \
-    -e "/(\!defined('CIVICRM_TEMPLATE_COMPILE_CHECK'))/,+2 s@^//@@" \
-    -e "/CIVICRM_TEMPLATE_COMPILE_CHECK/ s/FALSE/TRUE/" \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 print-finish
 
