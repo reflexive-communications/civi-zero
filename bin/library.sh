@@ -70,3 +70,14 @@ print-finish() {
 print-error() {
     echo -e "${TXT_RED}${TXT_BOLD}${*}${TXT_NORM}" >&2
 }
+
+## Join arguments by char
+##
+## @param    $1  Joining character
+## @param    $*  Items to join
+##################################
+implode() {
+    local IFS="${1:?"Field separator missing"}"
+    shift
+    echo "${*}"
+}
