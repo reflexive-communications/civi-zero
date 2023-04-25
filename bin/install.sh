@@ -28,8 +28,8 @@ base_dir="$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)"
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 # Parse options
-install_dir="${1?:"Install dir missing"}"
-shift
+install_dir="${1:-${base_dir}}"
+[[ "${#}" -gt 0 ]] && shift
 routing="127.0.0.1 ${civi_domain}"
 # These will get initialized later
 doc_root=

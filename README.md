@@ -28,9 +28,9 @@ Currently only Ubuntu is supported.
 1. Run `bin/install.sh`, usage:
 
     ```
-    install.sh INSTALL_DIR [FLAGS]...
+    install.sh [INSTALL_DIR] [FLAGS]...
 
-    INSTALL_DIR:    Installation dir, where to install CiviCRM
+    INSTALL_DIR:    Installation dir, where to install CiviCRM. Defaults to civi-zero project dir.
     FLAGS:          Optional flags:
                       --sample:   load randomly generated sample data into Civi after install
     ```
@@ -65,9 +65,9 @@ However if you plan to use it for development, there are several utility scripts
 -   `bin/init-test-DB.sh`: Initialize test DB. It's possible to use a separate DB for testing so unit tests won't mess up your database.
 
     ```
-    init-test-DB.sh INSTALL_DIR
+    init-test-DB.sh [INSTALL_DIR]
 
-    INSTALL_DIR:    Installation dir (the same dir where you installed in step #4)
+    INSTALL_DIR:    Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
     ```
 
 -   `bin/tests.sh`: To run said unit tests on extensions.
@@ -82,7 +82,7 @@ However if you plan to use it for development, there are several utility scripts
 -   `bin/clear-cache.sh`: Clears Drupal & CiviCRM caches.
 
     ```
-    clear-cache.sh INSTALL_DIR
+    clear-cache.sh [INSTALL_DIR]
 
-    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4)
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4). Defaults to civi-zero project dir.
     ```
