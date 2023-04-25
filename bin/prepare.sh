@@ -8,7 +8,7 @@
 #######################
 
 # Strict mode
-set -euo pipefail
+set -eufo pipefail
 IFS=$'\n\t'
 
 # Include library
