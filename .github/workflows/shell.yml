@@ -37,10 +37,13 @@ jobs:
         run: ./bin/install.sh ${INSTALL_DIR} --sample
 
       - name: Clear cache
-        run: ./bin/clear-cache.sh ${INSTALL_DIR}
+        run: ./bin/clear-cache.sh
 
       - name: Init test DB
-        run: ./bin/init-test-DB.sh ${INSTALL_DIR}
+        run: ./bin/init-test-DB.sh
+
+      - name: Config CiviCRM
+        run: ./bin/dev-config.sh
 
       - name: Reinstall CiviCRM
         run: ./bin/reinstall.sh ${INSTALL_DIR} --sample
