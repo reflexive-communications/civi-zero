@@ -45,6 +45,14 @@ print-header() {
     echo -e "${TXT_YELLOW}${*}${TXT_NORM}"
 }
 
+## Print status message
+##
+## @param    $*  Message
+########################
+print-status() {
+    echo -ne "${TXT_YELLOW}${*}${TXT_NORM}"
+}
+
 ## Print OK message
 ##
 ## @param    $*  Message
