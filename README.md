@@ -57,6 +57,7 @@ Currently only Ubuntu is supported.
 -   To quickly reinstall CiviCRM, you can use `bin/reinstall.sh`.
     This keeps _all_ files (`vendor/`, config files, logs, etc.) and Drupal tables in the DB, only Civi tables are purged and reinitialized.
     Parameters are the same as `install.sh`.
+-   For development the `--sample` flag on `install.sh` can be very useful as it fills the DB with some data.
 
 ## Usage
 
