@@ -7,6 +7,7 @@
 ## Required options:                            ##
 ##   $1 Install dir, where CiviCRM is installed ##
 ##   $2 Extension dir name                      ##
+##   $* Extra options to 'phpunit'              ##
 ##################################################
 
 # Strict mode
@@ -27,13 +28,14 @@ base_dir="$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)"
 # Parse options
 install_dir="${1?:"Install dir missing"}"
 extension="${2?:"Extension missing"}"
+shift 2
 install_dir=$(realpath "${install_dir}")
 extension_target="${install_dir}/web/extensions"
 
 print-header "Run unit tests (${extension})"
 sudo chown -R "${USER}" "${install_dir}/web/"
 cd "${extension_target}/${extension}"
-"${install_dir}/vendor/bin/phpunit" --verbose --coverage-text --colors=always
+"${install_dir}/vendor/bin/phpunit" --verbose --coverage-text --colors=always "${@}"
 print-finish
 
 exit 0
