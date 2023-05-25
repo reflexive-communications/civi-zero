@@ -170,6 +170,7 @@ sed -i \
     -e "/\$civicrm_setting\['domain'\]\['extensionsDir'\]/ c \$civicrm_setting['domain']['extensionsDir'] = '[cms.root]/extensions';" \
     -e "/\$civicrm_setting\['domain'\]\['extensionsURL'\]/ c \$civicrm_setting['domain']['extensionsURL'] = '[cms.root]/extensions';" \
     -e "s@\['cms'\]\['root'\]@\['cms.root'\]@" \
+    -e "/if (!defined('CIVICRM_DSN'))/ i \$GLOBALS\['_CV'\]\['TEST_DB_DSN'\] = 'mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true';" \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 print-finish
 
