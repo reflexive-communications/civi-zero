@@ -172,7 +172,7 @@ sed -i \
     -e "s@\['cms'\]\['root'\]@\['cms.root'\]@" \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 sed -i -r \
-    -e 's#throw new (.*)GLOBALS\["_CV"]\["TEST_DB_DSN"\] is not set(.*)#'"define('CIVICRM_DSN', 'mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true');#g" \
+    -e 's#throw new (.*)GLOBALS\["_CV"]\["TEST_DB_DSN"\] is not set(.*)#'"define('CIVICRM_DSN', 'mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_name}?new_link=true');#g" \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 print-finish
 
