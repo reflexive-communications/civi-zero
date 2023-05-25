@@ -18,8 +18,8 @@ jobs:
     uses: es-progress/shell/.github/workflows/reuse-shellcheck.yml@main
     with:
       dir: bin/
-  tests:
-    name: Test scripts
+  test-ci:
+    name: Test CI mode
     runs-on: ubuntu-20.04
     needs:
       - format
@@ -32,19 +32,7 @@ jobs:
         run: ./bin/prepare.sh
 
       - name: Install CiviCRM
-        run: ./bin/install.sh . --sample
-
-      - name: Clear cache
-        run: ./bin/clear-cache.sh
-
-      - name: Init test DB
-        run: ./bin/init-test-DB.sh
-
-      - name: Config CiviCRM
-        run: ./bin/dev-config.sh
-
-      - name: Reinstall CiviCRM
-        run: ./bin/reinstall.sh . --sample
+        run: ./bin/install.sh .
 
       - name: Get model extension (rc-base)
         uses: actions/checkout@v3
@@ -56,4 +44,52 @@ jobs:
         run: ./bin/extension.sh . rc-base
 
       - name: Run extension unit tests
-        run: ./bin/tests.sh . rc-base
+        run: ./bin/tests.sh . rc-base --filter DBTest
+  test-dev:
+    name: Test Dev mode
+    runs-on: ubuntu-20.04
+    needs:
+      - format
+      - linter
+    steps:
+      - name: Self checkout
+        uses: actions/checkout@v3
+
+      - name: Get model extension (rc-base)
+        uses: actions/checkout@v3
+        with:
+          repository: reflexive-communications/rc-base
+          path: rc-base
+
+      - name: Set local config
+        run: |
+          cp cfg/install.cfg cfg/install.local
+          sed -ri \
+            -e 's@^(civi_db_user_name)=.*$@\1=db_admin@' \
+            -e 's@^(civi_db_user_pass)=.*$@\1=admin@' \
+            -e 's@^(civi_domain)=.*$@\1=civi.local.com@' \
+            cfg/install.local
+
+      - name: Setup environment
+        run: ./bin/prepare.sh
+
+      - name: Install CiviCRM
+        run: ./bin/install.sh . --sample
+
+      - name: Install extension
+        run: ./bin/extension.sh . rc-base
+
+      - name: Config CiviCRM
+        run: ./bin/dev-config.sh
+
+      - name: Init test DB
+        run: ./bin/init-test-DB.sh
+
+      - name: Run extension unit tests
+        run: ./bin/tests.sh . rc-base --filter DBTest
+
+      - name: Clear cache
+        run: ./bin/clear-cache.sh
+
+      - name: Reinstall CiviCRM
+        run: ./bin/reinstall.sh . --sample
