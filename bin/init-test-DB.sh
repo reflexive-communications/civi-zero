@@ -39,6 +39,12 @@ sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost'"
 sudo mysql -e "FLUSH PRIVILEGES"
 print-finish
 
+print-status "Update civicrm.settings.php to use test DB for tests..."
+sed -i -r \
+    -e "/if \(!defined\('CIVICRM_DSN'/,+6 s#(mysql://).*#\1${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true');#g" \
+    "${install_dir}/web/sites/default/civicrm.settings.php"
+print-finish
+
 print-header "Init CiviCRM test DataBase..."
 sudo -u www-data cv core:install \
     --no-interaction \
