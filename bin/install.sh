@@ -156,10 +156,6 @@ print-status "Set permissions..."
 # Base
 sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+w,g+r "${install_dir}"
-# Vendor (enable patching of core files)
-sudo chmod -R g+w "${install_dir}/vendor"
-# Extensions
-sudo chmod -R g+w "${install_dir}/web/extensions"
 # Files
 sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
 sudo chmod -R g+w "${install_dir}/web/sites/default/files"
