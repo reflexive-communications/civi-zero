@@ -6,7 +6,7 @@
 ##                                              ##
 ## Options:                                     ##
 ##   $1 Install dir, where CiviCRM is installed ##
-###################################################
+##################################################
 
 # Strict mode
 set -eufo pipefail
