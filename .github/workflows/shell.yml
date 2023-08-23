@@ -9,13 +9,13 @@ on:
 jobs:
   format:
     name: Check format
-    uses: es-progress/shell/.github/workflows/reuse-beautysh.yml@main
+    uses: es-progress/.github/.github/workflows/beautysh.yml@main
     with:
       dir: bin/
   linter:
     name: Linting
     needs: format
-    uses: es-progress/shell/.github/workflows/reuse-shellcheck.yml@main
+    uses: es-progress/.github/.github/workflows/shellcheck.yml@main
     with:
       dir: bin/
   test-ci:
