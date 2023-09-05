@@ -44,10 +44,6 @@ print-finish
 echo "Running time: ${SECONDS} seconds"
 print-header "Install PHP..."
 sudo apt-get install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
-sudo systemctl enable "php${php_version}-fpm.service"
-sudo systemctl restart "php${php_version}-fpm.service"
-sudo a2enconf "php${php_version}-fpm"
-sudo systemctl reload apache2.service
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish
 
