@@ -29,10 +29,7 @@ sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
 print-finish
 echo "Running time: ${SECONDS} seconds"
-print-header "Purge MySQL..."
-sudo apt-get purge --yes mysql*
-print-finish
-echo "Running time: ${SECONDS} seconds"
+
 print-header "Install MariaDB..."
 curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
 sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
@@ -41,6 +38,12 @@ sudo mysql_install_db --user=mysql
 sudo systemctl enable mariadb.service
 sudo systemctl restart mariadb.service
 print-finish
+
+print-header "Verify MySQL version..."
+mysql --version
+sudo mysql -e "SELECT VERSION()"
+print-finish
+
 echo "Running time: ${SECONDS} seconds"
 print-header "Install PHP..."
 sudo apt-get install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
