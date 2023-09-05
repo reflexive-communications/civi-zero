@@ -23,7 +23,7 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 print-header "Install Apache..."
-sudo apt-get install --yes --no-install-recommends --no-upgrade apache2 libapache2-mod-fcgid libapache2-mod-security2
+sudo apt-get install --yes --no-install-recommends --no-upgrade apache2
 sudo a2enmod "${apache_modules[@]}"
 sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
