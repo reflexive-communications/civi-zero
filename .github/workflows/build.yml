@@ -7,6 +7,7 @@ on:
       - "composer.*"
 env:
   INSTALL_DIR: /srv/www/civi-zero
+  COMPOSER_CACHE_DIR: ~/.composer/cache
 jobs:
   build:
     name: Build CiviCRM
@@ -14,6 +15,12 @@ jobs:
     steps:
       - name: Self checkout
         uses: actions/checkout@v3
+
+      - name: Cache composer
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.COMPOSER_CACHE_DIR }}
+          key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Setup environment
         run: ./bin/prepare.sh
