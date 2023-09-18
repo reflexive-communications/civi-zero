@@ -23,14 +23,10 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 print-header "Install Apache..."
-sudo apt-get install --yes --no-install-recommends --no-upgrade apache2 libapache2-mod-fcgid libapache2-mod-security2
+sudo apt-get install --yes --no-install-recommends --no-upgrade apache2
 sudo a2enmod "${apache_modules[@]}"
 sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
-print-finish
-
-print-header "Purge MySQL..."
-sudo apt-get purge --yes mysql*
 print-finish
 
 print-header "Install MariaDB..."
@@ -42,12 +38,13 @@ sudo systemctl enable mariadb.service
 sudo systemctl restart mariadb.service
 print-finish
 
+print-header "Verify MySQL version..."
+mysql --version
+sudo mysql -e "SELECT VERSION()"
+print-finish
+
 print-header "Install PHP..."
 sudo apt-get install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
-sudo systemctl enable "php${php_version}-fpm.service"
-sudo systemctl restart "php${php_version}-fpm.service"
-sudo a2enconf "php${php_version}-fpm"
-sudo systemctl reload apache2.service
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish
 

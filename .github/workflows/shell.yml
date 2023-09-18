@@ -6,6 +6,8 @@ on:
     paths:
       - "bin/**"
       - "cfg/**"
+env:
+  COMPOSER_CACHE_DIR: ~/.composer/cache
 jobs:
   format:
     name: Check format
@@ -27,6 +29,12 @@ jobs:
     steps:
       - name: Self checkout
         uses: actions/checkout@v3
+
+      - name: Cache composer
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.COMPOSER_CACHE_DIR }}
+          key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Setup environment
         run: ./bin/prepare.sh
@@ -54,6 +62,12 @@ jobs:
     steps:
       - name: Self checkout
         uses: actions/checkout@v3
+
+      - name: Cache composer
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.COMPOSER_CACHE_DIR }}
+          key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Get model extension (rc-base)
         uses: actions/checkout@v3
