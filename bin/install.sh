@@ -92,11 +92,11 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_name}.* TO '${civi_db_user_name
 sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost'"
 sudo mysql -e "FLUSH PRIVILEGES"
 print-finish
-echo "Running time: ${SECONDS} seconds"
+
 print-header "Composer install..."
 composer install --working-dir="${install_dir}"
 print-finish
-echo "Running time: ${SECONDS} seconds"
+
 print-header "Install Drupal..."
 "${install_dir}/vendor/bin/drush" site:install \
     minimal \
@@ -109,7 +109,7 @@ print-header "Install Drupal..."
 sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
-echo "Running time: ${SECONDS} seconds"
+
 print-header "Enable Drupal modules..."
 "${install_dir}/vendor/bin/drush" pm:enable --root "${install_dir}" --yes "${drupal_modules}"
 print-finish
@@ -119,7 +119,7 @@ print-header "Enable Drupal theme..."
 print-finish
 
 print-finish "Drupal installed!"
-echo "Running time: ${SECONDS} seconds"
+
 print-header "Install CiviCRM..."
 cv core:install \
     --no-interaction \
@@ -130,7 +130,7 @@ cv core:install \
     --comp="${civi_components}"
 mkdir -p "${install_dir}/web/extensions"
 print-finish
-echo "Running time: ${SECONDS} seconds"
+
 print-status "Config CiviCRM bin/setup.sh..."
 cp "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
 sed -i \
@@ -179,9 +179,9 @@ sudo -u www-data cv api4 \
     Setting.set \
     '{"values":{"mailing_backend":{"outBound_option":5}}}'
 print-finish
-echo "Running time: ${SECONDS} seconds"
+
 "${base_dir}/bin/clear-cache.sh" "${install_dir}"
-echo "Running time: ${SECONDS} seconds"
+
 print-status "Login to site..."
 cookies=$(mktemp)
 OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
@@ -201,5 +201,5 @@ fi
 print-finish
 
 print-finish "CiviCRM installed!"
-echo "Running time: ${SECONDS} seconds"
+
 exit 0

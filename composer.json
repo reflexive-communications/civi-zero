@@ -1,6 +1,6 @@
 {
     "name": "reflexive-communications/civi-zero",
-    "description": "Zero config CiviCRM install on Drupal 9ka",
+    "description": "Zero config CiviCRM install on Drupal 9",
     "type": "project",
     "license": "MIT",
     "repositories": [
