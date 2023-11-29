@@ -94,7 +94,7 @@ sudo mysql -e "FLUSH PRIVILEGES"
 print-finish
 
 print-header "Composer install..."
-composer install --working-dir="${install_dir}"
+composer install --no-interaction --working-dir="${install_dir}"
 print-finish
 
 print-header "Install Drupal..."
