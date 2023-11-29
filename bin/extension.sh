@@ -38,14 +38,17 @@ extension_target="${install_dir}/web/extensions"
 
 print-status "Copy extension to CiviCRM (${extension_key})..."
 cp -a "${extension_dir}" "${extension_target}/"
-sudo chgrp -R www-data "${extension_target}/${extension_dir}"
 print-finish
 
 if [[ -f "${extension_target}/${extension_dir}/composer.json" ]]; then
     print-header "Run composer install..."
-    sudo -u www-data composer install --no-interaction --working-dir="${extension_target}/${extension_dir}"
+    composer install --no-interaction --working-dir="${extension_target}/${extension_dir}"
     print-finish
 fi
+
+print-status "Set permissions..."
+sudo chgrp -R www-data "${extension_target}/${extension_dir}"
+print-finish
 
 print-header "Enable extension (${extension_key})..."
 sudo -u www-data cv ext:enable \
