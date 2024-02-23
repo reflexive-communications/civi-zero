@@ -23,7 +23,7 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 print-header "Install Apache..."
-sudo apt-get install --quiet --yes --no-install-recommends --no-upgrade apache2
+sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade apache2
 sudo a2enmod "${apache_modules[@]}"
 sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
@@ -32,7 +32,7 @@ print-finish
 print-header "Install MariaDB..."
 curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
 sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
-sudo apt-get install --quiet --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
+sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
 sudo mysql_install_db --user=mysql
 sudo systemctl enable mariadb.service
 sudo systemctl restart mariadb.service
@@ -44,7 +44,7 @@ sudo mysql -e "SELECT VERSION()"
 print-finish
 
 print-header "Install PHP..."
-sudo apt-get install --quiet --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
+sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish
 
