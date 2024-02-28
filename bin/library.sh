@@ -80,7 +80,7 @@ print-error() {
 ## @param    $*  Items to join
 ##################################
 implode() {
-    local IFS="${1:?"Field separator missing"}"
+    local IFS="${1:?Field separator missing}"
     shift
-    echo ${*}
+    echo "${*}"
 }

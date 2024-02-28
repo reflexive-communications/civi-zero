@@ -28,7 +28,7 @@ install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 cv_params=(--no-interaction "--cwd=${install_dir}")
 
-print-status "Update civicrm.settings.php..."
+print-status Update civicrm.settings.php...
 sed -i \
     -e "/(\!defined('CIVICRM_TEMPLATE_COMPILE_CHECK'))/,+2 s@^//@@" \
     -e "/CIVICRM_TEMPLATE_COMPILE_CHECK/ s/FALSE/TRUE/" \
@@ -38,12 +38,12 @@ sed -i \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 print-finish
 
-print-header "Set API key for system user..."
-contact_id=$(sudo -u www-data cv api4 "${cv_params[@]}" --out=list UFMatch.get +s contact_id +w "uf_id=1")
+print-header Set API key for system user...
+contact_id=$(sudo -u www-data cv api4 "${cv_params[@]}" --out=list UFMatch.get +s contact_id +w uf_id=1)
 sudo -u www-data cv api4 "${cv_params[@]}" Contact.update +v "api_key=${civi_apikey}" +w "id=${contact_id}"
 print-finish
 
-print-header "Set default from address..."
+print-header Set default from address...
 record=$(cat <<EOF
 {
     "values": {
@@ -57,13 +57,13 @@ EOF
 echo "${record}" | sudo -u www-data cv api4 "${cv_params[@]}" OptionValue.update --in=json
 print-finish
 
-print-header "Apply settings..."
-json=$(implode ',' "${civi_configs[@]}")
+print-header Apply settings...
+json=$(implode , "${civi_configs[@]}")
 json=$(printf '{"values":{%s}}' "${json}")
 sudo -u www-data cv api4 "${cv_params[@]}" Setting.Set "${json}"
 print-finish
 
-print-header "Setup default mailbox..."
+print-header Setup default mailbox...
 localpart=$(cut -d@ -f1 <<<"${civi_mail}")
 domain=$(cut -d@ -f2 <<<"${civi_mail}")
 # Compose JSON record
@@ -93,6 +93,6 @@ record=$(tr -d '[:space:]' <<<"${record}")
 sudo -u www-data cv api4 "${cv_params[@]}" MailSettings.Save records="${record}" '{"reload":true}'
 print-finish
 
-print-finish "CiviCRM configured!"
+print-finish CiviCRM configured!
 
 exit 0

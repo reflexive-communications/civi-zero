@@ -27,11 +27,11 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 
-print-header "Clear Drupal cache..."
+print-header Clear Drupal cache...
 sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --root "${install_dir}"
 print-finish
 
-print-header "Clear Civi cache..."
+print-header Clear Civi cache...
 sudo -u www-data cv flush --cwd="${install_dir}"
 print-finish
 

@@ -27,25 +27,25 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 
-print-status "Purge Civi Test DB..."
+print-status Purge Civi Test DB...
 sudo mysql -e "DROP DATABASE IF EXISTS ${civi_db_test}"
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${civi_db_test} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
 print-finish
 
-print-status "Add Civi DB user..."
+print-status Add Civi DB user...
 sudo mysql -e "CREATE USER IF NOT EXISTS ${civi_db_user_name}@localhost IDENTIFIED BY '${civi_db_user_pass}'"
 sudo mysql -e "GRANT ALL PRIVILEGES ON ${civi_db_test}.* TO '${civi_db_user_name}'@'localhost'"
 sudo mysql -e "GRANT SUPER ON *.* TO '${civi_db_user_name}'@'localhost'"
 sudo mysql -e "FLUSH PRIVILEGES"
 print-finish
 
-print-status "Update civicrm.settings.php to use test DB for tests..."
+print-status Update civicrm.settings.php to use test DB for tests...
 sed -i -r \
     -e "/if \(!defined\('CIVICRM_DSN'/,+6 s#(mysql://).*#\1${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true');#g" \
     "${install_dir}/web/sites/default/civicrm.settings.php"
 print-finish
 
-print-header "Init CiviCRM test DataBase..."
+print-header Init CiviCRM test DataBase...
 sudo -u www-data cv core:install \
     --no-interaction \
     --cwd="${install_dir}" \
