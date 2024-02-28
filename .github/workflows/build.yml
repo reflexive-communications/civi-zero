@@ -8,6 +8,7 @@ on:
 env:
   INSTALL_DIR: /srv/www/civi-zero
   COMPOSER_CACHE_DIR: ~/.composer/cache
+  TERM: xterm-256color
 jobs:
   build:
     name: Build CiviCRM

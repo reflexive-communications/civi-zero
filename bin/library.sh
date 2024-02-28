@@ -9,14 +9,12 @@
 ## FORMAT CODES ##
 ##################
 
-export TXT_NORM="\e[0m"
-export TXT_BOLD="\e[1m"
-export TXT_RED="\e[31m"
-export TXT_GREEN="\e[32m"
-export TXT_YELLOW="\e[33m"
-export TXT_BLUE="\e[34m"
-export TXT_PURPLE="\e[35m"
-export BACK_BLUE="\e[44m"
+TXT_NORM=$(tput sgr0)
+TXT_BOLD=$(tput bold)
+TXT_RED=$(tput setaf 1)
+TXT_GREEN=$(tput setaf 2)
+TXT_YELLOW=$(tput setaf 3)
+BACK_BLUE=$(tput setab 4)
 
 ###############
 ## FUNCTIONS ##
