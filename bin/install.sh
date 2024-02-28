@@ -192,7 +192,7 @@ if [[ "${return_code}" != 200 ]]; then
 fi
 print-finish
 
-print-status Test Civi: GET "http://${civi_domain}/civicrm/contact/search ..."
+print-status Test Civi: GET "http://${civi_domain}/civicrm/contact/search" ...
 return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie "${cookies}" "http://${civi_domain}/civicrm/contact/search")
 if [[ "${return_code}" != 200 ]]; then
     print-error Failed to GET "http://${civi_domain}/civicrm/contact/search"
