@@ -22,14 +22,14 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 # shellcheck disable=SC1091
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
-print-header "Install Apache..."
+print-header Install Apache...
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade apache2
 sudo a2enmod "${apache_modules[@]}"
 sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
 print-finish
 
-print-header "Install MariaDB..."
+print-header Install MariaDB...
 curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
 sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
@@ -38,17 +38,17 @@ sudo systemctl enable mariadb.service
 sudo systemctl restart mariadb.service
 print-finish
 
-print-header "Verify MySQL version..."
+print-header Verify MySQL version...
 mysql --version
 sudo mysql -e "SELECT VERSION()"
 print-finish
 
-print-header "Install PHP..."
+print-header Install PHP...
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish
 
-print-status "Config PHP..."
+print-status Config PHP...
 sudo cp "${base_dir}/cfg/civi.php.ini" "/etc/php/${php_version}/mods-available/"
 [[ -e "/etc/php/${php_version}/fpm/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/fpm/conf.d/99-civi.ini"
 [[ -e "/etc/php/${php_version}/cli/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/cli/conf.d/99-civi.ini"
@@ -57,7 +57,7 @@ sudo sed -i \
     "/etc/php/${php_version}/mods-available/civi.php.ini"
 print-finish
 
-print-status "Install PHP tools..."
+print-status Install PHP tools...
 sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer"

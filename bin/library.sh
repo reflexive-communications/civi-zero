@@ -9,14 +9,12 @@
 ## FORMAT CODES ##
 ##################
 
-export TXT_NORM="\e[0m"
-export TXT_BOLD="\e[1m"
-export TXT_RED="\e[31m"
-export TXT_GREEN="\e[32m"
-export TXT_YELLOW="\e[33m"
-export TXT_BLUE="\e[34m"
-export TXT_PURPLE="\e[35m"
-export BACK_BLUE="\e[44m"
+TXT_NORM=$(tput sgr0)
+TXT_BOLD=$(tput bold)
+TXT_RED=$(tput setaf 1)
+TXT_GREEN=$(tput setaf 2)
+TXT_YELLOW=$(tput setaf 3)
+BACK_BLUE=$(tput setab 4)
 
 ###############
 ## FUNCTIONS ##
@@ -27,13 +25,15 @@ export BACK_BLUE="\e[44m"
 ## @param    $*  Message
 ########################
 print-section() {
-    local msg="${*}"
+    local header="${*}"
     echo
-    echo -e "${BACK_BLUE}${msg}${TXT_NORM}"
-    for ((i = 0 ; i < ${#msg} ; i++)); do
-        echo -ne "${BACK_BLUE}=${TXT_NORM}"
+    # shellcheck disable=SC2086
+    echo -e ${BACK_BLUE}${header}${TXT_NORM}
+    echo -ne "${BACK_BLUE}"
+    for ((i = 0 ; i < ${#header} ; i++)); do
+        echo -n "~"
     done
-    echo
+    echo -e "${TXT_NORM}"
 }
 
 ## Print header
@@ -41,8 +41,8 @@ print-section() {
 ## @param    $*  Message
 ########################
 print-header() {
-    echo
-    echo -e "${TXT_YELLOW}${*}${TXT_NORM}"
+    # shellcheck disable=SC2086
+    echo -e ${TXT_YELLOW}${*}${TXT_NORM}
 }
 
 ## Print status message
@@ -50,7 +50,8 @@ print-header() {
 ## @param    $*  Message
 ########################
 print-status() {
-    echo -ne "${TXT_YELLOW}${*}${TXT_NORM}"
+    # shellcheck disable=SC2086
+    echo -ne ${TXT_YELLOW}${*}${TXT_NORM}
 }
 
 ## Print OK message
@@ -60,7 +61,8 @@ print-status() {
 ########################
 # shellcheck disable=SC2120
 print-finish() {
-    echo -e "${TXT_GREEN}${TXT_BOLD}${*:-Done.}${TXT_NORM}"
+    # shellcheck disable=SC2086
+    echo -e ${TXT_GREEN}${TXT_BOLD}${*:-Done.}${TXT_NORM}
 }
 
 ## Print error message
@@ -68,7 +70,8 @@ print-finish() {
 ## @param    $*  Message
 ########################
 print-error() {
-    echo -e "${TXT_RED}${TXT_BOLD}${*}${TXT_NORM}" >&2
+    # shellcheck disable=SC2086
+    echo -e ${TXT_RED}${TXT_BOLD}${*}${TXT_NORM} >&2
 }
 
 ## Join arguments by char
@@ -77,7 +80,7 @@ print-error() {
 ## @param    $*  Items to join
 ##################################
 implode() {
-    local IFS="${1:?"Field separator missing"}"
+    local IFS="${1:?Field separator missing}"
     shift
     echo "${*}"
 }

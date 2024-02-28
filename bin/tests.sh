@@ -26,13 +26,13 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 [[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
 
 # Parse options
-install_dir="${1?:"Install dir missing"}"
-extension="${2?:"Extension missing"}"
+install_dir="${1?:Install dir missing}"
+extension="${2?:Extension missing}"
 shift 2
 install_dir=$(realpath "${install_dir}")
 extension_target="${install_dir}/web/extensions"
 
-print-header "Run unit tests (${extension})"
+print-header Run unit tests "(${extension})"
 sudo chown -R "${USER}" "${install_dir}/web/"
 cd "${extension_target}/${extension}"
 "${install_dir}/vendor/bin/phpunit" --verbose --coverage-text --colors=always "${@}"
