@@ -23,7 +23,7 @@
         "civicrm/civicrm-core": "~5.64.0",
         "civicrm/civicrm-drupal-8": "~5.64.0",
         "civicrm/civicrm-packages": "~5.64.0",
-        "composer/installers": "^1.2",
+        "composer/installers": "^2",
         "drupal/admin_toolbar": "^3.0",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
