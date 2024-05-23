@@ -35,7 +35,7 @@ print-finish
 
 print-header Install MariaDB...
 curl -LsS -O https://r.mariadb.com/downloads/mariadb_repo_setup
-echo "${mariadb_repo_setup_checksum}  mariadb_repo_setup" | sha256sum --check --strict -
+echo "${mariadb_repo_setup_checksum}  mariadb_repo_setup" | sha256sum --check --strict --status -
 sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
 sudo mysql_install_db --user=mysql
@@ -67,13 +67,16 @@ php --version
 print-finish
 
 print-status Install PHP tools...
-sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
+tmp_file=$(mktemp)
+curl -LsS -o "${tmp_file}" "${url_composer}"
+echo "${sha_composer}  ${tmp_file}" | sha256sum --check --strict --status -
+sudo cp --no-preserve=mode "${tmp_file}" "${local_bin}/composer"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer"
 sudo chmod +x "${local_bin}/cv"
 print-finish
 
-print-header PHP tools version...
+print-header Verify PHP tools version...
 composer --version
 cv --version
 print-finish
