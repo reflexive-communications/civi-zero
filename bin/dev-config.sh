@@ -28,6 +28,24 @@ install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 cv_params=(--no-interaction "--cwd=${install_dir}")
 
+print-status Install developer tools...
+tmp_file=$(mktemp)
+curl -LsS -o "${tmp_file}" "${url_php_cs_fixer}"
+echo "${sha_php_cs_fixer}  ${tmp_file}" | sha256sum --check --strict --status -
+sudo cp --no-preserve=mode "${tmp_file}" "${local_bin}/php-cs-fixer"
+sudo curl -LsS -o "${local_bin}/civix" "${url_civix}"
+sudo curl -LsS -o "${local_bin}/civistrings" "${url_civistrings}"
+sudo chmod +x "${local_bin}/php-cs-fixer"
+sudo chmod +x "${local_bin}/civix"
+sudo chmod +x "${local_bin}/civistrings"
+print-finish
+
+print-header Verify developer tools version...
+php-cs-fixer --version
+civix --version
+civistrings --version
+print-finish
+
 print-status Update civicrm.settings.php...
 sed -i \
     -e "/(\!defined('CIVICRM_TEMPLATE_COMPILE_CHECK'))/,+2 s@^//@@" \

@@ -64,7 +64,7 @@ Currently only Ubuntu is supported.
 After installation, CiviCRM is ready to use (mostly in a CI environment).
 However if you plan to use it for development, there are several utility scripts to help work:
 
--   `bin/dev-config.sh`: Configure CiviCRM for development.
+-   `bin/dev-config.sh`: Configure CiviCRM for development. Install some development tools.
 
     ```
     dev-config.sh [INSTALL_DIR]
