@@ -29,6 +29,10 @@ sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
 print-finish
 
+print-header Verify Apache version...
+apachectl -V
+print-finish
+
 print-header Install MariaDB...
 curl -LsS -O https://r.mariadb.com/downloads/mariadb_repo_setup
 echo "${mariadb_repo_setup_checksum}  mariadb_repo_setup" | sha256sum --check --strict -
@@ -58,11 +62,20 @@ sudo sed -i \
     "/etc/php/${php_version}/mods-available/civi.php.ini"
 print-finish
 
+print-header Verify PHP version...
+php --version
+print-finish
+
 print-status Install PHP tools...
 sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer"
 sudo chmod +x "${local_bin}/cv"
+print-finish
+
+print-header PHP tools version...
+composer --version
+cv --version
 print-finish
 
 exit 0
