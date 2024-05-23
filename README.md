@@ -22,8 +22,8 @@ Currently only Ubuntu is supported.
 1. Check out repo
 1. Config installer
     1. Check `cfg/install.cfg` for defaults
-    1. Duplicate `cfg/install.cfg` and rename to `cfg/install.local`
-    1. Change relevant configs in `cfg/install.local`
+    1. Duplicate `cfg/install.cfg` and rename to `cfg/install.local.cfg`
+    1. Change relevant configs in `cfg/install.local.cfg`
 1. Run `bin/prepare.sh`
 1. Run `bin/install.sh`, usage:
 

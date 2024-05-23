@@ -20,13 +20,17 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 # shellcheck source=cfg/install.cfg
 . "${base_dir}/cfg/install.cfg"
 # shellcheck disable=SC1091
-[[ -r "${base_dir}/cfg/install.local" ]] && . "${base_dir}/cfg/install.local"
+[[ -r "${base_dir}/cfg/install.local.cfg" ]] && . "${base_dir}/cfg/install.local.cfg"
 
 print-header Install Apache...
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade apache2
 sudo a2enmod "${apache_modules[@]}"
 sudo systemctl enable apache2.service
 sudo systemctl restart apache2.service
+print-finish
+
+print-header Verify Apache version...
+apachectl -V
 print-finish
 
 print-header Install MariaDB...
@@ -58,11 +62,20 @@ sudo sed -i \
     "/etc/php/${php_version}/mods-available/civi.php.ini"
 print-finish
 
+print-header Verify PHP version...
+php --version
+print-finish
+
 print-status Install PHP tools...
 sudo curl -LsS -o "${local_bin}/composer" "${url_composer}"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
 sudo chmod +x "${local_bin}/composer"
 sudo chmod +x "${local_bin}/cv"
+print-finish
+
+print-header PHP tools version...
+composer --version
+cv --version
 print-finish
 
 exit 0

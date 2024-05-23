@@ -78,12 +78,12 @@ jobs:
 
       - name: Set local config
         run: |
-          cp cfg/install.cfg cfg/install.local
+          cp cfg/install.cfg cfg/install.local.cfg
           sed -ri \
             -e 's@^(civi_db_user_name)=.*$@\1=db_admin@' \
             -e 's@^(civi_db_user_pass)=.*$@\1=admin@' \
             -e 's@^(civi_domain)=.*$@\1=civi.local.com@' \
-            cfg/install.local
+            cfg/install.local.cfg
 
       - name: Setup environment
         run: ./bin/prepare.sh
