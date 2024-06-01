@@ -35,8 +35,7 @@ print-finish
 
 print-header Install MariaDB...
 curl -LsS -O https://r.mariadb.com/downloads/mariadb_repo_setup
-echo "${mariadb_repo_setup_checksum}  mariadb_repo_setup" | sha256sum --check --strict --status -
-sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}"
+sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}" --skip-maxscale
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
 sudo mysql_install_db --user=mysql
 sudo systemctl enable mariadb.service
