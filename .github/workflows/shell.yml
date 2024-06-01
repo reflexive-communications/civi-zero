@@ -29,7 +29,7 @@ jobs:
       - linter
     steps:
       - name: Self checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache composer
         uses: actions/cache@v3
@@ -44,7 +44,7 @@ jobs:
         run: ./bin/install.sh .
 
       - name: Get model extension (rc-base)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: reflexive-communications/rc-base
           path: rc-base
@@ -62,7 +62,7 @@ jobs:
       - linter
     steps:
       - name: Self checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache composer
         uses: actions/cache@v3
@@ -71,7 +71,7 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Get model extension (rc-base)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: reflexive-communications/rc-base
           path: rc-base
