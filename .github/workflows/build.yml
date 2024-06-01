@@ -4,6 +4,7 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/build.yml
       - "composer.*"
 env:
   INSTALL_DIR: /srv/www/civi-zero
