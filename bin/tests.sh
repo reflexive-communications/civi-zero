@@ -27,14 +27,15 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 
 # Parse options
 install_dir="${1?:Install dir missing}"
-extension="${2?:Extension missing}"
+extension_dir="${2?:Extension dir missing}"
 shift 2
 install_dir=$(realpath "${install_dir}")
 extension_target="${install_dir}/web/extensions"
+extension_dir_basename=$(basename "${extension_dir}")
 
-print-header Run unit tests "(${extension})"
+print-header Run unit tests "(${extension_dir_basename})"
 sudo chown -R "${USER}" "${install_dir}/web/"
-cd "${extension_target}/${extension}"
+cd "${extension_target}/${extension_dir_basename}"
 "${install_dir}/vendor/bin/phpunit" --verbose --coverage-text --colors=always "${@}"
 print-finish
 
