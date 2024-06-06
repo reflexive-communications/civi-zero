@@ -88,7 +88,7 @@ However if you plan to use it for development, there are several utility scripts
     tests.sh INSTALL_DIR EXTENSION_DIR
 
     INSTALL_DIR:         Installation dir (the same dir where you installed in step #4)
-    EXTENSION_DIR:       Extension base dir (same as in 'extension.sh')
+    EXTENSION_DIR:       Extension dir (where the extension is installed)
     ```
 
 -   `bin/clear-cache.sh`: Clears Drupal & CiviCRM caches.
