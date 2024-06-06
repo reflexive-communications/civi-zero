@@ -99,3 +99,12 @@ However if you plan to use it for development, there are several utility scripts
     INSTALL_DIR:         Installation dir (the same dir where you installed in step #4).
                          Defaults to civi-zero project dir.
     ```
+
+-   `bin/set-perm.sh`: Set file permissions.
+
+    ```
+    set-perm.sh [INSTALL_DIR]
+
+    INSTALL_DIR:         Installation dir (the same dir where you installed in step #4).
+                         Defaults to civi-zero project dir.
+    ```

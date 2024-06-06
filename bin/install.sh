@@ -106,9 +106,9 @@ print-header Install Drupal...
     --account-pass="${civi_pass}" \
     --site-name="${civi_site}" \
     --yes
-sudo chown -R "${USER}:www-data" "${install_dir}"
-sudo chmod -R u+w,g+r "${install_dir}"
 print-finish
+
+"${base_dir}/bin/set-perm.sh" "${install_dir}"
 
 print-header Enable Drupal modules...
 "${install_dir}/vendor/bin/drush" pm:enable --root "${install_dir}" --yes "${drupal_modules}"
@@ -152,14 +152,7 @@ if [[ -n "${load_sample}" ]]; then
     print-finish
 fi
 
-print-status Set permissions...
-# Base
-sudo chown -R "${USER}:www-data" "${install_dir}"
-sudo chmod -R u+w,g+r "${install_dir}"
-# Files
-sudo chown -R www-data:www-data "${install_dir}/web/sites/default/files"
-sudo chmod -R g+w "${install_dir}/web/sites/default/files"
-print-finish
+"${base_dir}/bin/set-perm.sh" "${install_dir}"
 
 print-status Update civicrm.settings.php...
 sed -i \
