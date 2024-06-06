@@ -32,22 +32,23 @@ extension_dir="${2?:Extension dir missing}"
 extension_key="${3:-}"
 install_dir=$(realpath "${install_dir}")
 extension_target="${install_dir}/web/extensions"
+extension_dir_basename=$(basename "${extension_dir}")
 
 # Extension key not supplied --> it is the same as the dir
-[[ -z "${extension_key}" ]] && extension_key=$(basename "${extension_dir}")
+[[ -z "${extension_key}" ]] && extension_key="${extension_dir_basename}"
 
 print-status Copy extension to CiviCRM "(${extension_key})..."
-cp -a "${extension_dir}" "${extension_target}/"
+cp -a --no-clobber "${extension_dir}" "${extension_target}/"
 print-finish
 
-if [[ -f "${extension_target}/${extension_dir}/composer.json" ]]; then
+if [[ -f "${extension_target}/${extension_dir_basename}/composer.json" ]]; then
     print-header Run composer install...
-    composer install --no-interaction --working-dir="${extension_target}/${extension_dir}"
+    composer install --no-interaction --working-dir="${extension_target}/${extension_dir_basename}"
     print-finish
 fi
 
 print-status Set permissions...
-sudo chgrp -R www-data "${extension_target}/${extension_dir}"
+sudo chgrp -R www-data "${extension_target}/${extension_dir_basename}"
 print-finish
 
 print-header Enable extension "(${extension_key})..."
