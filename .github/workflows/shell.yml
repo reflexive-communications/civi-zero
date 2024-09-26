@@ -10,7 +10,7 @@ on:
       - "cfg/**"
 env:
   COMPOSER_CACHE_DIR: ~/.composer/cache
-  TERM: xterm-256color
+#  TERM: xterm-256color
 jobs:
   format:
     name: Check format
