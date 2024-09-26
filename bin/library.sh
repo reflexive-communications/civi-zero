@@ -9,20 +9,12 @@
 ## FORMAT CODES ##
 ##################
 
-TXT_NORM=
-TXT_BOLD=
-TXT_RED=
-TXT_GREEN=
-TXT_YELLOW=
-BACK_BLUE=
-if tput longname >/dev/null 2>&1; then
-    TXT_NORM=$(tput sgr0)
-    TXT_BOLD=$(tput bold)
-    TXT_RED=$(tput setaf 1)
-    TXT_GREEN=$(tput setaf 2)
-    TXT_YELLOW=$(tput setaf 3)
-    BACK_BLUE=$(tput setab 4)
-fi
+TXT_NORM=$(tput sgr0 2>/dev/null || printf '')
+TXT_BOLD=$(tput bold 2>/dev/null || printf '')
+TXT_RED=$(tput setaf 1 2>/dev/null || printf '')
+TXT_GREEN=$(tput setaf 2 2>/dev/null || printf '')
+TXT_YELLOW=$(tput setaf 3 2>/dev/null || printf '')
+BACK_BLUE=$(tput setab 4 2>/dev/null || printf '')
 
 ###############
 ## FUNCTIONS ##
