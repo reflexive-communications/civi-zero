@@ -28,6 +28,9 @@ install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 
 print-status Set permissions...
+# User home
+# NOTE: this is needed in CI
+chmod o+x "${HOME}"
 # Base
 sudo chown -R "${USER}:www-data" "${install_dir}"
 sudo chmod -R u+rw,g+r "${install_dir}"
