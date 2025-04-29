@@ -25,7 +25,7 @@ jobs:
       dir: bin/
   test-ci:
     name: Test CI mode
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs:
       - format
       - linter
@@ -58,7 +58,7 @@ jobs:
         run: ./bin/tests.sh . rc-base --filter DBTest
   test-dev:
     name: Test Dev mode
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs:
       - format
       - linter

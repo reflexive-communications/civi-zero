@@ -49,10 +49,10 @@ print-header Init CiviCRM test DataBase...
 sudo -u www-data cv core:install \
     --no-interaction \
     --cwd="${install_dir}" \
-    --cms-base-url="https://${civi_domain}" \
+    --url="https://${civi_domain}" \
     --db="mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true" \
     --comp="${civi_components}" \
-    --keep --test
+    --keep
 print-finish
 
 exit 0

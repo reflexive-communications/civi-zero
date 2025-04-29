@@ -48,6 +48,7 @@ sudo mysql -e "SELECT VERSION()"
 print-finish
 
 print-header Install PHP...
+sudo add-apt-repository ppa:ondrej/php
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish

@@ -125,7 +125,7 @@ cv core:install \
     --no-interaction \
     --cwd="${install_dir}" \
     --lang=en_GB \
-    --cms-base-url="http://${civi_domain}" \
+    --url="http://${civi_domain}" \
     --model paths.cms.root.path="${doc_root}" \
     --comp="${civi_components}"
 mkdir -p "${install_dir}/web/extensions"
