@@ -5,7 +5,7 @@
 
 ## Overview
 
-This repo contains a zero config CiviCRM instance on Drupal 9.
+This repo contains a zero config CiviCRM instance on Drupal.
 
 **This project is intended for development/CI environments, please don't use in production!**
 
