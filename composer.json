@@ -1,6 +1,6 @@
 {
     "name": "reflexive-communications/civi-zero",
-    "description": "Zero config CiviCRM install on Drupal 9",
+    "description": "Zero config CiviCRM install on Drupal",
     "type": "project",
     "license": "MIT",
     "repositories": [
@@ -26,10 +26,10 @@
         "civicrm/civicrm-packages": "~5.76.0",
         "composer/installers": "^2",
         "drupal/admin_toolbar": "^3.0",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
-        "drush/drush": "^11"
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-project-message": "^10",
+        "drupal/core-recommended": "^10",
+        "drush/drush": "^12"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3",

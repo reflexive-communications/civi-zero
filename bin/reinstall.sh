@@ -54,7 +54,7 @@ fi
 "${base_dir}/bin/clear-cache.sh" "${install_dir}"
 
 print-status Login to site...
-OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
+OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
 tmp_file=$(mktemp)
 curl -LsS -o /dev/null --cookie-jar "${tmp_file}" "${OTP}"
 print-finish

@@ -100,22 +100,24 @@ print-finish
 print-header Install Drupal...
 "${install_dir}/vendor/bin/drush" site:install \
     minimal \
-    --root "${install_dir}" \
     --db-url="mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_name}" \
+    --db-prefix=drupal_ \
+    --site-name="${civi_site}" \
+    --site-mail="${civi_mail}" \
     --account-name="${civi_user}" \
     --account-pass="${civi_pass}" \
-    --site-name="${civi_site}" \
+    --account-mail="${civi_mail}" \
     --yes
 print-finish
 
 "${base_dir}/bin/set-perm.sh" "${install_dir}"
 
 print-header Enable Drupal modules...
-"${install_dir}/vendor/bin/drush" pm:enable --root "${install_dir}" --yes "${drupal_modules}"
+"${install_dir}/vendor/bin/drush" pm:enable --yes "${drupal_modules}"
 print-finish
 
 print-header Enable Drupal theme...
-"${install_dir}/vendor/bin/drush" theme:enable --root "${install_dir}" --yes "${drupal_theme}"
+"${install_dir}/vendor/bin/drush" theme:enable --yes "${drupal_theme}"
 print-finish
 
 print-finish Drupal installed!
@@ -177,7 +179,7 @@ print-finish
 
 print-status Login to site...
 cookies=$(mktemp)
-OTP=$("${install_dir}/vendor/bin/drush" uli --root "${install_dir}" --no-browser --uri="${civi_domain}")
+OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
 return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie-jar "${cookies}" "${OTP}")
 if [[ "${return_code}" != 200 ]]; then
     print-error Failed to login to site
