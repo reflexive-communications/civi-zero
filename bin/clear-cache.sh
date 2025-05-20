@@ -28,7 +28,7 @@ install_dir="${1:-${base_dir}}"
 install_dir=$(realpath "${install_dir}")
 
 print-header Clear Drupal cache...
-sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --root "${install_dir}"
+sudo -u www-data "${install_dir}/vendor/bin/drush" cache:rebuild --yes
 print-finish
 
 print-header Clear Civi cache...
