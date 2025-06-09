@@ -54,7 +54,7 @@ sudo update-alternatives --set php "/usr/bin/php${php_version}"
 print-finish
 
 print-status Config PHP...
-sudo cp "${base_dir}/cfg/civi.php.ini" "/etc/php/${php_version}/mods-available/"
+sudo install --mode=0644 "${base_dir}/cfg/civi.php.ini" "/etc/php/${php_version}/mods-available/"
 [[ -e "/etc/php/${php_version}/fpm/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/fpm/conf.d/99-civi.ini"
 [[ -e "/etc/php/${php_version}/cli/conf.d/99-civi.ini" ]] || sudo ln -s "/etc/php/${php_version}/mods-available/civi.php.ini" "/etc/php/${php_version}/cli/conf.d/99-civi.ini"
 sudo sed -i \
@@ -70,9 +70,8 @@ print-status Install PHP tools...
 tmp_file=$(mktemp)
 curl -LsS -o "${tmp_file}" "${url_composer}"
 echo "${sha_composer}  ${tmp_file}" | sha256sum --check --strict --status -
-sudo cp --no-preserve=mode "${tmp_file}" "${local_bin}/composer"
+sudo install --mode=0755 --no-target-directory "${tmp_file}" "${local_bin}/composer"
 sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
-sudo chmod +x "${local_bin}/composer"
 sudo chmod +x "${local_bin}/cv"
 print-finish
 

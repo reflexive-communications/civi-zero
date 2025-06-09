@@ -32,10 +32,9 @@ print-status Install developer tools...
 tmp_file=$(mktemp)
 curl -LsS -o "${tmp_file}" "${url_php_cs_fixer}"
 echo "${sha_php_cs_fixer}  ${tmp_file}" | sha256sum --check --strict --status -
-sudo cp --no-preserve=mode "${tmp_file}" "${local_bin}/php-cs-fixer"
+sudo install --mode=0755 --no-target-directory "${tmp_file}" "${local_bin}/php-cs-fixer"
 sudo curl -LsS -o "${local_bin}/civix" "${url_civix}"
 sudo curl -LsS -o "${local_bin}/civistrings" "${url_civistrings}"
-sudo chmod +x "${local_bin}/php-cs-fixer"
 sudo chmod +x "${local_bin}/civix"
 sudo chmod +x "${local_bin}/civistrings"
 print-finish

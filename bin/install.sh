@@ -60,7 +60,7 @@ config_template="${install_dir}/web/modules/contrib/civicrm/civicrm.config.php.d
 
 print-status Copy essential files to install dir...
 if [[ "${install_dir}" != "${base_dir}" ]]; then
-    cp "${base_dir}/composer.json" "${base_dir}/composer.lock" "${base_dir}/.editorconfig" "${install_dir}"
+    install --mode=0644 "${base_dir}/composer.json" "${base_dir}/composer.lock" "${base_dir}/.editorconfig" "${install_dir}"
 fi
 print-finish
 
@@ -73,7 +73,7 @@ fi
 mkdir -p "${doc_root}"
 sudo chgrp -R www-data "${install_dir}"
 # Vhost
-sudo cp "${base_dir}/cfg/vhost.conf" "/etc/apache2/sites-available/${civi_domain}.conf"
+sudo install --mode=0644 --no-target-directory "${base_dir}/cfg/vhost.conf" "/etc/apache2/sites-available/${civi_domain}.conf"
 sudo sed -i \
     -e "s@{{ site }}@${civi_domain}@g" \
     -e "s@{{ doc_root }}@${doc_root}@g" \
@@ -134,7 +134,7 @@ mkdir -p "${install_dir}/web/extensions"
 print-finish
 
 print-status Config CiviCRM bin/setup.sh...
-cp "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
+install --mode=0644 --no-target-directory "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf.txt" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.conf"
 sed -i \
     -e "/^CIVISOURCEDIR=/ c \CIVISOURCEDIR='${install_dir}'" \
     -e "/^DBNAME=/ c \DBNAME='${civi_db_name}'" \
