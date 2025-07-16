@@ -1,3 +1,10 @@
+# PHPStorm
+/.idea/*
+# Whitelist shared configs
+!/.idea/codeStyles
+!/.idea/inspectionProfiles
+!/.idea/vcs.xml
+
 # Vendor
 /vendor/
 
