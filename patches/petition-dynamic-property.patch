@@ -1,0 +1,27 @@
+diff vendor/civicrm/civicrm-core/CRM/Campaign/Form/Petition/Signature.php
+--- vendor/civicrm/civicrm-core/CRM/Campaign/Form/Petition/Signature.php
++++ vendor/civicrm/civicrm-core/CRM/Campaign/Form/Petition/Signature.php
+@@ -94,6 +94,14 @@
+    */
+   public $_values;
+
++  /**
++   * This property used by civicrm_fb module and if true, forces thank you email to be sent
++   * for users signing in via Facebook connect; also sets Fb email to check against
++   *
++   * @var array
++   */
++  public $forceEmailConfirmed;
++
+   /**
+    * The params submitted by the form
+    *
+@@ -594,7 +602,7 @@
+
+         foreach ($fields as $key => $field) {
+           // if state or country in the profile, create map
+-          list($prefixName, $index) = CRM_Utils_System::explode('-', $key, 2);
++          [$prefixName, $index] = CRM_Utils_System::explode('-', $key, 2);
+
+           CRM_Core_BAO_UFGroup::buildProfile($this, $field, CRM_Profile_Form::MODE_CREATE, $contactID, TRUE);
+           $this->_fields[$key] = $field;
