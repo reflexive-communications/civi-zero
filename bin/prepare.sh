@@ -34,8 +34,8 @@ apachectl -V
 print-finish
 
 print-header Install MariaDB...
-curl -LsS -O https://r.mariadb.com/downloads/mariadb_repo_setup
-sudo bash mariadb_repo_setup --mariadb-server-version="${mariadb_version}" --skip-maxscale
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository --yes "${mariadb_repo_url}"
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade mariadb-server mariadb-client
 sudo mysql_install_db --user=mysql
 sudo systemctl enable mariadb.service
