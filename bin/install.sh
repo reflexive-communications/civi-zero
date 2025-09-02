@@ -97,6 +97,19 @@ print-header Composer install...
 composer install --no-interaction --working-dir="${install_dir}"
 print-finish
 
+print-header Apply patches...
+while IFS= read -r -d '' patch_file; do
+    set +e
+    patch -d "${install_dir}" -p0 --forward --reject-file=- --no-backup-if-mismatch < "${patch_file}"
+    result=$?
+    set -e
+    if [[ "${result}" -gt 1 ]]; then
+        print-error "Failed to patch ${patch_file}"
+        exit 1
+    fi
+done < <(find "${base_dir}/patches" -type f -print0 | sort -z || true)
+print-finish
+
 print-header Install Drupal...
 "${install_dir}/vendor/bin/drush" site:install \
     minimal \
