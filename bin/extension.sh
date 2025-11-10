@@ -27,8 +27,8 @@ base_dir=$(builtin cd "$(dirname "${0}")/.." >/dev/null 2>&1 && pwd)
 [[ -r "${base_dir}/cfg/install.local.cfg" ]] && . "${base_dir}/cfg/install.local.cfg"
 
 # Parse options
-install_dir="${1?:Install dir missing}"
-extension_dir="${2?:Extension dir missing}"
+install_dir="${1:?Install dir missing}"
+extension_dir="${2:?Extension dir missing}"
 extension_key="${3:-}"
 install_dir=$(realpath "${install_dir}")
 extension_target="${install_dir}/web/extensions"
