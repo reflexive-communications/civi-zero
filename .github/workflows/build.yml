@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/build.yml
       - "composer.*"
+      - "patches/**"
 env:
   INSTALL_DIR: /srv/www/civi-zero
   COMPOSER_CACHE_DIR: ~/.composer/cache
