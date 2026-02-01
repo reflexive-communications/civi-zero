@@ -16,7 +16,7 @@ diff vendor/civicrm/civicrm-core/CRM/Campaign/Form/Petition/Signature.php
    /**
     * The params submitted by the form
     *
-@@ -594,7 +602,7 @@
+@@ -584,7 +592,7 @@
 
          foreach ($fields as $key => $field) {
            // if state or country in the profile, create map

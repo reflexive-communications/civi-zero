@@ -1,0 +1,21 @@
+diff vendor/civicrm/civicrm-core/CRM/Profile/Form.php
+--- vendor/civicrm/civicrm-core/CRM/Profile/Form.php
++++ vendor/civicrm/civicrm-core/CRM/Profile/Form.php
+@@ -295,6 +295,17 @@
+     return [$this->_gid];
+   }
+
++  /**
++   * Get the contact ID being edited/created.
++   * This is the only way for postProcess hooks to get the contact ID
++   *
++   * @return int|null
++   */
++  public function getContactID()
++  {
++    return $this->_id;
++  }
++
+   /**
+    * Are we using the profile in create mode?
+    *
