@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec4984a98e46d06aab518615d4cf7a9f",
+    "content-hash": "3dfe258004dcad1d6b1be922e1786cf5",
     "packages": [
         {
             "name": "adrienrn/php-mimetyper",
@@ -231,16 +231,16 @@
         },
         {
             "name": "brick/money",
-            "version": "0.11.1",
+            "version": "0.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/money.git",
-                "reference": "44f262f867e6ec56cac21f4e55d630f2fd343eab"
+                "reference": "57fb799337d9c532da7f7c7def52b926bfcf0917"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/money/zipball/44f262f867e6ec56cac21f4e55d630f2fd343eab",
-                "reference": "44f262f867e6ec56cac21f4e55d630f2fd343eab",
+                "url": "https://api.github.com/repos/brick/money/zipball/57fb799337d9c532da7f7c7def52b926bfcf0917",
+                "reference": "57fb799337d9c532da7f7c7def52b926bfcf0917",
                 "shasum": ""
             },
             "require": {
@@ -252,7 +252,6 @@
                 "brick/varexporter": "0.7.0",
                 "ext-dom": "*",
                 "ext-pdo": "*",
-                "php-coveralls/php-coveralls": "^2.2",
                 "phpunit/phpunit": "^11.0",
                 "vimeo/psalm": "6.14.3"
             },
@@ -277,7 +276,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/money/issues",
-                "source": "https://github.com/brick/money/tree/0.11.1"
+                "source": "https://github.com/brick/money/tree/0.11.2"
             },
             "funding": [
                 {
@@ -285,7 +284,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-12T09:47:51+00:00"
+            "time": "2026-03-02T20:25:37+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -389,16 +388,16 @@
         },
         {
             "name": "civicrm/civicrm-core",
-            "version": "6.8.0",
+            "version": "6.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-core.git",
-                "reference": "3a30ce8434aae0a296b92f3eb3582210e0047239"
+                "reference": "dc40492b2bbc52cb9a0d1b21201f1fc3a08a0d9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/3a30ce8434aae0a296b92f3eb3582210e0047239",
-                "reference": "3a30ce8434aae0a296b92f3eb3582210e0047239",
+                "url": "https://api.github.com/repos/civicrm/civicrm-core/zipball/dc40492b2bbc52cb9a0d1b21201f1fc3a08a0d9f",
+                "reference": "dc40492b2bbc52cb9a0d1b21201f1fc3a08a0d9f",
                 "shasum": ""
             },
             "require": {
@@ -895,7 +894,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-core/tree/6.8.0"
+                "source": "https://github.com/civicrm/civicrm-core/tree/6.9.2"
             },
             "funding": [
                 {
@@ -903,20 +902,20 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-11-06T04:21:20+00:00"
+            "time": "2026-01-08T03:58:01+00:00"
         },
         {
             "name": "civicrm/civicrm-drupal-8",
-            "version": "6.8.0",
+            "version": "6.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-drupal-8.git",
-                "reference": "519db1f4e5423985993c3b0ac0b09d85cfd81b9e"
+                "reference": "8e40921e6598d3d673e24c8b976e95b3ba9855f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/civicrm/civicrm-drupal-8/zipball/519db1f4e5423985993c3b0ac0b09d85cfd81b9e",
-                "reference": "519db1f4e5423985993c3b0ac0b09d85cfd81b9e",
+                "url": "https://api.github.com/repos/civicrm/civicrm-drupal-8/zipball/8e40921e6598d3d673e24c8b976e95b3ba9855f1",
+                "reference": "8e40921e6598d3d673e24c8b976e95b3ba9855f1",
                 "shasum": ""
             },
             "require": {
@@ -956,7 +955,7 @@
             ],
             "description": "Open source constituent relationship management for non-profits, NGOs and advocacy organizations.",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-drupal-8/tree/6.8.0"
+                "source": "https://github.com/civicrm/civicrm-drupal-8/tree/6.9.2"
             },
             "funding": [
                 {
@@ -964,11 +963,11 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-06-24T08:16:05+00:00"
+            "time": "2025-11-28T01:30:43+00:00"
         },
         {
             "name": "civicrm/civicrm-packages",
-            "version": "6.8.0",
+            "version": "6.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/civicrm/civicrm-packages.git",
@@ -984,7 +983,7 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "Legacy third party dependencies for CiviCRM",
             "support": {
-                "source": "https://github.com/civicrm/civicrm-packages/tree/6.8.0"
+                "source": "https://github.com/civicrm/civicrm-packages/tree/6.9.2"
             },
             "time": "2025-05-30T06:28:12+00:00"
         },
@@ -5051,6 +5050,7 @@
                 "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=Net_Socket",
                 "source": "https://github.com/pear/Net_Socket"
             },
+            "abandoned": true,
             "time": "2017-04-06T15:16:38+00:00"
         },
         {
@@ -9848,16 +9848,16 @@
         },
         {
             "name": "tecnickcom/tcpdf",
-            "version": "6.10.1",
+            "version": "6.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "7a2701251e5d52fc3d508fd71704683eb54f5939"
+                "reference": "81172e58edb1cfae4019ef150ccbdc0e9a8c85c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/7a2701251e5d52fc3d508fd71704683eb54f5939",
-                "reference": "7a2701251e5d52fc3d508fd71704683eb54f5939",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/81172e58edb1cfae4019ef150ccbdc0e9a8c85c9",
+                "reference": "81172e58edb1cfae4019ef150ccbdc0e9a8c85c9",
                 "shasum": ""
             },
             "require": {
@@ -9907,7 +9907,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tecnickcom/TCPDF/issues",
-                "source": "https://github.com/tecnickcom/TCPDF/tree/6.10.1"
+                "source": "https://github.com/tecnickcom/TCPDF/tree/6.11.0"
             },
             "funding": [
                 {
@@ -9915,7 +9915,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-11-21T10:58:21+00:00"
+            "time": "2026-03-01T09:35:25+00:00"
         },
         {
             "name": "thecodingmachine/safe",
