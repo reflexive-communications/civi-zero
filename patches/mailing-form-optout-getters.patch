@@ -1,0 +1,20 @@
+diff vendor/civicrm/civicrm-core/CRM/Mailing/Form/Optout.php
+--- vendor/civicrm/civicrm-core/CRM/Mailing/Form/Optout.php
++++ vendor/civicrm/civicrm-core/CRM/Mailing/Form/Optout.php
+@@ -44,6 +44,16 @@
+    */
+   protected $_email;
+
++  public function getQueueID()
++  {
++    return $this->_queue_id;
++  }
++
++  public function getHash()
++  {
++    return $this->_hash;
++  }
++
+   public function preProcess() {
+     $this->_job_id = $job_id = CRM_Utils_Request::retrieve('jid', 'Integer', $this);
+     $this->_queue_id = $queue_id = CRM_Utils_Request::retrieve('qid', 'Integer', $this);
