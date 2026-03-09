@@ -10,7 +10,6 @@
         }
     ],
     "require": {
-        "php": "^7.4 || 8.2.*",
         "ext-bcmath": "*",
         "ext-curl": "*",
         "ext-dom": "*",
