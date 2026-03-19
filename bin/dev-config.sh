@@ -61,17 +61,10 @@ sudo -u www-data cv api4 "${cv_params[@]}" Contact.update +v "api_key=${civi_api
 print-finish
 
 print-header Set default from address...
-record=$(cat <<EOF
-{
-    "values": {
-        "label": "\"${civi_user}\" <${civi_mail}>",
-        "name": "\"${civi_user}\" <${civi_mail}>"
-    },
-    "where":[["option_group_id:name","=","from_email_address"]]
-}
-EOF
-)
-echo "${record}" | sudo -u www-data cv api4 "${cv_params[@]}" OptionValue.update --in=json
+sudo -u www-data cv api4 "${cv_params[@]}" SiteEmailAddress.update \
+    +v "display_name=${civi_user}" \
+    +v "email=${civi_mail}" \
+    +w is_default=1
 print-finish
 
 print-header Apply settings...
