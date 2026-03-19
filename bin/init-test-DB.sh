@@ -46,12 +46,13 @@ sed -i -r \
 print-finish
 
 print-header Init CiviCRM test DataBase...
+extension_list=$(implode , "${civi_extensions[@]}")
 sudo -u www-data cv core:install \
     --no-interaction \
     --cwd="${install_dir}" \
     --url="https://${civi_domain}" \
     --db="mysql://${civi_db_user_name}:${civi_db_user_pass}@localhost:3306/${civi_db_test}?new_link=true" \
-    --comp="${civi_components}" \
+    --ext="${extension_list}" \
     --keep
 print-finish
 

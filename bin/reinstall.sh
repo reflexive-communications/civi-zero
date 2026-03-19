@@ -41,15 +41,19 @@ for flag in "${@}"; do
     esac
 done
 
-if [[ -n "${load_sample}" ]]; then
-    print-header "Init DB & load sample data..."
-    GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -se
-    print-finish
-else
+if [[ -z "${load_sample}" ]]; then
     print-header Init DB...
     GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -sd
     print-finish
+else
+    print-header "Init DB & load sample data..."
+    GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -se
+    print-finish
 fi
+# Re-enable core extensions, sample data installation disables them
+print-header Re-enable core extensions...
+sudo -u www-data cv ext:enable --no-interaction --cwd="${install_dir}" "${civi_extensions[@]}"
+print-finish
 
 "${base_dir}/bin/clear-cache.sh" "${install_dir}"
 

@@ -136,13 +136,14 @@ print-finish
 print-finish Drupal installed!
 
 print-header Install CiviCRM...
+extension_list=$(implode , "${civi_extensions[@]}")
 cv core:install \
     --no-interaction \
     --cwd="${install_dir}" \
     --lang=en_GB \
     --url="http://${civi_domain}" \
     --model paths.cms.root.path="${doc_root}" \
-    --comp="${civi_components}"
+    --ext="${extension_list}"
 mkdir -p "${install_dir}/web/extensions"
 print-finish
 
@@ -164,6 +165,10 @@ print-finish
 if [[ -n "${load_sample}" ]]; then
     print-header Load sample data...
     GENCODE_CONFIG_TEMPLATE="${config_template}" "${install_dir}/vendor/civicrm/civicrm-core/bin/setup.sh" -se
+    print-finish
+    # Re-enable core extensions, sample data installation disables them
+    print-header Re-enable core extensions...
+    cv ext:enable --no-interaction --cwd="${install_dir}" "${civi_extensions[@]}"
     print-finish
 fi
 
