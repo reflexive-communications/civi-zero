@@ -1,0 +1,78 @@
+diff vendor/civicrm/civicrm-core/bin/setup.sh
+--- vendor/civicrm/civicrm-core/bin/setup.sh
++++ vendor/civicrm/civicrm-core/bin/setup.sh
+@@ -137,10 +137,9 @@
+ MYSQLCMD=$(mysql_cmd)
+ ###############################################################################
+ ## Execute tasks
+-set -x
+
+ if [ -n "$DO_DOWNLOAD" ]; then
+-  pushd "$CALLEDPATH/.."
++  pushd "$CALLEDPATH/.." >/dev/null
+     if [ "$GENCODE_CMS" != "Drupal8" ]; then
+       COMPOSER=$(pickcmd composer composer.phar)
+       $COMPOSER install
+@@ -152,24 +151,24 @@
+     else
+       npm install
+     fi
+-  popd
++  popd >/dev/null
+ fi
+
+ # run code generator if it's there - which means it's
+ # checkout, not packaged code
+ if [ -n "$DO_GENCODE" -a -d "$CALLEDPATH/../xml" ]; then
+-  pushd "$CALLEDPATH/../xml"
++  pushd "$CALLEDPATH/../xml" >/dev/null
+     if [ -z "$DBPORT" ]; then
+       PHP_MYSQL_HOSTPORT="$DBHOST"
+     else
+       PHP_MYSQL_HOSTPORT="$DBHOST:$DBPORT"
+     fi
+     "$PHP5PATH"php -d mysql.default_host="$PHP_MYSQL_HOSTPORT" -d mysql.default_user=$DBUSER -d mysql.default_password=$DBPASS GenCode.php $SCHEMA '' ${GENCODE_CMS}
+-  popd
++  popd >/dev/null
+ fi
+
+ if [ -n "$DO_SCHEMA" ]; then
+-  pushd "$CALLEDPATH/../sql"
++  pushd "$CALLEDPATH/../sql" >/dev/null
+     echo; echo "Dropping civicrm_* tables from database $DBNAME"
+     echo "SELECT table_name FROM information_schema.TABLES  WHERE TABLE_SCHEMA='${DBNAME}' AND TABLE_TYPE = 'VIEW'" \
+       | $MYSQLCMD \
+@@ -184,11 +183,11 @@
+
+     echo; echo Creating database structure
+     $MYSQLCMD < civicrm.mysql
+-  popd
++  popd >/dev/null
+ fi
+
+ if [ -n "$DO_DATA" ]; then
+-  pushd "$CALLEDPATH/../sql"
++  pushd "$CALLEDPATH/../sql" >/dev/null
+     # load default data set unless system is configured with override
+     if [ -z $DBLOAD ]; then
+         echo;
+@@ -206,16 +205,15 @@
+         echo; echo Loading $DBADD
+         $MYSQLCMD < $DBADD
+     fi
+-  popd
++  popd >/dev/null
+ fi
+
+ if [ -n "$DO_FLUSH" ]; then
+-  pushd "$CALLEDPATH/.."
++  pushd "$CALLEDPATH/.." >/dev/null
+     # reset userFrameworkResourceURL which gets set
+     # when config object is initialized
+     $MYSQLCMD -e "UPDATE civicrm_setting SET value = NULL WHERE name = 'userFrameworkResourceURL';"
+-  popd
++  popd >/dev/null
+ fi
+
+ echo; echo "NOTE: Logout from your CMS to avoid session conflicts."
+-
