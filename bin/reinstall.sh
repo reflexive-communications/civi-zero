@@ -59,8 +59,7 @@ print-finish
 
 print-status Login to site...
 OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
-tmp_file=$(mktemp)
-curl -LsS -o /dev/null --cookie-jar "${tmp_file}" "${OTP}"
+curl-get "${OTP}" /dev/null
 print-finish
 
 print-finish CiviCRM reinstalled!

@@ -68,11 +68,12 @@ print-finish
 
 print-status Install PHP tools...
 tmp_file=$(mktemp)
-curl -LsS -o "${tmp_file}" "${url_composer}"
+curl-get "${url_composer}" "${tmp_file}"
 echo "${sha_composer}  ${tmp_file}" | sha256sum --check --strict --status -
 sudo install --mode=0755 --no-target-directory "${tmp_file}" "${local_bin}/composer"
-sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
-sudo chmod +x "${local_bin}/cv"
+tmp_file=$(mktemp)
+curl-get "${url_cv}" "${tmp_file}"
+sudo install --mode=0755 --no-target-directory "${tmp_file}" "${local_bin}/cv"
 print-finish
 
 print-header Verify PHP tools version...
