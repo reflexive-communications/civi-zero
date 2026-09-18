@@ -51,6 +51,8 @@ print-header Install PHP...
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
+sudo a2enconf "php${php_version}-fpm"
+sudo systemctl restart apache2.service
 print-finish
 
 print-status Config PHP...
