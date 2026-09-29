@@ -198,7 +198,12 @@ print-finish
 print-status Login to site...
 cookies=$(mktemp)
 OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
-curl-get "${OTP}" /dev/null --cookie-jar "${cookies}"
+response=$(curl-get "${OTP}" /dev/stdout --cookie-jar "${cookies}")
+if ! grep -qs '^<!DOCTYPE html>' <<<"${response}"; then
+    print-error Not HTML response from login page
+    echo "${response}"
+    exit 1
+fi
 print-finish
 
 print-status Test Civi: GET "http://${civi_domain}/civicrm/contact/search" ...
