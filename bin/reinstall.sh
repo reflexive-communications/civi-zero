@@ -58,9 +58,10 @@ print-finish
 "${base_dir}/bin/clear-cache.sh" "${install_dir}"
 
 print-status Login to site...
+"${install_dir}/vendor/bin/drush" uinf "${civi_user}"
 OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
-echo $OTP
-curl --url "${OTP}" -v --location --fail-with-body
+echo OTP: $OTP
+curl --url "${OTP}" -v --location --fail-with-body --no-progress-meter
 curl-get "${OTP}" /dev/null
 print-finish
 
