@@ -59,6 +59,8 @@ print-finish
 
 print-status Login to site...
 OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
+echo $OTP
+curl --url "${OTP}" -v --location --fail-with-body
 curl-get "${OTP}" /dev/null
 print-finish
 
