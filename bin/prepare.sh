@@ -51,6 +51,8 @@ print-header Install PHP...
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get --quiet install --yes --no-install-recommends --no-upgrade "${php_extensions[@]}"
 sudo update-alternatives --set php "/usr/bin/php${php_version}"
+sudo a2enconf "php${php_version}-fpm"
+sudo systemctl restart apache2.service
 print-finish
 
 print-status Config PHP...
@@ -68,11 +70,12 @@ print-finish
 
 print-status Install PHP tools...
 tmp_file=$(mktemp)
-curl -LsS -o "${tmp_file}" "${url_composer}"
+curl-get "${url_composer}" "${tmp_file}"
 echo "${sha_composer}  ${tmp_file}" | sha256sum --check --strict --status -
 sudo install --mode=0755 --no-target-directory "${tmp_file}" "${local_bin}/composer"
-sudo curl -LsS -o "${local_bin}/cv" "${url_cv}"
-sudo chmod +x "${local_bin}/cv"
+tmp_file=$(mktemp)
+curl-get "${url_cv}" "${tmp_file}"
+sudo install --mode=0755 --no-target-directory "${tmp_file}" "${local_bin}/cv"
 print-finish
 
 print-header Verify PHP tools version...

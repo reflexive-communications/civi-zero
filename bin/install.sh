@@ -198,19 +198,16 @@ print-finish
 print-status Login to site...
 cookies=$(mktemp)
 OTP=$("${install_dir}/vendor/bin/drush" user:login --uri="${civi_domain}" --no-browser --yes)
-return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie-jar "${cookies}" "${OTP}")
-if [[ "${return_code}" != 200 ]]; then
-    print-error Failed to login to site
+response=$(curl-get "${OTP}" /dev/stdout --cookie-jar "${cookies}")
+if ! grep -qs '^<!DOCTYPE html>' <<<"${response}"; then
+    print-error Not HTML response from login page
+    echo "${response}"
     exit 1
 fi
 print-finish
 
 print-status Test Civi: GET "http://${civi_domain}/civicrm/contact/search" ...
-return_code=$(curl -LsS -o /dev/null -w"%{http_code}" --cookie "${cookies}" "http://${civi_domain}/civicrm/contact/search")
-if [[ "${return_code}" != 200 ]]; then
-    print-error Failed to GET "http://${civi_domain}/civicrm/contact/search"
-    exit 1
-fi
+curl-get "http://${civi_domain}/civicrm/contact/search" /dev/null --cookie "${cookies}"
 print-finish
 
 print-finish CiviCRM installed!
